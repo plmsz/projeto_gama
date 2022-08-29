@@ -9,4 +9,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './setupTests.js',
   },
+  server: {
+    open: 'http://localhost:5173/'
+  }
 });
