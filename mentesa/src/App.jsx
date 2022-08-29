@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import GlobalStyle from './styles/GlobalStyle'
+import * as S from './styles/CommonUi'
 
 function App() {
   return (
-    <div>
-      <p className="read-the-docs">
-        Mente sã
-      </p>
-    </div>
+    <>
+      <GlobalStyle />
+      <S.Container>
+        <p>Mente sã</p>
+      </S.Container>
+    </>
   )
 }
 
