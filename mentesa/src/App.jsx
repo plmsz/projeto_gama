@@ -1,13 +1,14 @@
 import GlobalStyle from './styles/GlobalStyle'
-import * as S from './styles/CommonUi'
+import Routes from './Routes'
+import { AuthContextProvider } from './contexts/AuthContext'
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <S.Container>
-        <p>Mente sã</p>
-      </S.Container>
+      <AuthContextProvider>
+        <Routes />
+      </AuthContextProvider>
     </>
   )
 }
