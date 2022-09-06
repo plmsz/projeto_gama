@@ -1,12 +1,44 @@
 {
-  "clients": [
+  "appointment": [
     {
       "id": 1,
-      "name": "jane doe"
+      "ticket": "#1",
+      "professional": "João da Silva Júnior",
+      "type": "Psicologia",
+      "date": "2022-09-06T11:41:07.463Z",
+      "status": "Cancelada"
     },
     {
       "id": 2,
-      "name": "john doe"
+      "ticket": "#2",
+      "professional": "João da Silva Júnior",
+      "type": "Psicologia",
+      "date": "2022-09-16T11:41:07.463Z",
+      "status": "Agendada"
+    },
+    {
+      "id": 3,
+      "ticket": "#3",
+      "professional": "Antônia da Silva Pereira",
+      "type": "Psiquiatria",
+      "date": "2022-09-18T08:00:00.463Z",
+      "status": "Agendada"
+    },
+    {
+      "id": 4,
+      "ticket": "#4",
+      "professional": "Vanessa Pereira Albuquerque",
+      "type": "Terapeuta",
+      "date": "2022-10-02T08:00:00.463Z",
+      "status": "Remarcada"
+    },
+    {
+      "id": 5,
+      "ticket": "#5",
+      "professional": "Antônia da Silva Pereira",
+      "type": "Psiquiatria",
+      "date": "2022-10-18T08:00:00.463Z",
+      "status": "Agendada"
     }
   ]
 }
