@@ -21,7 +21,7 @@
       "ticket": "#3",
       "professional": "Antônia da Silva Pereira",
       "type": "Psiquiatria",
-      "date": "2022-09-18T08:00:00.463Z",
+      "date": "2022-09-18T18:00:00.463Z",
       "status": "Agendada"
     },
     {
@@ -29,7 +29,7 @@
       "ticket": "#4",
       "professional": "Vanessa Pereira Albuquerque",
       "type": "Terapeuta",
-      "date": "2022-10-02T08:00:00.463Z",
+      "date": "2022-10-02T18:00:00.463Z",
       "status": "Remarcada"
     },
     {
@@ -37,7 +37,7 @@
       "ticket": "#5",
       "professional": "Antônia da Silva Pereira",
       "type": "Psiquiatria",
-      "date": "2022-10-18T08:00:00.463Z",
+      "date": "2022-10-18T19:00:00.463Z",
       "status": "Agendada"
     }
   ]

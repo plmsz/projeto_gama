@@ -5,6 +5,7 @@ import { IconButton, Box, Tooltip, Button, createTheme, ThemeProvider, useTheme 
 import { Edit, Delete } from '@mui/icons-material'
 import { ptBR } from '@mui/material/locale'
 import { i18n } from './i18n.js'
+import { option } from '../../../../utils/formatDate'
 
 export const AppointmentList = () => {
   const { data, error, isFetching } = useFetch('appointment')
@@ -20,16 +21,19 @@ export const AppointmentList = () => {
         header: 'Professional',
       },
       {
-        accessorKey: 'type', //normal accessorKey
+        accessorFn: (row) => new Date(row.date), //convert to Date for sorting and filtering
+        id: 'date',
+        header: 'Data e Hora',
+        muiTableHeadCellFilterTextFieldProps: {
+          type: 'date',
+        },
+        sortingFn: 'datetime',
+        Cell: ({ cell }) => cell.getValue()?.toLocaleDateString('pt-br', option), //render Date as a string
+        Header: ({ column }) => <em>{column.columnDef.header}</em>, //custom header markup
+      },
+      {
+        accessorKey: 'type',
         header: 'Consulta',
-      },
-      {
-        accessorKey: 'date',
-        header: 'Data',
-      },
-      {
-        accessorKey: 'status',
-        header: 'Status',
       },
     ],
     [],
@@ -80,7 +84,6 @@ export const AppointmentList = () => {
               Nova consulta
             </Button>
           )}
-        />
         />
       </ThemeProvider>
     </>
