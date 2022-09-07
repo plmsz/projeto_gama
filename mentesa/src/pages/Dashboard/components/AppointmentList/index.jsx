@@ -1,22 +1,26 @@
-import { useMemo } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import MaterialReactTable from 'material-react-table'
 import { useFetch } from '../../../../hooks/useFetch'
 import { IconButton, Box, Tooltip, Button, createTheme, ThemeProvider, useTheme } from '@mui/material'
-import { Edit, Delete } from '@mui/icons-material'
+import { Edit, DeleteForever } from '@mui/icons-material'
 import { ptBR } from '@mui/material/locale'
 import { i18n } from './i18n.js'
 import { option } from '../../../../utils/formatDate'
 import { appointmentTypeList } from '../../constants'
+import { useWindowDimensions } from '../../../../hooks/useWindowDimensions'
+
 export const AppointmentList = ({ user }) => {
-  const { data, error, isFetching } = useFetch(`appointment?patientId=${user.id}`)
+  const { data, error, isFetching } = useFetch(`appointment?patientId=${user.id}&_sort=date&_order=desc`)
+  const { width } = useWindowDimensions()
+  const [showColumns, setShowColumns] = useState(width <= 1024 ? false : true)
 
   const columns = useMemo(
     () => [
       {
-        accessorKey: 'ticket', //access nested data with dot notation
+        accessorKey: 'ticket',
         header: 'Ticket',
         enableColumnActions: false,
-        size: 80,
+        size: 100,
       },
       {
         accessorKey: 'professional',
@@ -26,6 +30,7 @@ export const AppointmentList = ({ user }) => {
         accessorFn: (row) => new Date(row.date),
         id: 'date',
         header: 'Data e Hora',
+        size: 100,
         muiTableHeadCellFilterTextFieldProps: {
           type: 'date',
         },
@@ -34,10 +39,40 @@ export const AppointmentList = ({ user }) => {
         Header: ({ column }) => <em>{column.columnDef.header}</em>,
       },
       {
+        accessorKey: 'status',
+        header: 'Status',
+        size: 100,
+        Cell: ({ cell }) => (
+          <Box
+            sx={(theme) => ({
+              backgroundColor:
+                cell.getValue() === 'Agendada'
+                  ? theme.palette.success.light
+                  : cell.getValue() === 'Cancelada'
+                  ? theme.palette.error.light
+                  : theme.palette.warning.light,
+              borderRadius: '0.3rem',
+              color: '#fff',
+              maxWidth: '10ch',
+              padding: '0.3rem',
+              textAlign: 'center',
+            })}
+          >
+            {cell.getValue()?.toLocaleString?.('en-US', {
+              style: 'currency',
+              currency: 'USD',
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            })}
+          </Box>
+        ),
+      },
+      {
         accessorKey: 'type',
         header: 'Consulta',
         filterVariant: 'select',
         filterSelectOptions: appointmentTypeList,
+        size: 100,
       },
     ],
     [],
@@ -52,42 +87,71 @@ export const AppointmentList = ({ user }) => {
           data={data}
           localization={i18n}
           state={isFetching && { showSkeletons: true }}
+          initialState={{
+            density: 'comfortable',
+            showColumnFilters: true,
+            columnVisibility: { ticket: showColumns, type: showColumns, professional: showColumns },
+          }}
+          enableDensityToggle={false}
           enableRowActions
           positionActionsColumn='last'
+          muiTableHeadCellProps={{
+            sx: {
+              backgroundColor: '#00A6FB',
+              fontWeight: 'bold',
+              fontSize: '1.4rem',
+              color: '#fff',
+            },
+          }}
+          muiTopToolbarProps={{
+            sx: {
+              backgroundColor: '#00A6FB',
+              fontWeight: 'bold',
+              fontSize: '1.2rem',
+              color: '#fff',
+            },
+          }}
+          muiTableBodyCellProps={{
+            sx: {
+              fontSize: '1.2rem',
+              fontWeight: 500,
+            },
+          }}
           displayColumnDefOptions={{
             'mrt-row-actions': {
               muiTableHeadCellProps: {
                 align: 'center',
               },
-              size: 120,
             },
           }}
           renderRowActions={({ row }) => (
-            <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '0.5rem' }}>
-              <Button
-                variant='contained'
-                color='primary'
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                flexWrap: 'nowrap',
+                gap: '0.3rem',
+              }}
+            >
+              <IconButton
+                title='Reagendar'
+                sx={{ padding: '0.3rem' }}
+                onClick={() => {
+                  alert(`feat futura ${row.getValue('ticket')}`)
+                }}
+              >
+                <Edit />
+              </IconButton>
+              <IconButton
+                title='Cancelar'
+                sx={{ padding: '0.3rem' }}
                 onClick={() => {
                   alert(`feat futura ${row.id}`)
                 }}
               >
-                Reagendar
-              </Button>
-              <Button
-                variant='contained'
-                color='error'
-                onClick={() => {
-                  alert('feat futura')
-                }}
-              >
-                Cancelar
-              </Button>
+                <DeleteForever color='error' />
+              </IconButton>
             </div>
-          )}
-          renderTopToolbarCustomActions={() => (
-            <Button color='secondary' onClick={() => alert('feat futura')} variant='contained'>
-              Nova consulta
-            </Button>
           )}
         />
       </ThemeProvider>
