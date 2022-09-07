@@ -39,5 +39,6 @@ export const i18n = {
     ungroupByColumn: 'Desagrupar por {column}',
     unpin: 'Remover fixação',
     unsorted: 'Sem ordem',
-    noResultsFound: 'Não foi encontrado consultas'
+    noResultsFound: 'Não foi encontrado as consultas',
+    noRecordsToDisplay: 'Não há consultas',
 };

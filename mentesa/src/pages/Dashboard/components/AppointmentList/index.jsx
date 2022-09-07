@@ -6,38 +6,43 @@ import { Edit, Delete } from '@mui/icons-material'
 import { ptBR } from '@mui/material/locale'
 import { i18n } from './i18n.js'
 import { option } from '../../../../utils/formatDate'
+import { appointmentTypeList } from '../../constants'
+export const AppointmentList = ({ user }) => {
+  const { data, error, isFetching } = useFetch(`appointment?patientId=${user.id}`)
 
-export const AppointmentList = () => {
-  const { data, error, isFetching } = useFetch('appointment')
   const columns = useMemo(
     () => [
       {
         accessorKey: 'ticket', //access nested data with dot notation
         header: 'Ticket',
         enableColumnActions: false,
+        size: 80,
       },
       {
         accessorKey: 'professional',
         header: 'Professional',
       },
       {
-        accessorFn: (row) => new Date(row.date), //convert to Date for sorting and filtering
+        accessorFn: (row) => new Date(row.date),
         id: 'date',
         header: 'Data e Hora',
         muiTableHeadCellFilterTextFieldProps: {
           type: 'date',
         },
         sortingFn: 'datetime',
-        Cell: ({ cell }) => cell.getValue()?.toLocaleDateString('pt-br', option), //render Date as a string
-        Header: ({ column }) => <em>{column.columnDef.header}</em>, //custom header markup
+        Cell: ({ cell }) => cell.getValue()?.toLocaleDateString('pt-br', option),
+        Header: ({ column }) => <em>{column.columnDef.header}</em>,
       },
       {
         accessorKey: 'type',
         header: 'Consulta',
+        filterVariant: 'select',
+        filterSelectOptions: appointmentTypeList,
       },
     ],
     [],
   )
+
   const theme = useTheme()
   return (
     <>
