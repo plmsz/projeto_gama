@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
+import { axios } from 'axios';
 
 export const useFetch = (route) => {
     const [data, setData] = useState([]);
