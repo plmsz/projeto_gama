@@ -2,7 +2,7 @@
   "appointment": [
     {
       "id": 1,
-      "ticket": "#10001",
+      "ticket": "10001",
       "professional": "João da Silva Júnior",
       "type": "Psicologia",
       "date": "2022-09-06T11:41:07.463Z",
@@ -11,7 +11,7 @@
     },
     {
       "id": 2,
-      "ticket": "#10002",
+      "ticket": "10002",
       "professional": "João da Silva Júnior",
       "type": "Psicologia",
       "date": "2022-09-16T11:41:07.463Z",
@@ -20,7 +20,7 @@
     },
     {
       "id": 3,
-      "ticket": "#10003",
+      "ticket": "10003",
       "professional": "Antônia da Silva Pereira",
       "type": "Psiquiatria",
       "date": "2022-08-18T18:00:00.463Z",
@@ -29,7 +29,7 @@
     },
     {
       "id": 4,
-      "ticket": "#10004",
+      "ticket": "10004",
       "professional": "Vanessa Pereira Albuquerque",
       "type": "Terapeuta",
       "date": "2022-10-02T18:00:00.463Z",
@@ -38,7 +38,7 @@
     },
     {
       "id": 5,
-      "ticket": "#10005",
+      "ticket": "10005",
       "professional": "Antônia da Silva Pereira",
       "type": "Psiquiatria",
       "date": "2022-10-09T19:00:00.463Z",
@@ -47,7 +47,7 @@
     },
     {
       "id": 6,
-      "ticket": "#10006",
+      "ticket": "10006",
       "professional": "Antônia da Silva Pereira",
       "type": "Psiquiatria",
       "date": "2022-10-18T14:00:00.463Z",
@@ -56,7 +56,7 @@
     },
     {
       "id": 7,
-      "ticket": "#10007",
+      "ticket": "10007",
       "professional": "Vanessa Pereira Albuquerque",
       "type": "Psiquiatria",
       "date": "2022-10-22T14:00:00.463Z",

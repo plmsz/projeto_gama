@@ -7,7 +7,7 @@ import { option } from '../../../../utils/formatDate'
 import { appointmentTypeList } from '../../constants'
 import { Edit, DeleteForever } from '@mui/icons-material'
 
-export function AppointmentsTable({ data, isFetching, width, showColumns }) {
+export function AppointmentsTable({ data, isFetching, width, showColumns, handleCancelAppointment }) {
   const theme = useTheme()
 
   const columns = useMemo(
@@ -17,6 +17,7 @@ export function AppointmentsTable({ data, isFetching, width, showColumns }) {
         header: 'Ticket',
         enableColumnActions: false,
         size: 100,
+        Cell: ({ cell }) => `#${cell.getValue()}`,
       },
       {
         accessorKey: 'professional',
@@ -128,6 +129,7 @@ export function AppointmentsTable({ data, isFetching, width, showColumns }) {
           >
             <IconButton
               title='Reagendar'
+              disabled={row.getValue('status') === 'Cancelada'}
               sx={{ padding: '0.3rem' }}
               onClick={() => {
                 alert(`feat futura ${row.getValue('ticket')}`)
@@ -136,13 +138,14 @@ export function AppointmentsTable({ data, isFetching, width, showColumns }) {
               <Edit />
             </IconButton>
             <IconButton
+              disabled={row.getValue('status') === 'Cancelada'}
               title='Cancelar'
               sx={{ padding: '0.3rem' }}
               onClick={() => {
-                alert(`feat futura ${row.id}`)
+                handleCancelAppointment(row.getValue('ticket'))
               }}
             >
-              <DeleteForever color='error' />
+              <DeleteForever color={`${row.getValue('status') === 'Cancelada' ? 'disabled' : 'error'}`} />
             </IconButton>
           </div>
         )}
