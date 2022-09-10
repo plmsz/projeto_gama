@@ -3,11 +3,11 @@ import MaterialReactTable from 'material-react-table'
 import { IconButton, Box, Tooltip, Button, createTheme, ThemeProvider, useTheme } from '@mui/material'
 import { ptBR } from '@mui/material/locale'
 import { i18n } from './i18n'
-import { option } from '../../../../utils/formatDate'
+import { option, optionDate, optionHour } from '../../../../utils/formatDate'
 import { appointmentTypeList } from '../../constants'
 import { Edit, DeleteForever } from '@mui/icons-material'
 
-export function AppointmentsTable({ data, isFetching, width, showColumns }) {
+export function AppointmentsTable({ data, isFetching, width, showColumns, setDialogOptions, setOpen }) {
   const theme = useTheme()
 
   const columns = useMemo(
@@ -17,6 +17,7 @@ export function AppointmentsTable({ data, isFetching, width, showColumns }) {
         header: 'Ticket',
         enableColumnActions: false,
         size: 100,
+        Cell: ({ cell }) => `#${cell.getValue()}`,
       },
       {
         accessorKey: 'professional',
@@ -27,9 +28,11 @@ export function AppointmentsTable({ data, isFetching, width, showColumns }) {
         id: 'date',
         header: 'Data e Hora',
         size: 100,
-        muiTableHeadCellFilterTextFieldProps: {
-          type: 'date',
-        },
+        enableColumnFilter: false,
+        sortDescFirst: false,
+        // muiTableHeadCellFilterTextFieldProps: {
+        //   type: 'date',
+        // },
         sortingFn: 'datetime',
         Cell: ({ cell }) => cell.getValue()?.toLocaleDateString('pt-br', option),
         Header: ({ column }) => <em>{column.columnDef.header}</em>,
@@ -38,6 +41,8 @@ export function AppointmentsTable({ data, isFetching, width, showColumns }) {
         accessorKey: 'status',
         header: 'Status',
         size: 100,
+        filterVariant: 'select',
+        filterSelectOptions: ['Agendada', 'Remarcada', 'Cancelada'],
         Cell: ({ cell }) => (
           <Box
             sx={(theme) => ({
@@ -49,8 +54,9 @@ export function AppointmentsTable({ data, isFetching, width, showColumns }) {
                   : theme.palette.warning.light,
               borderRadius: '0.3rem',
               color: '#fff',
-              maxWidth: '10ch',
-              padding: '0.3rem',
+              fontSize: '1rem',
+              width: '10ch',
+              padding: '0.2rem',
               textAlign: 'center',
             })}
           >
@@ -128,6 +134,7 @@ export function AppointmentsTable({ data, isFetching, width, showColumns }) {
           >
             <IconButton
               title='Reagendar'
+              disabled={row.getValue('status') === 'Cancelada'}
               sx={{ padding: '0.3rem' }}
               onClick={() => {
                 alert(`feat futura ${row.getValue('ticket')}`)
@@ -136,13 +143,23 @@ export function AppointmentsTable({ data, isFetching, width, showColumns }) {
               <Edit />
             </IconButton>
             <IconButton
+              disabled={row.getValue('status') === 'Cancelada'}
               title='Cancelar'
               sx={{ padding: '0.3rem' }}
               onClick={() => {
-                alert(`feat futura ${row.id}`)
+                setDialogOptions({
+                  title: 'Cancelar consulta',
+                  text: `Você tem certeza que quer cancelar sua consulta do dia ${row
+                    .getValue('date')
+                    ?.toLocaleDateString('pt-br', optionDate)} às ${row
+                    .getValue('date')
+                    ?.toLocaleTimeString('pt-br', optionHour)} com ${row.getValue('professional')} ?`,
+                  info: `${row.getValue('ticket')}`,
+                })
+                setOpen(true)
               }}
             >
-              <DeleteForever color='error' />
+              <DeleteForever color={`${row.getValue('status') === 'Cancelada' ? 'disabled' : 'error'}`} />
             </IconButton>
           </div>
         )}

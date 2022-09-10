@@ -15,9 +15,17 @@ export const formatDateTime = (value) => {
 };
 
 export const option = {
-    year: 'numeric',
+    year: '2-digit',
     month: 'numeric',
     day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+};
+export const optionDate = {
+    month: 'short',
+    day: 'numeric',
+};
+export const optionHour = {
     hour: 'numeric',
     minute: 'numeric',
 };
