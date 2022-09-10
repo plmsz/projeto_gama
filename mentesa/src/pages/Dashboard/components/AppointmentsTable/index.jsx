@@ -3,11 +3,11 @@ import MaterialReactTable from 'material-react-table'
 import { IconButton, Box, Tooltip, Button, createTheme, ThemeProvider, useTheme } from '@mui/material'
 import { ptBR } from '@mui/material/locale'
 import { i18n } from './i18n'
-import { option } from '../../../../utils/formatDate'
+import { option, optionDate, optionHour } from '../../../../utils/formatDate'
 import { appointmentTypeList } from '../../constants'
 import { Edit, DeleteForever } from '@mui/icons-material'
 
-export function AppointmentsTable({ data, isFetching, width, showColumns, handleCancelAppointment }) {
+export function AppointmentsTable({ data, isFetching, width, showColumns, setDialogOptions, setOpen }) {
   const theme = useTheme()
 
   const columns = useMemo(
@@ -142,7 +142,16 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, handle
               title='Cancelar'
               sx={{ padding: '0.3rem' }}
               onClick={() => {
-                handleCancelAppointment(row.getValue('ticket'))
+                setDialogOptions({
+                  title: 'Cancelar consulta',
+                  text: `Você tem certeza que quer cancelar sua consulta do dia ${row
+                    .getValue('date')
+                    ?.toLocaleDateString('pt-br', optionDate)} às ${row
+                    .getValue('date')
+                    ?.toLocaleTimeString('pt-br', optionHour)} com ${row.getValue('professional')} ?`,
+                  info: `${row.getValue('ticket')}`,
+                })
+                setOpen(true)
               }}
             >
               <DeleteForever color={`${row.getValue('status') === 'Cancelada' ? 'disabled' : 'error'}`} />

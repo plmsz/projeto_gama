@@ -21,3 +21,11 @@ export const option = {
     hour: 'numeric',
     minute: 'numeric',
 };
+export const optionDate = {
+    month: 'short',
+    day: 'numeric',
+};
+export const optionHour = {
+    hour: 'numeric',
+    minute: 'numeric',
+};
