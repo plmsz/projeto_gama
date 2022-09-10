@@ -13,7 +13,7 @@ export const useFetch = (route, update) => {
                 const response = await api.get(route);
                 setData(response.data);
             } catch (err) {
-                if (axios.isAxiosError(err)) {
+                if (axios?.isAxiosError(err)) {
                     setError(err.message);
                 }
             }
