@@ -28,9 +28,11 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
         id: 'date',
         header: 'Data e Hora',
         size: 100,
-        muiTableHeadCellFilterTextFieldProps: {
-          type: 'date',
-        },
+        enableColumnFilter: false,
+        sortDescFirst: false,
+        // muiTableHeadCellFilterTextFieldProps: {
+        //   type: 'date',
+        // },
         sortingFn: 'datetime',
         Cell: ({ cell }) => cell.getValue()?.toLocaleDateString('pt-br', option),
         Header: ({ column }) => <em>{column.columnDef.header}</em>,
@@ -39,6 +41,8 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
         accessorKey: 'status',
         header: 'Status',
         size: 100,
+        filterVariant: 'select',
+        filterSelectOptions: ['Agendada', 'Remarcada', 'Cancelada'],
         Cell: ({ cell }) => (
           <Box
             sx={(theme) => ({
@@ -50,8 +54,9 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
                   : theme.palette.warning.light,
               borderRadius: '0.3rem',
               color: '#fff',
-              maxWidth: '10ch',
-              padding: '0.3rem',
+              fontSize: '1rem',
+              width: '10ch',
+              padding: '0.2rem',
               textAlign: 'center',
             })}
           >
