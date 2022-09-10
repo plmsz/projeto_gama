@@ -2,8 +2,8 @@ import { toast } from 'react-toastify'
 
 function messageSuccess(message) {
   toast.success(message, {
-    position: 'bottom-center',
-    autoClose: 7000,
+    position: 'top-right',
+    autoClose: 3500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -14,8 +14,8 @@ function messageSuccess(message) {
 
 function messageError(message) {
   toast.error(message, {
-    position: 'bottom-center',
-    autoClose: 7000,
+    position: 'top-right',
+    autoClose: 3500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,

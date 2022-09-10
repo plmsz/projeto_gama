@@ -19,11 +19,11 @@ export const AppointmentList = ({ user }) => {
 
       await api.put(`appointment/${data[0].id}`, updateData)
       setUpdate(!update)
-      alert('sucesso')
+
       // // modal de confirmar
-      // return toast.success('A consulta foi cancelada.')
+      toast.messageSuccess('A consulta foi cancelada.')
     } catch (error) {
-      // return toast.messageError('Desculpe, houve um erro. Tente novamente')
+      toast.messageError('Desculpe, houve um erro. Tente novamente')
       alert('erro')
       console.log(error)
     }
