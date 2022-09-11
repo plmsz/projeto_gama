@@ -2,14 +2,17 @@ import { useMemo } from 'react'
 import MaterialReactTable from 'material-react-table'
 import { IconButton, Box, Tooltip, Button, createTheme, ThemeProvider, useTheme } from '@mui/material'
 import { ptBR } from '@mui/material/locale'
-import { i18n } from './i18n'
+import { translateTable } from '../../../../i18n'
 import { option, optionDate, optionHour } from '../../../../utils/formatDate'
 import { appointmentTypeList } from '../../constants'
 import { Edit, DeleteForever } from '@mui/icons-material'
 
 export function AppointmentsTable({ data, isFetching, width, showColumns, setDialogOptions, setOpen, role }) {
+  const i18n = translateTable({
+    noResultsFound: 'Não foram encontrado as consultas',
+    noRecordsToDisplay: 'Não há consultas.',
+  })
   const theme = useTheme()
-
   const showPatient = showColumns && role === 'professional'
   const showProfessional = showColumns && role === 'patient'
 

@@ -13,7 +13,7 @@ export function AuthContextProvider(props) {
     const fetch = async (userId) => {
       const [profile] = await getUser(userId)
       setUser((prev) => ({ ...prev, role: profile?.role }))
-      navigate('/')
+      // navigate('/')
     }
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {

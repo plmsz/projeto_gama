@@ -94,25 +94,40 @@
       "id": 1,
       "userId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
       "name": "Paloma Souza de Oliveira",
-      "role": "patient"
+      "role": "patient",
+      "birthday": "2002-08-10",
+      "gender": "Feminino"
     },
     {
       "id": 2,
       "userId": "oSrbC9nGeVNNBav7JWYc5U6SrPu1",
       "name": "Vanessa Pereira Albuquerque",
-      "role": "professional"
+      "role": "professional",
+      "birthday": "2004-11-10",
+      "gender": "Feminino"
     },
     {
       "id": 3,
       "userId": "VaquKpVZthMem0PwOU8kR2aiBbB2",
       "name": "Dra. Antônia Souza MenteSã",
-      "role": "professional"
+      "role": "professional",
+      "birthday": "1992-08-10",
+      "gender": "Feminino"
     },
     {
       "id": 4,
       "userId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
       "name": "João da Silva Júnior",
-      "role": "professional"
+      "role": "professional",
+      "age": 35,
+      "gender": "Feminino"
+    },
+    {
+      "id": 5,
+      "patient": "Natalia Thome",
+      "date": "2022-10-18T14:00:00.463Z",
+      "userId": "1GmSdnGa1VRiGQt1iFBaPkwDPfx1",
+      "professionalId": "VaquKpVZthMem0PwOU8kR2aiBbB2"
     }
   ]
 }
