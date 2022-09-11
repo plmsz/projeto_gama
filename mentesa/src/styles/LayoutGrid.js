@@ -18,4 +18,6 @@ export const LayoutGrid = styled.div`
     "SN PN"
   ;
 
+  position: relative;
+
 `
