@@ -1,22 +1,21 @@
-import { useState, useEffect } from 'react'
+import { Skeleton } from '@mui/material'
+import { useState } from 'react'
 import toast from '../../../../components/Toast'
-import { useFetch } from '../../../../hooks/useFetch'
+import { useFetch } from '../../../../hooks/useFetchAppointments'
 import { useWindowDimensions } from '../../../../hooks/useWindowDimensions'
 import { api } from '../../../../services/api'
-import { getUser } from '../../../../services/usersRequests'
-import { AppointmentsTable } from '../AppointmentsTable'
 import ConfirmDialog from './../../../../components/Dialog/index'
+import { useAuth } from './../../../../hooks/useAuth'
+import { AppointmentsTable } from './../AppointmentsTable/index'
 
-export const AppointmentList = ({ user, setUser }) => {
+export const AppointmentList = () => {
+  const { user, setUser } = useAuth()
   const [update, setUpdate] = useState(false)
   const { width } = useWindowDimensions()
   const [showColumnsScreen] = useState(width <= 1024 ? false : true)
   const [open, setOpen] = useState(false)
   const [dialogOptions, setDialogOptions] = useState({ title: '', text: '', info: '' })
-
-  //FIXME: todas as consultas quando não tem cadastro. se a feat de cadastro vier antes não precisa consertar
   const { data, isFetching } = useFetch(`appointment?${user.role}Id=${user.userId}&_sort=date&_order=desc`, update)
-
   const handleCancelAppointment = async (ticket) => {
     try {
       const { data } = await api.get(`appointment?ticket=${ticket}`)

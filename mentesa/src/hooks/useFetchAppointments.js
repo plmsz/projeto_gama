@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import { axios } from 'axios';
+import { useAuth } from './useAuth';
 
 export const useFetch = (route, update) => {
     const [data, setData] = useState([]);
     const [isFetching, setIsFetching] = useState(true);
     const [error, setError] = useState('');
+    const { user } = useAuth();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,8 +21,11 @@ export const useFetch = (route, update) => {
             }
             setIsFetching(false);
         };
-        fetchData();
-    }, [update]);
+        console.log(user);
+        if (user?.role !== undefined) {
+            fetchData();
+        }
+    }, [update, user]);
 
     return {
         data,

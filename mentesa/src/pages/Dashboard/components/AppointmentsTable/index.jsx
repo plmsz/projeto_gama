@@ -37,9 +37,6 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
         size: 100,
         enableColumnFilter: false,
         sortDescFirst: false,
-        // muiTableHeadCellFilterTextFieldProps: {
-        //   type: 'date',
-        // },
         sortingFn: 'datetime',
         Cell: ({ cell }) => cell.getValue()?.toLocaleDateString('pt-br', option),
         Header: ({ column }) => <em>{column.columnDef.header}</em>,

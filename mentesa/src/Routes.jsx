@@ -5,19 +5,12 @@ import { useEffect } from 'react'
 import { useAuth } from './hooks/useAuth'
 
 function RoutesPaths() {
-  const { user } = useAuth()
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (!user) {
-      navigate('/sign-in')
-    }
-  }, [])
-
+  //FIXME: rotas privadas
   return (
     <Routes>
-      <Route path='/' element={<Dashboard />} />
-      <Route path='/sign-in' element={<SignIn />} />
+      <Route path='/' element={<SignIn />} />
+      <Route path='/dashboard' element={<Dashboard />} />
+      <Route path='/teste' element={<h1>teste</h1>} />
     </Routes>
   )
 }
