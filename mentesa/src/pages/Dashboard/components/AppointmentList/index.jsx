@@ -13,7 +13,7 @@ export const AppointmentList = ({ user, setUser }) => {
   const [showColumnsScreen] = useState(width <= 1024 ? false : true)
   const [open, setOpen] = useState(false)
   const [dialogOptions, setDialogOptions] = useState({ title: '', text: '', info: '' })
-  console.log(user)
+
   //FIXME: todas as consultas quando não tem cadastro. se a feat de cadastro vier antes não precisa consertar
   const { data, isFetching } = useFetch(`appointment?${user.role}Id=${user.userId}&_sort=date&_order=desc`, update)
 

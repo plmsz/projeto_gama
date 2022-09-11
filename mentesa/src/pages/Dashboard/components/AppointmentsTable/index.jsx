@@ -159,13 +159,16 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
               title='Cancelar'
               sx={{ padding: '0.3rem' }}
               onClick={() => {
+                const text = `Você tem certeza que quer cancelar sua consulta do dia ${row
+                  .getValue('date')
+                  ?.toLocaleDateString('pt-br', optionDate)} às ${row
+                  .getValue('date')
+                  ?.toLocaleTimeString('pt-br', optionHour)} com ${
+                  role === 'patient' ? row.getValue('professional') : row.getValue('patient')
+                } ?`
                 setDialogOptions({
                   title: 'Cancelar consulta',
-                  text: `Você tem certeza que quer cancelar sua consulta do dia ${row
-                    .getValue('date')
-                    ?.toLocaleDateString('pt-br', optionDate)} às ${row
-                    .getValue('date')
-                    ?.toLocaleTimeString('pt-br', optionHour)} com ${row.getValue('professional')} ?`,
+                  text: text,
                   info: `${row.getValue('ticket')}`,
                 })
                 setOpen(true)
