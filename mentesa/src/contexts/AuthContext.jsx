@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import { auth, GoogleAuthProvider, signInWithPopup } from '../services/firebase'
 import { useNavigate } from 'react-router-dom'
+import { getUser } from '../services/usersRequests'
 
 export const AuthContext = createContext({})
 
@@ -9,6 +10,11 @@ export function AuthContextProvider(props) {
   const navigate = useNavigate()
 
   useEffect(() => {
+    const fetch = async (userId) => {
+      const [profile] = await getUser(userId)
+      setUser((prev) => ({ ...prev, role: profile?.role }))
+      navigate('/')
+    }
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         const { displayName, photoURL, uid } = user
@@ -16,11 +22,11 @@ export function AuthContextProvider(props) {
           throw new Error('Missing information from Google account')
         }
         setUser({
-          id: uid,
+          userId: uid,
           name: displayName,
           avatar: photoURL,
         })
-        navigate('/')
+        fetch(uid)
       }
     })
 
@@ -39,12 +45,20 @@ export function AuthContextProvider(props) {
       if (!displayName || !photoURL) {
         throw new Error('Missing information from Google account')
       }
+      const fetch = async (uid) => {
+        const [profile] = await getUser(uid)
+        if (profile.length > 0) {
+          setUser((prev) => ({ ...prev, role: profile?.role }))
+        }
+      }
       setUser({
-        id: uid,
+        userId: uid,
         name: displayName,
         avatar: photoURL,
+        role: profile?.role || undefined,
       })
+      fetch(uid)
     }
   }
-  return <AuthContext.Provider value={{ user, signInWithGoogle }}>{props.children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{ user, setUser, signInWithGoogle }}>{props.children}</AuthContext.Provider>
 }

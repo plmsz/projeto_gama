@@ -7,8 +7,11 @@ import { option, optionDate, optionHour } from '../../../../utils/formatDate'
 import { appointmentTypeList } from '../../constants'
 import { Edit, DeleteForever } from '@mui/icons-material'
 
-export function AppointmentsTable({ data, isFetching, width, showColumns, setDialogOptions, setOpen }) {
+export function AppointmentsTable({ data, isFetching, width, showColumns, setDialogOptions, setOpen, role }) {
   const theme = useTheme()
+
+  const showPatient = showColumns && role === 'professional'
+  const showProfessional = showColumns && role === 'patient'
 
   const columns = useMemo(
     () => [
@@ -22,6 +25,10 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
       {
         accessorKey: 'professional',
         header: 'Professional',
+      },
+      {
+        accessorKey: 'patient',
+        header: 'Paciente',
       },
       {
         accessorFn: (row) => new Date(row.date),
@@ -89,7 +96,12 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
         initialState={{
           density: 'comfortable',
           showColumnFilters: true,
-          columnVisibility: { ticket: showColumns, type: showColumns, professional: showColumns },
+          columnVisibility: {
+            ticket: showColumns,
+            type: showColumns,
+            professional: showProfessional,
+            patient: showPatient,
+          },
         }}
         enableDensityToggle={false}
         enableRowActions
