@@ -10,9 +10,6 @@ import { Edit, DeleteForever } from '@mui/icons-material'
 export function AppointmentsTable({ data, isFetching, width, showColumns, setDialogOptions, setOpen, role }) {
   const theme = useTheme()
 
-  const showPatient = showColumns && role === 'professional'
-  const showProfessional = showColumns && role === 'patient'
-
   const columns = useMemo(
     () => [
       {
@@ -23,12 +20,8 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
         Cell: ({ cell }) => `#${cell.getValue()}`,
       },
       {
-        accessorKey: 'professional',
-        header: 'Professional',
-      },
-      {
-        accessorKey: 'patient',
-        header: 'Paciente',
+        accessorKey: `${role === 'professional' ? 'patient' : 'professional'}`,
+        header: `${role === 'professional' ? 'Paciente' : 'Professional'}`,
       },
       {
         accessorFn: (row) => new Date(row.date),
@@ -96,8 +89,6 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
           columnVisibility: {
             ticket: showColumns,
             type: showColumns,
-            professional: showProfessional,
-            patient: showPatient,
           },
         }}
         enableDensityToggle={false}

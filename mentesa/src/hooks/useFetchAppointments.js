@@ -19,12 +19,11 @@ export const useFetch = (route, update) => {
                     setError(err.message);
                 }
             }
-            setIsFetching(false);
+            if (user?.role) {
+                setIsFetching(false);
+            }
         };
-        console.log(user);
-        if (user?.role !== undefined) {
-            fetchData();
-        }
+        fetchData();
     }, [update, user]);
 
     return {
