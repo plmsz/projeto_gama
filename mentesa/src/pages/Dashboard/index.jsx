@@ -11,7 +11,7 @@ export function Dashboard() {
         <>
           <img src={user.avatar} alt={user.name} referrerPolicy='no-referrer' />
           <p>{user.name}</p>
-          <AppointmentList user={user} />
+          <AppointmentList />
         </>
       )}
     </S.Container>

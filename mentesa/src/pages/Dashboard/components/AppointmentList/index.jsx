@@ -1,19 +1,25 @@
+import { Skeleton } from '@mui/material'
 import { useState } from 'react'
 import toast from '../../../../components/Toast'
 import { useFetch } from '../../../../hooks/useFetch'
 import { useWindowDimensions } from '../../../../hooks/useWindowDimensions'
 import { api } from '../../../../services/api'
-import { AppointmentsTable } from '../AppointmentsTable'
 import ConfirmDialog from './../../../../components/Dialog/index'
+import { useAuth } from './../../../../hooks/useAuth'
+import { AppointmentsTable } from './../AppointmentsTable/index'
 
-export const AppointmentList = ({ user }) => {
+export const AppointmentList = () => {
+  const { user, setUser } = useAuth()
   const [update, setUpdate] = useState(false)
   const { width } = useWindowDimensions()
-  const [showColumns] = useState(width <= 1024 ? false : true)
-  const { data, isFetching } = useFetch(`appointment?patientId=${user.id}&_sort=date&_order=desc`, update)
+  const [showColumnsScreen] = useState(width <= 1024 ? false : true)
   const [open, setOpen] = useState(false)
   const [dialogOptions, setDialogOptions] = useState({ title: '', text: '', info: '' })
 
+  const { data: rawData, isFetching } = useFetch(
+    `appointment?${user.role}Id=${user.userId}&_sort=date&_order=desc`,
+    update,
+  )
   const handleCancelAppointment = async (ticket) => {
     try {
       const { data } = await api.get(`appointment?ticket=${ticket}`)
@@ -29,16 +35,23 @@ export const AppointmentList = ({ user }) => {
       console.log(error)
     }
   }
+  let data = []
 
+  if (user.role === 'patient') {
+    data = rawData.map((row) => ({ ...row, name: row.professional }))
+  } else {
+    data = rawData.map((row) => ({ ...row, name: row.patient }))
+  }
   return (
     <>
       <AppointmentsTable
         data={data}
         isFetching={isFetching}
         width={width}
-        showColumns={showColumns}
+        showColumns={showColumnsScreen}
         setDialogOptions={setDialogOptions}
         setOpen={setOpen}
+        role={user.role}
       />
       {open && (
         <ConfirmDialog {...dialogOptions} setOpen={setOpen} open={open} functionConfirm={handleCancelAppointment} />
