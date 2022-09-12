@@ -94,25 +94,52 @@
       "id": 1,
       "userId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
       "name": "Paloma Souza de Oliveira",
-      "role": "patient"
+      "role": "patient",
+      "birthday": "1993-08-10",
+      "gender": "Feminino",
+      "cpf": "12345678901"
     },
     {
       "id": 2,
       "userId": "oSrbC9nGeVNNBav7JWYc5U6SrPu1",
       "name": "Vanessa Pereira Albuquerque",
-      "role": "professional"
+      "role": "professional",
+      "birthday": "2004-11-10",
+      "gender": "Feminino"
     },
     {
       "id": 3,
       "userId": "VaquKpVZthMem0PwOU8kR2aiBbB2",
       "name": "Dra. Antônia Souza MenteSã",
-      "role": "professional"
+      "role": "professional",
+      "birthday": "1992-08-10",
+      "gender": "Feminino"
     },
     {
       "id": 4,
       "userId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
       "name": "João da Silva Júnior",
-      "role": "professional"
+      "role": "professional",
+      "age": 35,
+      "gender": "Masculino"
+    },
+    {
+      "id": 5,
+      "userId": "1GmSdnGa1VRiGQt1iFBaPkwDPfx1",
+      "name": "Natalia Thome",
+      "role": "patient",
+      "birthday": "2004-08-10",
+      "gender": "Feminino",
+      "cpf": "12345678902"
+    },
+    {
+      "id": 6,
+      "name": "Angelo Polatto",
+      "userId": "si4niNyNnNgXuBhLB3QeABMUMBQ2",
+      "role": "patient",
+      "birthday": "1996-08-10",
+      "gender": "Masculino",
+      "cpf": "12345678903"
     }
   ]
 }
