@@ -12,7 +12,7 @@ import { Alert, MenuItem, Select, Snackbar, Stack, Switch } from '@mui/material'
 import useFormCont from '../../hooks/useFormCont';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useSnackbar } from 'notistack';
+// import { useSnackbar } from 'notistack';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 
 const theme = createTheme();
@@ -73,8 +73,8 @@ export default function Cadastro() {
     };
       
     const handleClickVariant = (variant) => () => {
-        isValidCPF(form.cpf) === true ? enqueueSnackbar('Usuario cadastrado com sucesso!', { variant }) 
-        : enqueueSnackbar('Erro ao cadastrar, verifique as informações!', { variant })
+        // isValidCPF(form.cpf) === true ? enqueueSnackbar('Usuario cadastrado com sucesso!', { variant }) 
+        // : enqueueSnackbar('Erro ao cadastrar, verifique as informações!', { variant })
     };
 
     const handleSubmit = (event) => {
