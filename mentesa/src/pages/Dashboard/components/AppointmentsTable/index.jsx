@@ -20,8 +20,8 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
         Cell: ({ cell }) => `#${cell.getValue()}`,
       },
       {
-        accessorKey: `${role === 'professional' ? 'patient' : 'professional'}`,
-        header: `${role === 'professional' ? 'Paciente' : 'Professional'}`,
+        accessorKey: 'name',
+        header: 'Nome',
       },
       {
         accessorFn: (row) => new Date(row.date),

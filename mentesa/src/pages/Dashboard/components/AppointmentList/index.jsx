@@ -15,7 +15,11 @@ export const AppointmentList = () => {
   const [showColumnsScreen] = useState(width <= 1024 ? false : true)
   const [open, setOpen] = useState(false)
   const [dialogOptions, setDialogOptions] = useState({ title: '', text: '', info: '' })
-  const { data, isFetching } = useFetch(`appointment?${user.role}Id=${user.userId}&_sort=date&_order=desc`, update)
+  const { data: rawData, isFetching } = useFetch(
+    `appointment?${user.role}Id=${user.userId}&_sort=date&_order=desc`,
+    update,
+  )
+
   const handleCancelAppointment = async (ticket) => {
     try {
       const { data } = await api.get(`appointment?ticket=${ticket}`)
@@ -30,6 +34,14 @@ export const AppointmentList = () => {
       toast.messageError('Desculpe, houve um erro. Tente novamente')
       console.log(error)
     }
+  }
+
+  let data = []
+
+  if (user.role === 'patient') {
+    data = rawData.map((row) => ({ ...row, name: row.professional }))
+  } else {
+    data = rawData.map((row) => ({ ...row, name: row.patient }))
   }
 
   return (
