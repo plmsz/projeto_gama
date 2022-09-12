@@ -16,7 +16,7 @@ function RoutesPaths() {
 
   return (
     <Routes>
-      <Route path='/' element={<Dashboard />} />
+      {/* <Route path='/' element={<Dashboard />} /> */}
       <Route path='/sign-in' element={<SignIn />} />
     </Routes>
   )
