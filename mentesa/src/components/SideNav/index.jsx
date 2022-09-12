@@ -1,36 +1,55 @@
 import { useState } from 'react'
-import { Dashboard as DashboardIcon, Person as PersonIcon, MeetingRoom, AccessibilityNew } from '@mui/icons-material'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
+// import { getAuth, signOut } from "firebase/auth";
 
-import { Container, NavItem, NavList, Logo, Logout  } from './styles';
+import { 
+     Dashboard as DashboardIcon, 
+     Person as PersonIcon, 
+     MeetingRoom, 
+     AccessibilityNew
+} from '@mui/icons-material'
+
+import { Container, NavList, NavItem, Logo, Logout  } from './styles';
 
 import LogoPng from '../../assets/mentesa.png'
 
-function SideNav() {
-
+function SideNav({typeDoctor}) {
+     const { closeSessionFromGoogle } = useAuth()
      const [isDoctor, setIsDoctor] = useState(false)
+
+     if(typeDoctor !== false) {
+          setIsDoctor(true)
+     }
 
      return(
           <Container>
                <Logo src={LogoPng}/>
                <NavList>
-                    <NavItem href='#'>
-                         <DashboardIcon fontSize='large'/>
-                         <span>Dashboard</span>
+                    <NavItem>
+                         <Link to='/'>
+                              <DashboardIcon fontSize='large'/>
+                              <span>Dashboard</span>
+                         </Link>
                     </NavItem>
-                    <NavItem href='#'>
-                         <PersonIcon fontSize='large'/>
-                         <span>Perfil</span>
+                    <NavItem>
+                         <Link to='/profile'>
+                              <PersonIcon fontSize='large'/>
+                              <span>Perfil</span>
+                         </Link>
                     </NavItem>
-                    <NavItem href='#' showComponent={isDoctor}>
-                         <AccessibilityNew fontSize='large'/>
-                         <span>Paciente</span>
+                    <NavItem showComponent={isDoctor}>
+                         <Link to='#' >
+                              <AccessibilityNew fontSize='large'/>
+                              <span>Paciente</span>
+                         </Link>
                     </NavItem>
                </NavList>
                <Logout>
-                    <a href="#">
+                    <button onClick={() => closeSessionFromGoogle()}>
                          <MeetingRoom fontSize='large'/>
                          <h4>Sair</h4>
-                    </a>
+                    </button>
                </Logout>
           </Container>
      );

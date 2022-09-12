@@ -22,32 +22,35 @@ export const NavList = styled.nav`
 
     display: flex;
     flex-direction: column;
+
 `
 
-export const NavItem = styled.a`
-  display: ${props => props.showComponent == false ? 'block' : 'none'};
+export const NavItem = styled.li`
+    list-style: none;
 
-  max-width: 100%;
-  padding: 18px 0 18px 35px;
+    a{
+      max-width: 100%;
+      padding: 18px 0 18px 35px;
 
-  display: ${props => props.showComponent !== false ? 'flex' : 'none'};
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
-  
-  cursor: pointer;
-  transition: 0.4s;
-  
-  text-decoration:none;
-  font-weight: bold;
-  color: #F8F7FF;
-  span {
-    font-size: 2rem;
-    align-content: center;
-  }
-  &:hover{
-    background-color: #00A6FB;
-  }
+      display: ${props => props.showComponent !== false ? 'flex' : 'none'};
+      align-items: center;
+      justify-content: flex-start;
+      gap: 16px;
+      
+      cursor: pointer;
+      transition: 0.4s;
+      
+      text-decoration:none;
+      font-weight: bold;
+      color: #F8F7FF;
+      span {
+        font-size: 2rem;
+        align-content: center;
+      }
+      &:hover{
+        background-color: #00A6FB;
+      }
+    }
 `
 
 export const Logo = styled.img`
@@ -75,9 +78,14 @@ export const Logout = styled.div`
     background-color: #006494;
   }
 
-  a {
+  button {
     width: 100%;
     height: 100%;
+
+    background-color: transparent;
+    &:hover{
+      background-color: #006494;
+    }
 
     display: flex;
     flex-direction: row;
@@ -85,13 +93,15 @@ export const Logout = styled.div`
     align-items: center;
     gap: 16px;
 
+    border:none;
+
     border-radius: 4px;
     font-size: 2rem;
     color: #f8f7ff;
     font-weight: bold;
-
-    text-decoration: none;
     position: relative;
+
+    cursor: pointer;
     
   }
 `

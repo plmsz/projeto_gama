@@ -46,5 +46,16 @@ export function AuthContextProvider(props) {
       })
     }
   }
-  return <AuthContext.Provider value={{ user, signInWithGoogle }}>{props.children}</AuthContext.Provider>
+
+  async function closeSessionFromGoogle() {
+    try {
+      await auth.signOut()
+      alert('Logout successfull')
+      navigate('/sign-in')
+    } catch (error) {
+      alert('logout error', error)
+    }
+  }
+
+  return <AuthContext.Provider value={{ user, signInWithGoogle, closeSessionFromGoogle }}>{props.children}</AuthContext.Provider>
 }
