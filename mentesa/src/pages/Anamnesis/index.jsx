@@ -2,11 +2,12 @@ import { useParams } from 'react-router-dom'
 import * as S from '../../styles/CommonUi'
 
 export function Anamnesis() {
-  const params = useParams()
+  const { userId } = useParams()
+  console.log(userId)
   return (
     <S.Container>
       <>
-        <p>paciente número : {params}</p>
+        <h1>paciente número : {userId}</h1>
       </>
     </S.Container>
   )

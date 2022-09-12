@@ -14,25 +14,31 @@ export function PatientsTable({ data, isFetching, width, showColumns }) {
     noResultsFound: 'Não foi encontrado paciente.',
     noRecordsToDisplay: 'Não há pacientes.',
   })
+
   const navigate = useNavigate()
   const columns = useMemo(
     () => [
       { accessorKey: 'userId', header: '' },
       {
-        accessorKey: 'patient',
+        accessorKey: 'name',
         header: 'Paciente',
       },
       {
         accessorKey: 'birthday',
         header: 'Idade',
+        filterVariant: 'range',
+        filterFn: 'betweenInclusive',
+        size: 100,
       },
       {
         accessorKey: 'gender',
         header: 'Gênero',
+        filterVariant: 'select',
+        filterSelectOptions: ['Feminino', 'Masculino', 'Não binário', 'Homem trans', 'Mulher trans', 'Fluído', 'Outro'],
       },
       {
-        accessorKey: 'name',
-        header: 'Paciente',
+        accessorKey: 'cpf',
+        header: 'CPF',
       },
     ],
     [],

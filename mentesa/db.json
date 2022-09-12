@@ -95,8 +95,9 @@
       "userId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
       "name": "Paloma Souza de Oliveira",
       "role": "patient",
-      "birthday": "2002-08-10",
-      "gender": "Feminino"
+      "birthday": "1993-08-10",
+      "gender": "Feminino",
+      "cpf": "12345678901"
     },
     {
       "id": 2,
@@ -124,10 +125,12 @@
     },
     {
       "id": 5,
-      "patient": "Natalia Thome",
-      "date": "2022-10-18T14:00:00.463Z",
       "userId": "1GmSdnGa1VRiGQt1iFBaPkwDPfx1",
-      "professionalId": "VaquKpVZthMem0PwOU8kR2aiBbB2"
+      "name": "Natalia Thome",
+      "role": "patient",
+      "birthday": "2004-08-10",
+      "gender": "Feminino",
+      "cpf": "12345678902"
     }
   ]
 }
