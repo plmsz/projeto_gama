@@ -13,8 +13,6 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
     noRecordsToDisplay: 'Não há consultas.',
   })
   const theme = useTheme()
-  const showPatient = showColumns && role === 'professional'
-  const showProfessional = showColumns && role === 'patient'
 
   const columns = useMemo(
     () => [
@@ -26,12 +24,8 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
         Cell: ({ cell }) => `#${cell.getValue()}`,
       },
       {
-        accessorKey: 'professional',
-        header: 'Professional',
-      },
-      {
-        accessorKey: 'patient',
-        header: 'Paciente',
+        accessorKey: `${role === 'professional' ? 'patient' : 'professional'}`,
+        header: `${role === 'professional' ? 'Paciente' : 'Professional'}`,
       },
       {
         accessorFn: (row) => new Date(row.date),
@@ -40,9 +34,6 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
         size: 100,
         enableColumnFilter: false,
         sortDescFirst: false,
-        // muiTableHeadCellFilterTextFieldProps: {
-        //   type: 'date',
-        // },
         sortingFn: 'datetime',
         Cell: ({ cell }) => cell.getValue()?.toLocaleDateString('pt-br', option),
         Header: ({ column }) => <em>{column.columnDef.header}</em>,
@@ -102,8 +93,6 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
           columnVisibility: {
             ticket: showColumns,
             type: showColumns,
-            professional: showProfessional,
-            patient: showPatient,
           },
         }}
         enableDensityToggle={false}

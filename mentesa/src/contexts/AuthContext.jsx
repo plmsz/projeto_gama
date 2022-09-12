@@ -1,19 +1,16 @@
 import { createContext, useEffect, useState } from 'react'
 import { auth, GoogleAuthProvider, signInWithPopup } from '../services/firebase'
-import { useNavigate } from 'react-router-dom'
 import { getUser } from '../services/usersRequests'
 
 export const AuthContext = createContext({})
 
 export function AuthContextProvider(props) {
   const [user, setUser] = useState()
-  const navigate = useNavigate()
 
   useEffect(() => {
     const fetch = async (userId) => {
       const [profile] = await getUser(userId)
       setUser((prev) => ({ ...prev, role: profile?.role }))
-      // navigate('/')
     }
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -55,7 +52,7 @@ export function AuthContextProvider(props) {
         userId: uid,
         name: displayName,
         avatar: photoURL,
-        role: profile?.role || undefined,
+        role: undefined,
       })
       fetch(uid)
     }
