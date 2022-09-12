@@ -39,6 +39,7 @@ export function PatientsTable({ data, isFetching, width, showColumns }) {
       {
         accessorKey: 'cpf',
         header: 'CPF',
+        size: 100,
       },
     ],
     [],
@@ -55,10 +56,8 @@ export function PatientsTable({ data, isFetching, width, showColumns }) {
           showColumnFilters: true,
           columnVisibility: {
             userId: false,
-            // ticket: showColumns,
-            // type: showColumns,
-            // professional: showProfessional,
-            // patient: showPatient,
+            gender: showColumns,
+            birthday: showColumns,
           },
         }}
         enableDensityToggle={false}
@@ -99,12 +98,12 @@ export function PatientsTable({ data, isFetching, width, showColumns }) {
               display: 'flex',
               justifyContent: 'center',
               flexWrap: 'nowrap',
-              gap: '0.3rem',
+              gap: '0.1rem',
             }}
           >
             <IconButton
               title='Fazer anamnese'
-              sx={{ padding: '0.3rem' }}
+              sx={{ padding: '0.2rem' }}
               onClick={() => {
                 navigate(`/anamnesis/${row.getValue('userId')}`)
               }}

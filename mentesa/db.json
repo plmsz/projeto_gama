@@ -121,7 +121,7 @@
       "name": "João da Silva Júnior",
       "role": "professional",
       "age": 35,
-      "gender": "Feminino"
+      "gender": "Masculino"
     },
     {
       "id": 5,
@@ -131,6 +131,15 @@
       "birthday": "2004-08-10",
       "gender": "Feminino",
       "cpf": "12345678902"
+    },
+    {
+      "id": 6,
+      "name": "Angelo Polatto",
+      "userId": "si4niNyNnNgXuBhLB3QeABMUMBQ2",
+      "role": "patient",
+      "birthday": "1996-08-10",
+      "gender": "Masculino",
+      "cpf": "12345678903"
     }
   ]
 }

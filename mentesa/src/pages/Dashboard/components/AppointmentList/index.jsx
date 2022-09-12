@@ -1,7 +1,7 @@
 import { Skeleton } from '@mui/material'
 import { useState } from 'react'
 import toast from '../../../../components/Toast'
-import { useFetch } from '../../../../hooks/useFetchAppointments'
+import { useFetch } from '../../../../hooks/useFetch'
 import { useWindowDimensions } from '../../../../hooks/useWindowDimensions'
 import { api } from '../../../../services/api'
 import ConfirmDialog from './../../../../components/Dialog/index'
