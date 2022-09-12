@@ -9,11 +9,11 @@ function RoutesPaths() {
   const { user } = useAuth()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (!user) {
-      navigate('/sign-in')
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (!user) {
+  //     navigate('/sign-in')
+  //   }
+  // }, [])
 
   return (
     <Routes>

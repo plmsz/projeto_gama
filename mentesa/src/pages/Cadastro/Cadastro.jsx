@@ -12,16 +12,12 @@ import { Alert, MenuItem, Select, Snackbar, Stack, Switch } from '@mui/material'
 import useFormCont from '../../hooks/useFormCont';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-// import { useSnackbar } from 'notistack';
-import { DesktopDatePicker } from '@mui/x-date-pickers';
 
 const theme = createTheme();
 
 export default function Cadastro() {
     const [checked, setChecked] = useState(false);
     const [inputCep, setInputCep] = useState({});
-    const { enqueueSnackbar } = useSnackbar();
-
         
     const { form, inputChange, setForm, clear } = useFormCont({
         nome: "",

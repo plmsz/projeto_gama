@@ -20,7 +20,7 @@ export function AuthContextProvider(props) {
           name: displayName,
           avatar: photoURL,
         })
-        navigate('/')
+        // navigate('/')
       }
     })
 
