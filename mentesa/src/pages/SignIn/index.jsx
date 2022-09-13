@@ -1,4 +1,5 @@
 import { Button } from '@mui/material'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import * as S from '../../styles/CommonUi'
@@ -9,11 +10,17 @@ function SignIn() {
   const { user, signInWithGoogle } = useAuth()
   const navigate = useNavigate()
 
+  useEffect(() => {
+    if (user) {
+      navigate('/dashboard')
+    }
+  }, [user])
+
   async function handleSignIn() {
     if (!user) {
       await signInWithGoogle()
     }
-    navigate('/')
+    navigate('/dashboard')
   }
 
   return (
