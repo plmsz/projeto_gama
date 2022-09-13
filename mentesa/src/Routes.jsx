@@ -12,6 +12,7 @@ function RoutesPaths() {
   return (
     <Routes>
       <Route path='/' element={<SignIn />} />
+      <Route path='/cadastro' element={<Cadastro />} />
       <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/patients' element={<Patients />} />
       <Route path='/anamnesis/:userId' element={<Anamnesis />} />

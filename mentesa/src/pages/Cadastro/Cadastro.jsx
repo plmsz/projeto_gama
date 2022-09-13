@@ -8,97 +8,114 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Alert, MenuItem, Select, Snackbar, Stack, Switch } from '@mui/material';
-import useFormCont from '../../hooks/useFormCont';
+import { MenuItem, Select, Stack, Switch } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useAuth } from '../../hooks/useAuth';
+import toast from '../../components/Toast';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import dayjs from 'dayjs';
+import { postUser } from '../../services/usersRequests';
+import useForm from '../../hooks/useForm';
 
 const theme = createTheme();
 
 export default function Cadastro() {
     const [checked, setChecked] = useState(false);
     const [inputCep, setInputCep] = useState({});
-        
-    const { form, inputChange, setForm, clear } = useFormCont({
+    const { user } = useAuth()
+    const [datee, setDate] = React.useState(dayjs().format('L'));
+
+    const { inputForm, onChangeInput, clear } = useForm({
         nome: "",
         sobrenome: "",
         genero: "",
         cpf: "",
         rg: "",
-        dtnascto: "",
-        email: "",
         crm: "",
         especialidade: "",
         cep: "",
-        endereco: "",
-        num: "",
-        estado: "",
-        cidade: ""
+        num: ""
     });
 
     const getCep = () => {
-        if (form.cep) {
+        if (inputForm.cep.length > 7) {
             axios.get(
-                `https://viacep.com.br/ws/${form.cep}/json/`,
+                `https://viacep.com.br/ws/${inputForm.cep}/json/`,
             )
-            .then((res) => {
-                setInputCep(res.data)
-            })
-            .catch((error) => {
-                console.log('Deu erro!!!', error.res)
-            });
+                .then((res) => {
+                    setInputCep(res.data)
+                })
+                .catch((error) => {
+                    toast.messageError('Erro verifique o CEP!')
+                    setInputCep({})
+                });
         }
     }
 
     useEffect(() => {
         getCep()
-    }, [form.cep]);
+    }, [inputForm.cep]);
 
     function isValidCPF(cpf) {
         if (typeof cpf !== 'string') return false
         cpf = cpf.replace(/[^\d]+/g, '')
         if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false
         cpf = cpf.split('').map(el => +el)
-        const rest = (count) => (cpf.slice(0, count-12)
-            .reduce( (soma, el, index) => (soma + el * (count-index)), 0 )*10) % 11 % 10
+        const rest = (count) => (cpf.slice(0, count - 12)
+            .reduce((soma, el, index) => (soma + el * (count - index)), 0) * 10) % 11 % 10
         return rest(10) === cpf[9] && rest(11) === cpf[10]
     }
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
     };
-      
-    const handleClickVariant = (variant) => () => {
-        // isValidCPF(form.cpf) === true ? enqueueSnackbar('Usuario cadastrado com sucesso!', { variant }) 
-        // : enqueueSnackbar('Erro ao cadastrar, verifique as informações!', { variant })
+
+    const toastMessage = () => {
+        isValidCPF(inputForm.cpf) === true ? toast.messageSuccess('Usuario cadastrado com sucesso!')
+            : toast.messageError('Erro ao cadastrar, verifique as informações!')
+    };
+
+    const handleChangeDate = (newDate) => {
+        setDate(newDate.format('L'));
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-         
-        if(isValidCPF(form.cpf) === true){
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData);
-            console.log('data', data)
-            
+        toastMessage()
+
+        if (isValidCPF(inputForm.cpf) === true) {
+            // const formData = new FormData(event.target);
+            // const data = Object.fromEntries(formData);
+            const body = {
+                // id: Date.now(),
+                id: '',
+                userId: user.userId,
+                role: user.role,
+                name: user.name,
+                dtnascto: datee,
+                email: user.email,
+                endereco: inputCep.logradouro,
+                estado: inputCep.uf,
+                cidade: inputCep.localidade,
+                inputForm: inputForm
+            }
+            // console.log('formn', body)
+            postUser('/users', body)
+
             setChecked(false)
             setInputCep({})
             clear();
-        }       
+        }
     };
 
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="100%">
                 <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 4,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
+                <Box sx={{marginTop: 4,display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                     <Typography component="h1" variant="h4">
                         Cadastre suas informações pessoais
                     </Typography>
@@ -113,8 +130,8 @@ export default function Cadastro() {
                                     id="nome"
                                     label="Nome"
                                     autoFocus
-                                    value={form.nome}
-                                    onChange={inputChange}
+                                    value={inputForm.nome}
+                                    onChange={onChangeInput}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={5}>
@@ -125,17 +142,16 @@ export default function Cadastro() {
                                     label="Sobrenome"
                                     name="sobrenome"
                                     autoComplete="family-name"
-                                    value={form.sobrenome}
-                                    onChange={inputChange}
+                                    value={inputForm.sobrenome}
+                                    onChange={onChangeInput}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={2}>
-                                {/* <InputLabel id="demo-simple-select-label">Sexo</InputLabel> */}
-                                <Select sx={{width: '100%'}}
+                                <Select sx={{ width: '100%' }}
                                     name="genero"
-                                    onChange={inputChange}
-                                    value={form.genero}
-                                    defaultValue={{ label: "Choose one", value: "" }}
+                                    onChange={onChangeInput}
+                                    value={inputForm.genero}
+                                    label="Gênero"
                                 >
                                     <MenuItem value="" disabled>Selecione seu gênero</MenuItem>
                                     <MenuItem value='feminino'>Feminino</MenuItem>
@@ -151,9 +167,8 @@ export default function Cadastro() {
                                     id="cpf"
                                     label="CPF"
                                     name="cpf"
-                                    value={form.cpf}
-                                    onChange={inputChange}
-                                    // type='text'
+                                    value={inputForm.cpf}
+                                    onChange={onChangeInput}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={5}>
@@ -163,46 +178,34 @@ export default function Cadastro() {
                                     id="rg"
                                     label="RG"
                                     name="rg"
-                                    value={form.rg}
-                                    onChange={inputChange}
-                                    // ref = { register ({ pattern: (^\d{1,2}).?(\d{3}).?(\d{3})-?(\d{1}|X|x$)  }) }
+                                    value={inputForm.rg}
+                                    onChange={onChangeInput}
+                                // ref = { register ({ pattern: (^\d{1,2}).?(\d{3}).?(\d{3})-?(\d{1}|X|x$)  }) }
 
                                 />
                             </Grid>
                             <Grid item xs={12} sm={2}>
-                                {/* <TextField
-                                    required
-                                    fullWidth
-                                    id="dtnascto"
-                                    label="Data de nascimento"
-                                    name="dtnascto"
-                                    value={form.dtnascto}
-                                    onChange={inputChange}
-                                /> */}
-                                    <Stack >
-                                    <TextField
-                                        id="dtnascto"
-                                        label="Data de nascimento"
-                                        type="date"
-                                        fullWidth
-                                        InputLabelProps={{
-                                        shrink: true,
-                                        }}
-                                        value={form.dtnascto || ''}
-                                        onChange={inputChange}
-                                    />
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <Stack spacing={3}>
+                                        <DesktopDatePicker
+                                            label="Data de nascimento"
+                                            inputFormat="DD/MM/YYYY"
+                                            value={datee}
+                                            onChange={handleChangeDate}
+                                            renderInput={(params) => <TextField {...params} />}
+                                        />
                                     </Stack>
+                                </LocalizationProvider>
                             </Grid>
                             <Grid item xs={12} sm={8}>
                                 <TextField
-                                    required
+                                    disabled
                                     fullWidth
                                     id="email"
                                     label="Email"
                                     name="email"
-                                    autoComplete="email"
-                                    value={form.email}
-                                    onChange={inputChange}
+                                    value={user?.email || inputForm.email || ""}
+                                    onChange={onChangeInput}
                                 />
                             </Grid>
                         </Grid>
@@ -213,36 +216,33 @@ export default function Cadastro() {
                                     label="Sou profissional de saúde mental"
                                 />
                             </Grid>
-                            {checked ? 
-                            <Grid item xs={12} sm={8} sx={{ display: 'flex' }}>
-                                <TextField
-                                    sx={{ marginRight: 2 }}
-                                    required
-                                    fullWidth
-                                    id="crm"
-                                    label="CRM / CRP"
-                                    name="crm"
-                                    value={form.crm}
-                                    onChange={inputChange}
-                                />
-        
-                                {/* <InputLabel id="label-especialidade">Escolha sua especialidade</InputLabel> */}
-                                <Select sx={{width: '100%'}}
-                                    labelId="label-especialidade"
-                                    name='especialidade'
-                                    value={form.especialidade}
-                                    onChange={inputChange}
-                                >
-                                    <MenuItem value='' disabled selected>Escolha sua especialidade</MenuItem>
-                                    <MenuItem value='psicanalista'>Psicanalista</MenuItem>
-                                    <MenuItem value='psiquiatra'>Psiquiatra</MenuItem>
-                                    <MenuItem value='psicologo'>Psicólogo</MenuItem>
-                                    <MenuItem value='terapeuta'>Terapeuta</MenuItem>
-                                </Select>
-                            </Grid> 
-                            : null
+                            {checked ?
+                                <Grid item xs={12} sm={8} sx={{ display: 'flex' }}>
+                                    <TextField
+                                        sx={{ marginRight: 2 }}
+                                        required
+                                        fullWidth
+                                        id="crm"
+                                        label="CRM / CRP"
+                                        name="crm"
+                                        value={inputForm.crm}
+                                        onChange={onChangeInput}
+                                    />
+                                    <Select sx={{ width: '100%' }}
+                                        labelId="label-especialidade"
+                                        name='especialidade'
+                                        value={inputForm.especialidade}
+                                        onChange={onChangeInput}
+                                    >
+                                        <MenuItem value='' disabled selected>Escolha sua especialidade</MenuItem>
+                                        <MenuItem value='psicanalista'>Psicanalista</MenuItem>
+                                        <MenuItem value='psiquiatra'>Psiquiatra</MenuItem>
+                                        <MenuItem value='psicologo'>Psicólogo</MenuItem>
+                                        <MenuItem value='terapeuta'>Terapeuta</MenuItem>
+                                    </Select>
+                                </Grid>
+                                : null
                             }
-                          
                         </Grid>
                         <Grid container spacing={2} sx={{ mt: 0 }}>
                             <Grid item xs={12} sm={3}>
@@ -252,8 +252,9 @@ export default function Cadastro() {
                                     fullWidth
                                     id="cep"
                                     label="CEP"
-                                    value={form.cep}
-                                    onChange={inputChange}
+                                    value={inputForm.cep}
+                                    onChange={onChangeInput}
+                                    type="number"
                                 />
                             </Grid>
                             <Grid item xs={12} sm={7}>
@@ -263,8 +264,8 @@ export default function Cadastro() {
                                     id="endereco"
                                     label="Endereco"
                                     name="endereco"
-                                    value={inputCep.logradouro || ''}
-                                    onChange={inputChange}
+                                    value={inputCep.logradouro || ""}
+                                    onChange={onChangeInput}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={2}>
@@ -274,8 +275,9 @@ export default function Cadastro() {
                                     id="num"
                                     label="Numero"
                                     name="num"
-                                    value={form.num}
-                                    onChange={inputChange}
+                                    value={inputForm.num}
+                                    onChange={onChangeInput}
+                                    type="number"
                                 />
                             </Grid>
                             <Grid item xs={12} sm={5}>
@@ -285,8 +287,8 @@ export default function Cadastro() {
                                     id="estado"
                                     label="Estado"
                                     name="estado"
-                                    value={inputCep.uf || ''}
-                                    onChange={inputChange}
+                                    value={inputCep.uf || ""}
+                                    onChange={onChangeInput}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={7}>
@@ -296,17 +298,12 @@ export default function Cadastro() {
                                     id="cidade"
                                     label="Cidade"
                                     name="cidade"
-                                    value={inputCep.localidade || ''}
-                                    onChange={inputChange}
+                                    value={inputCep.localidade || ""}
+                                    onChange={onChangeInput}
                                 />
                             </Grid>
                         </Grid>
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            sx={{ mt: 3, mb: 1 }}
-                            onClick={isValidCPF(form.cpf) === true ? handleClickVariant('success') : handleClickVariant('error')}
-                        >
+                        <Button type="submit" variant="contained" sx={{ mt: 3, mb: 1 }}>
                             Registrar
                         </Button>
                     </Box>
