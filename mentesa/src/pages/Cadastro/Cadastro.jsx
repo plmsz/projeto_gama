@@ -30,12 +30,12 @@ export default function Cadastro() {
 
     const { inputForm, onChangeInput, clear } = useForm({
         nome: "",
-        sobrenome: "",
-        genero: "",
+        lastName: "",
+        gender: "",
         cpf: "",
         rg: "",
         crm: "",
-        especialidade: "",
+        specialty: "",
         cep: "",
         num: ""
     });
@@ -87,20 +87,26 @@ export default function Cadastro() {
         toastMessage()
 
         if (isValidCPF(inputForm.cpf) === true) {
-            // const formData = new FormData(event.target);
-            // const data = Object.fromEntries(formData);
             const body = {
                 // id: Date.now(),
                 id: '',
                 userId: user.userId,
                 role: user.role,
                 name: user.name,
-                dtnascto: datee,
+                birthday: datee,
                 email: user.email,
-                endereco: inputCep.logradouro,
-                estado: inputCep.uf,
-                cidade: inputCep.localidade,
-                inputForm: inputForm
+                address: inputCep.logradouro,
+                state: inputCep.uf,
+                city: inputCep.localidade,
+                nome: inputForm.nome,
+                lastName: inputForm.lastName,
+                gender: inputForm.gender,
+                cpf: inputForm.cpf,
+                rg: inputForm.rg,
+                crm: inputForm.crm,
+                specialty: inputForm.specialty,
+                cep: inputForm.cep,
+                num: inputForm.num
             }
             // console.log('formn', body)
             postUser('/users', body)
@@ -115,7 +121,7 @@ export default function Cadastro() {
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="100%">
                 <CssBaseline />
-                <Box sx={{marginTop: 4,display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <Box sx={{ marginTop: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Typography component="h1" variant="h4">
                         Cadastre suas informações pessoais
                     </Typography>
@@ -138,20 +144,21 @@ export default function Cadastro() {
                                 <TextField
                                     required
                                     fullWidth
-                                    id="sobrenome"
+                                    id="lastName"
                                     label="Sobrenome"
-                                    name="sobrenome"
+                                    name="lastName"
                                     autoComplete="family-name"
-                                    value={inputForm.sobrenome}
+                                    value={inputForm.lastName}
                                     onChange={onChangeInput}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={2}>
+                                {/* <InputLabel id="demo-simple-select-helper-label">teste</InputLabel> */}
                                 <Select sx={{ width: '100%' }}
-                                    name="genero"
+                                    name="gender"
                                     onChange={onChangeInput}
-                                    value={inputForm.genero}
-                                    label="Gênero"
+                                    value={inputForm.gender}
+                                // label="Gênero"              
                                 >
                                     <MenuItem value="" disabled>Selecione seu gênero</MenuItem>
                                     <MenuItem value='feminino'>Feminino</MenuItem>
@@ -162,6 +169,7 @@ export default function Cadastro() {
                             </Grid>
                             <Grid item xs={12} sm={5}>
                                 <TextField
+                                    placeholder='000.000.000-00'
                                     required
                                     fullWidth
                                     id="cpf"
@@ -173,6 +181,7 @@ export default function Cadastro() {
                             </Grid>
                             <Grid item xs={12} sm={5}>
                                 <TextField
+                                    placeholder='00.000.000-0'
                                     required
                                     fullWidth
                                     id="rg"
@@ -180,8 +189,10 @@ export default function Cadastro() {
                                     name="rg"
                                     value={inputForm.rg}
                                     onChange={onChangeInput}
-                                // ref = { register ({ pattern: (^\d{1,2}).?(\d{3}).?(\d{3})-?(\d{1}|X|x$)  }) }
-
+                                    inputProps={{
+                                        inputMode: "numeric",
+                                        pattern: "^(W\d{7}[A-Z\d]|RNE[A-Z\d]\d{6}[A-Z\d])$"
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={2}>
@@ -230,11 +241,11 @@ export default function Cadastro() {
                                     />
                                     <Select sx={{ width: '100%' }}
                                         labelId="label-especialidade"
-                                        name='especialidade'
-                                        value={inputForm.especialidade}
+                                        name='specialty'
+                                        value={inputForm.specialty}
                                         onChange={onChangeInput}
                                     >
-                                        <MenuItem value='' disabled selected>Escolha sua especialidade</MenuItem>
+                                        <MenuItem value='' disabled>Escolha sua especialidade</MenuItem>
                                         <MenuItem value='psicanalista'>Psicanalista</MenuItem>
                                         <MenuItem value='psiquiatra'>Psiquiatra</MenuItem>
                                         <MenuItem value='psicologo'>Psicólogo</MenuItem>
@@ -261,9 +272,9 @@ export default function Cadastro() {
                                 <TextField
                                     required
                                     fullWidth
-                                    id="endereco"
+                                    id="address"
                                     label="Endereco"
-                                    name="endereco"
+                                    name="address"
                                     value={inputCep.logradouro || ""}
                                     onChange={onChangeInput}
                                 />
@@ -284,9 +295,9 @@ export default function Cadastro() {
                                 <TextField
                                     required
                                     fullWidth
-                                    id="estado"
+                                    id="state"
                                     label="Estado"
-                                    name="estado"
+                                    name="state"
                                     value={inputCep.uf || ""}
                                     onChange={onChangeInput}
                                 />
@@ -295,9 +306,9 @@ export default function Cadastro() {
                                 <TextField
                                     required
                                     fullWidth
-                                    id="cidade"
+                                    id="city"
                                     label="Cidade"
-                                    name="cidade"
+                                    name="city"
                                     value={inputCep.localidade || ""}
                                     onChange={onChangeInput}
                                 />
