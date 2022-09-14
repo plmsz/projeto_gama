@@ -19,6 +19,7 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import dayjs from 'dayjs';
 import { postUser } from '../../services/usersRequests';
 import useForm from '../../hooks/useForm';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
@@ -27,6 +28,7 @@ export default function Cadastro() {
     const [inputCep, setInputCep] = useState({});
     const { user } = useAuth()
     const [datee, setDate] = React.useState(dayjs().format('L'));
+    const navigate = useNavigate()
 
     const { inputForm, onChangeInput, clear } = useForm({
         nome: "",
@@ -114,6 +116,7 @@ export default function Cadastro() {
             setChecked(false)
             setInputCep({})
             clear();
+            navigate('/dashboard')
         }
     };
 
