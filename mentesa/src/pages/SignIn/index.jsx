@@ -1,28 +1,9 @@
-import { Button } from '@mui/material'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../hooks/useAuth'
 import * as S from '../../styles/CommonUi'
-import Logo from './assets/logo.svg'
-import Doctor from './assets/doctor.svg'
+import Logo from './images/logo.svg'
+import Doctor from './images/doctor.svg'
+import GoToGoogle from '../../components/ButtonEnter'
 
 function SignIn() {
-  const { user, signInWithGoogle } = useAuth()
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (user) {
-      navigate('/dashboard')
-    }
-  }, [user])
-
-  async function handleSignIn() {
-    if (!user) {
-      await signInWithGoogle()
-    }
-    navigate('/dashboard')
-  }
-
   return (
     <S.Container>
       <S.ContainerLeft>
@@ -34,9 +15,7 @@ function SignIn() {
           <S.ImageLogo src={Logo} />
           <S.TitleWhite>mentesã</S.TitleWhite>
         </div>
-        <Button variant='contained' onClick={handleSignIn}>
-          Entrar
-        </Button>
+        <GoToGoogle />
       </S.ContainerRigth>
     </S.Container>
   )
