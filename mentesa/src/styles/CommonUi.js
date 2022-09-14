@@ -6,6 +6,7 @@ export const Container = styled.main`
   justify-content: space-between;
   min-height: 100vh;
   text-align: center;
+  position: relative;
 `
 
 const containerFlex = styled.section`
@@ -19,6 +20,7 @@ const containerFlex = styled.section`
 export const ContainerLeft = styled(containerFlex)`
   background-color: #fff;
   width: 60%;
+
   @media screen and (max-width: 47.5rem) {
     display: none;
   }
@@ -27,14 +29,13 @@ export const ContainerLeft = styled(containerFlex)`
 export const ContainerRigth = styled(containerFlex)`
   background: #00a6fb;
   width: 40%;
+
   @media screen and (max-width: 47.5rem) {
     width: 100%;
-    /* ::after {
-      content: url('../pages/SignIn/images/doctor.svg');
-      min-height: 32.5rem;
-      min-width: 34.375rem;
-      margin-top: 8rem;
-    } */
+    ::after {
+      content: url('../../public/doctor-275x261.png');
+      margin-top: 6rem;
+    }
   }
 `
 
@@ -58,6 +59,7 @@ export const ImageLogo = styled.img`
   margin-top: 10rem;
   max-height: 9.5rem;
   max-width: 13.5rem;
+
   @media screen and (max-width: 47.5rem) {
     margin: 5rem 0 3rem;
   }
@@ -67,7 +69,8 @@ export const TitleWhite = styled(Title)`
   color: #fff;
   margin-bottom: 15rem;
   margin-top: 1rem;
+
   @media screen and (max-width: 47.5rem) {
-    margin-bottom: 10rem;
+    margin-bottom: 5rem;
   }
 `

@@ -13,7 +13,7 @@ export default function GoToGoogle() {
 
   useEffect(() => {
     if (user) {
-      navigate('/dashboard')
+      navigate('/')
     }
   }, [user])
 
