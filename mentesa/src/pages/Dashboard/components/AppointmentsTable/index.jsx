@@ -2,12 +2,16 @@ import { useMemo } from 'react'
 import MaterialReactTable from 'material-react-table'
 import { IconButton, Box, Tooltip, Button, createTheme, ThemeProvider, useTheme } from '@mui/material'
 import { ptBR } from '@mui/material/locale'
-import { i18n } from './i18n'
+import { translateTable } from '../../../../i18n'
 import { option, optionDate, optionHour } from '../../../../utils/formatDate'
 import { appointmentTypeList } from '../../constants'
 import { Edit, DeleteForever } from '@mui/icons-material'
 
-export function AppointmentsTable({ data, isFetching, width, showColumns, setDialogOptions, setOpen }) {
+export function AppointmentsTable({ data, isFetching, width, showColumns, setDialogOptions, setOpen, role }) {
+  const i18n = translateTable({
+    noResultsFound: 'Não foram encontrado as consultas',
+    noRecordsToDisplay: 'Não há consultas.',
+  })
   const theme = useTheme()
 
   const columns = useMemo(
@@ -20,8 +24,8 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
         Cell: ({ cell }) => `#${cell.getValue()}`,
       },
       {
-        accessorKey: 'professional',
-        header: 'Professional',
+        accessorKey: 'name',
+        header: 'Nome',
       },
       {
         accessorFn: (row) => new Date(row.date),
@@ -30,9 +34,6 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
         size: 100,
         enableColumnFilter: false,
         sortDescFirst: false,
-        // muiTableHeadCellFilterTextFieldProps: {
-        //   type: 'date',
-        // },
         sortingFn: 'datetime',
         Cell: ({ cell }) => cell.getValue()?.toLocaleDateString('pt-br', option),
         Header: ({ column }) => <em>{column.columnDef.header}</em>,
@@ -89,7 +90,10 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
         initialState={{
           density: 'comfortable',
           showColumnFilters: true,
-          columnVisibility: { ticket: showColumns, type: showColumns, professional: showColumns },
+          columnVisibility: {
+            ticket: showColumns,
+            type: showColumns,
+          },
         }}
         enableDensityToggle={false}
         enableRowActions
@@ -147,13 +151,14 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
               title='Cancelar'
               sx={{ padding: '0.3rem' }}
               onClick={() => {
+                const text = `Você tem certeza que quer cancelar sua consulta do dia ${row
+                  .getValue('date')
+                  ?.toLocaleDateString('pt-br', optionDate)} às ${row
+                  .getValue('date')
+                  ?.toLocaleTimeString('pt-br', optionHour)} com ${row.getValue('name')} ?`
                 setDialogOptions({
                   title: 'Cancelar consulta',
-                  text: `Você tem certeza que quer cancelar sua consulta do dia ${row
-                    .getValue('date')
-                    ?.toLocaleDateString('pt-br', optionDate)} às ${row
-                    .getValue('date')
-                    ?.toLocaleTimeString('pt-br', optionHour)} com ${row.getValue('professional')} ?`,
+                  text: text,
                   info: `${row.getValue('ticket')}`,
                 })
                 setOpen(true)

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
-// import { getAuth, signOut } from "firebase/auth";
 
 import { 
      Dashboard as DashboardIcon, 
@@ -27,7 +26,7 @@ function SideNav({typeDoctor}) {
                <Logo src={LogoPng}/>
                <NavList>
                     <NavItem>
-                         <Link to='/'>
+                         <Link to='/dashboard'>
                               <DashboardIcon fontSize='large'/>
                               <span>Dashboard</span>
                          </Link>
@@ -39,7 +38,7 @@ function SideNav({typeDoctor}) {
                          </Link>
                     </NavItem>
                     <NavItem showComponent={isDoctor}>
-                         <Link to='#' >
+                         <Link to='/patients' >
                               <AccessibilityNew fontSize='large'/>
                               <span>Paciente</span>
                          </Link>

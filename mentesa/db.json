@@ -4,64 +4,162 @@
       "id": 1,
       "ticket": "10001",
       "professional": "João da Silva Júnior",
+      "patient": "Paloma Souza de Oliveira",
       "type": "Psicologia",
-      "date": "2022-09-06T11:51:07.463Z",
+      "date": "2022-09-06T11:00:00.463Z",
       "status": "Agendada",
-      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1"
+      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
+      "professionalId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1"
     },
     {
       "id": 2,
       "ticket": "10002",
       "professional": "João da Silva Júnior",
+      "patient": "Paloma Souza de Oliveira",
       "type": "Psicologia",
-      "date": "2022-09-16T11:41:07.463Z",
+      "date": "2022-09-16T11:30:00.463Z",
       "status": "Agendada",
-      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1"
+      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
+      "professionalId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1"
     },
     {
       "id": 3,
       "ticket": "10003",
-      "professional": "Antônia da Silva Pereira",
+      "professional": "Dra. Antônia Souza MenteSã",
+      "patient": "Paloma Souza de Oliveira",
       "type": "Psiquiatria",
       "date": "2022-08-18T18:00:00.463Z",
       "status": "Agendada",
-      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1"
+      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
+      "professionalId": "VaquKpVZthMem0PwOU8kR2aiBbB2"
     },
     {
       "id": 4,
       "ticket": "10004",
       "professional": "Vanessa Pereira Albuquerque",
+      "patient": "Paloma Souza de Oliveira",
       "type": "Terapeuta",
       "date": "2022-10-02T18:00:00.463Z",
       "status": "Remarcada",
-      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1"
+      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
+      "professionalId": "oSrbC9nGeVNNBav7JWYc5U6SrPu1"
     },
     {
       "id": 5,
       "ticket": "10005",
-      "professional": "Antônia da Silva Pereira",
+      "professional": "Dra. Antônia Souza MenteSã",
+      "patient": "Paloma Souza de Oliveira",
       "type": "Psiquiatria",
       "date": "2022-10-09T19:00:00.463Z",
       "status": "Agendada",
-      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1"
+      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
+      "professionalId": "VaquKpVZthMem0PwOU8kR2aiBbB2"
     },
     {
       "id": 6,
       "ticket": "10006",
-      "professional": "Antônia da Silva Pereira",
+      "professional": "Dra. Antônia Souza MenteSã",
+      "patient": "Natalia Thome",
       "type": "Psiquiatria",
       "date": "2022-10-18T14:00:00.463Z",
       "status": "Agendada",
-      "patientId": "1GmSdnGa1VRiGQt1iFBaPkwDPfx1"
+      "patientId": "1GmSdnGa1VRiGQt1iFBaPkwDPfx1",
+      "professionalId": "VaquKpVZthMem0PwOU8kR2aiBbB2"
     },
     {
       "id": 7,
       "ticket": "10007",
       "professional": "Vanessa Pereira Albuquerque",
-      "type": "Psiquiatria",
+      "patient": "Angelo Polatto",
+      "type": "Terapeuta",
       "date": "2022-10-22T14:00:00.463Z",
       "status": "Agendada",
-      "patientId": "si4niNyNnNgXuBhLB3QeABMUMBQ2"
+      "patientId": "si4niNyNnNgXuBhLB3QeABMUMBQ2",
+      "professionalId": "oSrbC9nGeVNNBav7JWYc5U6SrPu1"
+    },
+    {
+      "id": 8,
+      "ticket": "10008",
+      "professional": "Vanessa Pereira Albuquerque",
+      "patient": "Paloma Souza de Oliveira",
+      "type": "Terapeuta",
+      "date": "2022-10-24T15:30:00.463Z",
+      "status": "Agendada",
+      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
+      "professionalId": "oSrbC9nGeVNNBav7JWYc5U6SrPu1"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "userId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
+      "name": "Paloma Souza de Oliveira",
+      "role": "patient",
+      "birthday": "1993-08-10",
+      "gender": "Feminino",
+      "cpf": "12345678901"
+    },
+    {
+      "id": 2,
+      "userId": "oSrbC9nGeVNNBav7JWYc5U6SrPu1",
+      "name": "Vanessa Pereira Albuquerque",
+      "role": "professional",
+      "birthday": "2004-11-10",
+      "gender": "Feminino"
+    },
+    {
+      "id": 3,
+      "userId": "VaquKpVZthMem0PwOU8kR2aiBbB2",
+      "name": "Dra. Antônia Souza MenteSã",
+      "role": "professional",
+      "birthday": "1992-08-10",
+      "gender": "Feminino"
+    },
+    {
+      "id": 4,
+      "userId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
+      "name": "João da Silva Júnior",
+      "role": "professional",
+      "age": 35,
+      "gender": "Masculino"
+    },
+    {
+      "id": 5,
+      "userId": "1GmSdnGa1VRiGQt1iFBaPkwDPfx1",
+      "name": "Natalia Thome",
+      "role": "patient",
+      "birthday": "2004-08-10",
+      "gender": "Feminino",
+      "cpf": "12345678902"
+    },
+    {
+      "id": 6,
+      "name": "Angelo Polatto",
+      "userId": "si4niNyNnNgXuBhLB3QeABMUMBQ2",
+      "role": "patient",
+      "birthday": "1996-08-10",
+      "gender": "Masculino",
+      "cpf": "12345678903"
+    },
+    {
+      "id": 1663042384091,
+      "userId": "si4niNyNnNgXuBhLB3QeABMUMBQ2",
+      "role": "patient",
+      "name": "Natalia Thome",
+      "birthday": "09/13/1989",
+      "email": "nathythome05@gmail.com",
+      "address": "Rua Bom Pastor",
+      "state": "SP",
+      "city": "São Caetano do Sul",
+      "nome": "Maria",
+      "lastName": "Joaquina",
+      "gender": "outro",
+      "cpf": "299.866.078-92",
+      "rg": "4532156498",
+      "crm": "",
+      "specialty": "",
+      "cep": "09570500",
+      "num": "898"
     }
   ]
 }

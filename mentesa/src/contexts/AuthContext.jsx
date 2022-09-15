@@ -1,7 +1,8 @@
 import { createContext, useEffect, useState } from 'react'
 import { auth, GoogleAuthProvider, signInWithPopup } from '../services/firebase'
-import { useNavigate } from 'react-router-dom'
 import toast from '../components/Toast'
+import { getUser } from '../services/usersRequests'
+import { useNavigate } from 'react-router-dom'
 
 export const AuthContext = createContext({})
 
@@ -10,18 +11,23 @@ export function AuthContextProvider(props) {
   const navigate = useNavigate()
 
   useEffect(() => {
+    const fetch = async (userId) => {
+      const [profile] = await getUser(userId)
+      setUser((prev) => ({ ...prev, role: profile?.role }))
+    }
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        const { displayName, photoURL, uid } = user
+        const { displayName, photoURL, uid, email } = user
         if (!displayName || !photoURL) {
           throw new Error('Missing information from Google account')
         }
         setUser({
-          id: uid,
+          userId: uid,
           name: displayName,
           avatar: photoURL,
+          email: email,
         })
-        navigate('/')
+        fetch(uid)
       }
     })
 
@@ -36,15 +42,24 @@ export function AuthContextProvider(props) {
     const result = await signInWithPopup(auth, provider)
 
     if (result.user) {
-      const { displayName, photoURL, uid } = result.user
+      const { displayName, photoURL, uid, email } = result.user
       if (!displayName || !photoURL) {
         throw new Error('Missing information from Google account')
       }
+      const fetch = async (uid) => {
+        const [profile] = await getUser(uid)
+        if (profile.length > 0) {
+          setUser((prev) => ({ ...prev, role: profile?.role }))
+        }
+      }
       setUser({
-        id: uid,
+        userId: uid,
         name: displayName,
         avatar: photoURL,
+        role: undefined,
+        email: email,
       })
+      fetch(uid)
     }
   }
 
@@ -52,11 +67,15 @@ export function AuthContextProvider(props) {
     try {
       await auth.signOut()
       toast.messageSuccess('Até breve!')
-      setTimeout(() => navigate('/sign-in'), 2000)
+      setTimeout(() => navigate('/'), 2000)
     } catch (error) {
-      toast.messageError('Opa! Um erro inesperado aconteceu')      
+      toast.messageError('Opa! Um erro inesperado aconteceu')
     }
   }
 
-  return <AuthContext.Provider value={{ user, signInWithGoogle, closeSessionFromGoogle }}>{props.children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={{ user, setUser, signInWithGoogle, closeSessionFromGoogle }}>
+      {props.children}
+    </AuthContext.Provider>
+  )
 }

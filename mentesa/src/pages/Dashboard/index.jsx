@@ -4,7 +4,7 @@ import { LayoutGrid } from '../../styles/LayoutGrid'
 
 import Header from '../../components/Header'
 import SideNav from '../../components/SideNav'
-import Panel from '../../components/Panel';
+import Panel from '../../components/Panel'
 
 import { AppointmentList } from './components/AppointmentList/index'
 
@@ -13,10 +13,10 @@ export function Dashboard() {
 
   return (
     <LayoutGrid>
-      <Header image={user && user.avatar}/>
-      <SideNav typeDoctor={false}/>
+      <Header image={user && user.avatar} />
+      <SideNav typeDoctor={false} />
       <Panel>
-        {/* <AppointmentList user={user} /> */}
+        <AppointmentList user={user} />
       </Panel>
     </LayoutGrid>
   )
