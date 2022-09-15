@@ -1,6 +1,6 @@
 import * as S from '../../styles/CommonUi'
-import Logo from './images/logo.svg'
-import Doctor from './images/doctor.svg'
+import Logo from '../../assets/logo.svg'
+import Doctor from '../../assets/doctor.svg'
 import GoToGoogle from '../../components/ButtonEnter'
 
 function SignIn() {
