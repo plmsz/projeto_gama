@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import { auth, GoogleAuthProvider, signInWithPopup } from '../services/firebase'
 import { useNavigate } from 'react-router-dom'
+import toast from '../components/Toast'
 
 export const AuthContext = createContext({})
 
@@ -50,10 +51,10 @@ export function AuthContextProvider(props) {
   async function closeSessionFromGoogle() {
     try {
       await auth.signOut()
-      alert('Logout successfull')
-      navigate('/sign-in')
+      toast.messageSuccess('Até breve!')
+      setTimeout(() => navigate('/sign-in'), 2000)
     } catch (error) {
-      alert('logout error', error)
+      toast.messageError('Opa! Um erro inesperado aconteceu')      
     }
   }
 
