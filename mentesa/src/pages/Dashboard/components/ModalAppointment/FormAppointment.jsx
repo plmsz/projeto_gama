@@ -31,7 +31,7 @@ export function FormAppointment({ handleClose }) {
 
   return (
     <div>
-      <Formik
+     {/*  <Formik
         initialValues={{
           specialty: '',
           professional: '',
@@ -53,7 +53,7 @@ export function FormAppointment({ handleClose }) {
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             setSubmitting(false)
-            console.log(JSON.stringify(values, null, 2))
+            console.log(values, null, 2)
           }, 500)
         }}
       >
@@ -94,21 +94,21 @@ export function FormAppointment({ handleClose }) {
                   ))}
                 </Field>
               </Box>
-              {/* <Box>
-                <Field component={DateTimePicker} name='dateTime' label='Selecione o horário'></Field>
-              </Box> */}
+            <Box>
+                {/* <Field component={DateTimePicker} name='dateTime' label='Selecione o horário'></Field> */}
+              </Box> 
               <Box margin={1}>
                 <Button onClick={handleClose} variant='outlined'>
                   Cancelar
                 </Button>
-                <Button variant='contained' onClick={submitForm}>
+                <Button variant='contained' onClick={console.log(values)} type='submit'>
                   Marcar
                 </Button>
               </Box>
             </Form>
           </LocalizationProvider>
         )}
-      </Formik>
+      </Formik>  */}
     </div>
   )
 }
