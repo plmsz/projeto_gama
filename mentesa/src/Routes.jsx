@@ -3,6 +3,7 @@ import SignIn from './pages/SignIn/index'
 import { Dashboard } from './pages/Dashboard/index'
 import { useEffect } from 'react'
 import { useAuth } from './hooks/useAuth'
+import Cadastro from './pages/Cadastro/Cadastro'
 import { Anamnesis } from './pages/Anamnesis/index'
 import { Patients } from './pages/Patients/index'
 
@@ -11,6 +12,7 @@ function RoutesPaths() {
   return (
     <Routes>
       <Route path='/' element={<SignIn />} />
+      <Route path='/cadastro' element={<Cadastro />} />
       <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/patients' element={<Patients />} />
       <Route path='/anamnesis/:userId' element={<Anamnesis />} />
