@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from 'react'
 import { auth, GoogleAuthProvider, signInWithPopup } from '../services/firebase'
+import toast from '../components/Toast'
 import { getUser } from '../services/usersRequests'
+import { useNavigate } from 'react-router-dom'
 
 export const AuthContext = createContext({})
 
@@ -59,5 +61,20 @@ export function AuthContextProvider(props) {
       fetch(uid)
     }
   }
-  return <AuthContext.Provider value={{ user, setUser, signInWithGoogle }}>{props.children}</AuthContext.Provider>
+
+  async function closeSessionFromGoogle() {
+    try {
+      await auth.signOut()
+      toast.messageSuccess('Até breve!')
+      setTimeout(() => navigate('/'), 2000)
+    } catch (error) {
+      toast.messageError('Opa! Um erro inesperado aconteceu')
+    }
+  }
+
+  return (
+    <AuthContext.Provider value={{ user, setUser, signInWithGoogle, closeSessionFromGoogle }}>
+      {props.children}
+    </AuthContext.Provider>
+  )
 }
