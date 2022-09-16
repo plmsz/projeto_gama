@@ -155,9 +155,7 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
                   .getValue('date')
                   ?.toLocaleDateString('pt-br', optionDate)} às ${row
                   .getValue('date')
-                  ?.toLocaleTimeString('pt-br', optionHour)} com ${
-                  role === 'patient' ? row.getValue('professional') : row.getValue('patient')
-                } ?`
+                  ?.toLocaleTimeString('pt-br', optionHour)} com ${row.getValue('name')} ?`
                 setDialogOptions({
                   title: 'Cancelar consulta',
                   text: text,

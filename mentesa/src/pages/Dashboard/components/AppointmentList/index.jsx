@@ -19,7 +19,7 @@ export const AppointmentList = () => {
   const [openDialog, setOpenDialog] = useState(false)
 
   const { data: rawData, isFetching } = useFetch(
-    `appointment?${user.role}Id=${user.userId}&_sort=date&_order=desc`,
+    `appointment?${user?.role}Id=${user?.userId}&_sort=date&_order=desc`,
     update,
   )
   const handleCancelAppointment = async (ticket) => {
@@ -39,7 +39,7 @@ export const AppointmentList = () => {
   }
   let data = []
 
-  if (user.role === 'patient') {
+  if (user?.role === 'patient') {
     data = rawData.map((row) => ({ ...row, name: row.professional }))
   } else {
     data = rawData.map((row) => ({ ...row, name: row.patient }))
@@ -56,7 +56,7 @@ export const AppointmentList = () => {
         showColumns={showColumnsScreen}
         setDialogOptions={setDialogOptions}
         setOpen={setOpenConfirmDialog}
-        role={user.role}
+        role={user?.role}
       />
       {openConfirmDialog && (
         <ConfirmDialog

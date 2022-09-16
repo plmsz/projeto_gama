@@ -15,6 +15,8 @@ body{
     text-decoration: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    background-color: #F5F5F5;
 }
 `
 export default GlobalStyle
