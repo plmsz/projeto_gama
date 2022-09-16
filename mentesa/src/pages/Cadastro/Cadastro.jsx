@@ -128,7 +128,7 @@ export default function Cadastro() {
                     <Typography component="h1" variant="h4">
                         Cadastre suas informações pessoais
                     </Typography>
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={5}>
                                 <TextField
@@ -192,10 +192,10 @@ export default function Cadastro() {
                                     name="rg"
                                     value={inputForm.rg}
                                     onChange={onChangeInput}
-                                    inputProps={{
-                                        inputMode: "numeric",
-                                        pattern: "^(W\d{7}[A-Z\d]|RNE[A-Z\d]\d{6}[A-Z\d])$"
-                                    }}
+                                    // inputProps={{
+                                    //     inputMode: "numeric",
+                                    //     pattern: "^(W\d{7}[A-Z\d]|RNE[A-Z\d]\d{6}[A-Z\d])$"
+                                    // }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={2}>

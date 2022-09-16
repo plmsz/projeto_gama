@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { Box, Button, Card, CardContent, CardMedia, FormControlLabel, Grid, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, CardMedia, FormControlLabel, Grid, MenuItem, Select, TextField } from '@mui/material';
 
 export default function Form(props) {
 
     return (
-        <Card sx={{ display: 'flex', width: 850, marginTop: 4, height: '75%' }}>
+        <Card sx={{ display: 'flex', width: 850, marginTop: 4, height: '75%', marginBottom: '50px' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flex: '1 0 auto', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly' }}>
-                    <Box component="form" noValidate onSubmit={props.onSubmit} sx={{ mt: 3 }}>
+                    <Box component="form" onSubmit={props.onSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={5}>
                                 <TextField
@@ -38,6 +38,7 @@ export default function Form(props) {
                                 {/* <InputLabel id="demo-simple-select-helper-label">teste</InputLabel> */}
                                 <Select sx={{ width: '100%' }}
                                     name="gender"
+                                    id="gender"
                                     onChange={props.onChangeInput}
                                     value={props.gender}
                                 // label="Gênero"              
@@ -79,12 +80,11 @@ export default function Form(props) {
                             </Grid>
                             <Grid item xs={12} sm={2}>
                                 <TextField
-                                        disabled
                                         fullWidth
-                                        id="email"
-                                        label="Email"
-                                        name="email"
-                                        value={props.email}
+                                        id="birthday"
+                                        label="Data de nascimento"
+                                        name="birthday"
+                                        value={props.birthday}
                                         onChange={props.onChangeInput}
                                     />
                             </Grid>
@@ -115,6 +115,7 @@ export default function Form(props) {
                                     <Select sx={{ width: '100%' }}
                                         labelId="label-especialidade"
                                         name='specialty'
+                                        id="specialty"
                                         value={props.specialty}
                                         onChange={props.onChangeInput}
                                     >
