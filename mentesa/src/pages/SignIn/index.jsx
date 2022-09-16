@@ -10,13 +10,13 @@ function SignIn() {
         <S.Title>mentesã</S.Title>
         <S.ImageDoctor src={Doctor} />
       </S.ContainerLeft>
-      <S.ContainerRigth>
+      <S.ContainerRight>
         <div>
           <S.ImageLogo src={Logo} />
           <S.TitleWhite>mentesã</S.TitleWhite>
         </div>
         <GoToGoogle />
-      </S.ContainerRigth>
+      </S.ContainerRight>
     </S.Container>
   )
 }

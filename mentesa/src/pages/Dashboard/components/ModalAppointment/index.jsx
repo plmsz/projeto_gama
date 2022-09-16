@@ -6,11 +6,11 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
 import { FormAppointment } from './FormAppointment'
 
-export default function ModalAppointment({ setOpen, open }) {
+export default function ModalAppointment({ setOpen, open, setUpdate, update }) {
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
-
   const handleClose = () => {
+    setUpdate(!update)
     setOpen(false)
   }
 
@@ -19,7 +19,7 @@ export default function ModalAppointment({ setOpen, open }) {
       <Dialog fullScreen={fullScreen} open={open} onClose={handleClose}>
         <DialogTitle sx={{ fontSize: '1.6rem' }}>Marque uma consulta</DialogTitle>
         <DialogContent>
-          <FormAppointment handleClose={handleClose} />
+          <FormAppointment handleClose={handleClose} setUpdate={setUpdate} update={update} />
         </DialogContent>
       </Dialog>
     </div>

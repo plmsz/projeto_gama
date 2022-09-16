@@ -9,7 +9,6 @@ export const PatientsList = ({ user }) => {
   const { data, isFetching } = useFetchPatients()
   const { width } = useWindowDimensions()
   const [showColumnsScreen] = useState(width <= 1024 ? false : true)
-  console.log(data, isFetching)
   return (
     <>
       <PatientsTable data={data} width={width} showColumns={showColumnsScreen} isFetching={isFetching} />

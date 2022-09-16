@@ -11,9 +11,9 @@ export async function getAppointments(route) {
   }
 }
 
-export async function postAppointments(route, body) {
+export async function postAppointments(body) {
   try {
-    const response = await api.post(route, body)
+    const response = await api.post(`appointment`, body)
     return await response.data
   } catch (error) {
     toast.messageError('Desculpe, houve um erro. Tente novamente')

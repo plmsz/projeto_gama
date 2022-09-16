@@ -1,4 +1,4 @@
-import { Button, Skeleton } from '@mui/material'
+import { Box, Button, Skeleton } from '@mui/material'
 import { useState } from 'react'
 import toast from '../../../../components/Toast'
 import { useFetch } from '../../../../hooks/useFetch'
@@ -45,7 +45,7 @@ export const AppointmentList = () => {
     data = rawData.map((row) => ({ ...row, name: row.patient }))
   }
   return (
-    <>
+    <Box>
       <Button variant='outlined' onClick={() => setOpenDialog(true)}>
         Agendar nova consulta
       </Button>
@@ -66,7 +66,9 @@ export const AppointmentList = () => {
           functionConfirm={handleCancelAppointment}
         />
       )}
-      {openDialog && <ModalAppointment setOpen={setOpenDialog} open={openDialog} />}
-    </>
+      {openDialog && (
+        <ModalAppointment setOpen={setOpenDialog} open={openDialog} setUpdate={setUpdate} update={update} />
+      )}
+    </Box>
   )
 }
