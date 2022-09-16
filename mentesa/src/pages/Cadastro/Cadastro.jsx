@@ -200,7 +200,7 @@ export default function Cadastro() {
                                 />
                             </Grid>
                             <Grid item xs={12} sm={2}>
-                                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={ptBR}>
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <Stack spacing={3}>
                                         <DesktopDatePicker
                                             label="Data de nascimento"

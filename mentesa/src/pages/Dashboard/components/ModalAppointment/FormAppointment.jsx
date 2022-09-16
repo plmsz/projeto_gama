@@ -9,21 +9,28 @@ import 'dayjs/locale/pt-br'
 import { useAuth } from './../../../../hooks/useAuth'
 import { postAppointments } from '../../../../services/appointmentsRequests'
 import short from 'short-uuid'
+import { useFetch } from './../../../../hooks/useFetch'
+import toast from '../../../../components/Toast'
 
 export function FormAppointment({ handleClose }) {
   const { user } = useAuth()
+  const { data, error } = useFetch('users?role=professional')
+
+  if (error) {
+    toast.messageError('Opa! Um erro inesperado aconteceu')
+    return
+  }
   const ptBR = dayjs.locale('pt-br')
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
+    watch,
   } = useForm()
 
-  const listProfessionals = [
-    { userId: 'Jz2JIhekpucIaeVxeJqQJnxl6ss1', name: 'João da Silva Júnior' },
-    { userId: 'VaquKpVZthMem0PwOU8kR2aiBbB2', name: 'Dra. Antônia Souza MenteSã' },
-  ]
+  const watchType = watch('specialty', 'Psicologia')
+  const listProfessionals = !watchType ? [] : data.filter((item) => item.specialty === watchType)
 
   const onSubmit = (data) => {
     const professionalName = listProfessionals
@@ -33,7 +40,7 @@ export function FormAppointment({ handleClose }) {
       ticket: short.generate(),
       professional: professionalName,
       patient: user.name,
-      type: data.specialty,
+      specialty: data.specialty,
       date: dayjs(data.datetime).toISOString(),
       status: 'Agendada',
       patientId: user.userId,
@@ -66,27 +73,33 @@ export function FormAppointment({ handleClose }) {
         </FormControl>
         <FormHelperText error={true}>{errors.specialty?.message}</FormHelperText>
       </Box>
-      <Box sx={{ margin: '1rem' }}>
-        <FormControl error={Boolean(errors.professional)} fullWidth>
-          <InputLabel id='professionalId' component='legend'>
-            Profissional *
-          </InputLabel>
-          <Select
-            id='professionalId'
-            labelId='professionalId'
-            name='professionalId'
-            helperText={errors.professionalId?.message}
-            {...register('professionalId', { required: 'É necessário escolher um profissional.' })}
-          >
-            {listProfessionals.map((professional, index) => (
-              <MenuItem key={professional.id} value={professional.userId}>
-                {professional.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <FormHelperText error={true}>{errors.specialty?.message}</FormHelperText>
-      </Box>
+      {watchType && (
+        <Box sx={{ margin: '1rem' }}>
+          <FormControl error={Boolean(errors.professionalId)} fullWidth>
+            <InputLabel id='professionalId' component='legend'>
+              Profissional *
+            </InputLabel>
+            <Select
+              id='professionalId'
+              labelId='professionalId'
+              name='professionalId'
+              helperText={errors.professionalId?.message}
+              {...register('professionalId', { required: 'É necessário escolher um profissional.' })}
+            >
+              {listProfessionals.map((professional, index) => (
+                <MenuItem key={professional.id} value={professional.userId}>
+                  {professional.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormHelperText error={true}>
+            {listProfessionals.length === 0 && <p>Não há profissionais no momento, escolha outra especialidade.</p>}
+            {errors.professionalId?.message}
+          </FormHelperText>
+        </Box>
+      )}
+
       <Box sx={{ margin: '1rem' }}>
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={ptBR}>
           <Controller

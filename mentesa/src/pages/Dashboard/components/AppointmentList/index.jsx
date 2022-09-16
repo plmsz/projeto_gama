@@ -17,7 +17,6 @@ export const AppointmentList = () => {
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false)
   const [dialogOptions, setDialogOptions] = useState({ title: '', text: '', info: '' })
   const [openDialog, setOpenDialog] = useState(false)
-
   const { data: rawData, isFetching } = useFetch(
     `appointment?${user?.role}Id=${user?.userId}&_sort=date&_order=desc`,
     update,
@@ -67,7 +66,12 @@ export const AppointmentList = () => {
         />
       )}
       {openDialog && (
-        <ModalAppointment setOpen={setOpenDialog} open={openDialog} setUpdate={setUpdate} update={update} />
+        <ModalAppointment
+          setOpen={setOpenDialog}
+          open={openDialog}
+          setUpdate={setUpdate}
+          update={update}
+        />
       )}
     </Box>
   )
