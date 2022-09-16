@@ -1,15 +1,18 @@
 import TextField from '@mui/material/TextField'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { appointmentTypeList } from './../../constants'
 import { Box, Button, DialogActions, MenuItem, InputLabel, FormControl, FormHelperText, Select } from '@mui/material'
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
 
 export function FormAppointment({ handleClose }) {
+  const ptBR = dayjs.locale('pt-br')
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     formState: { errors },
   } = useForm()
 
@@ -41,11 +44,11 @@ export function FormAppointment({ handleClose }) {
               </MenuItem>
             ))}
           </Select>
-          <FormHelperText error={true}>{errors.specialty?.message}</FormHelperText>
         </FormControl>
+        <FormHelperText error={true}>{errors.specialty?.message}</FormHelperText>
       </Box>
       <Box sx={{ margin: '1rem' }}>
-        <FormControl error={Boolean(errors.specialty)} fullWidth>
+        <FormControl error={Boolean(errors.professional)} fullWidth>
           <InputLabel id='professional' component='legend'>
             Profissional *
           </InputLabel>
@@ -62,25 +65,31 @@ export function FormAppointment({ handleClose }) {
               </MenuItem>
             ))}
           </Select>
-          <FormHelperText error={true}>{errors.specialty?.message}</FormHelperText>
         </FormControl>
+        <FormHelperText error={true}>{errors.specialty?.message}</FormHelperText>
       </Box>
-      <Box>
-        <FormControl required fullWidth sx={{ m: 1 }} error>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DateTimePicker
-              name='time'
-              label='Selecione o horário'
-              format='dd/MM/yyyy'
-              minDate={new Date()}
-              minutesStep='30'
-              helperText={errors.time?.message}
-              {...register('time', { required: 'É necessário escolher um horário e data.' })}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
-          <FormHelperText terror={true}>{errors.time?.message}</FormHelperText>
-        </FormControl>
+      <Box sx={{ margin: '1rem' }}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={ptBR}>
+          <Controller
+            name='datetime'
+            control={control}
+            defaultValue={null}
+            {...register('datetime', { required: 'É necessário escolher um horário e data.' })}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <DateTimePicker
+                label='Data e horário da consulta'
+                inputFormat='DD/MM/YY [ás] hh:mm'
+                minDate={new Date()}
+                minutesStep='30'
+                ampm={false}
+                value={value}
+                onChange={(value) => onChange(Date.parse(value))}
+                renderInput={(params) => <TextField id='datetime' fullWidth {...params} error={error} />}
+              />
+            )}
+          />
+          <FormHelperText error={true}>{errors.datetime?.message}</FormHelperText>
+        </LocalizationProvider>
       </Box>
       <DialogActions>
         <Button onClick={handleClose} variant='outlined'>

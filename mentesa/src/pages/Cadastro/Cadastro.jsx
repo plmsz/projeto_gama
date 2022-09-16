@@ -20,6 +20,7 @@ import dayjs from 'dayjs';
 import { postUser } from '../../services/usersRequests';
 import useForm from '../../hooks/useForm';
 import { useNavigate } from 'react-router-dom';
+import 'dayjs/locale/pt-br'
 
 const theme = createTheme();
 
@@ -29,7 +30,7 @@ export default function Cadastro() {
     const { user } = useAuth()
     const [datee, setDate] = React.useState(dayjs().format('L'));
     const navigate = useNavigate()
-
+    const ptBR = dayjs.locale('pt-br')
     const { inputForm, onChangeInput, clear } = useForm({
         nome: "",
         lastName: "",
@@ -199,7 +200,7 @@ export default function Cadastro() {
                                 />
                             </Grid>
                             <Grid item xs={12} sm={2}>
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={ptBR}>
                                     <Stack spacing={3}>
                                         <DesktopDatePicker
                                             label="Data de nascimento"
