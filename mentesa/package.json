@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --open | yarn run api",
+    "dev": "vite --open",
     "api": "json-server --watch ./db.json --port 8080",
     "build": "vite build",
     "preview": "vite preview"
