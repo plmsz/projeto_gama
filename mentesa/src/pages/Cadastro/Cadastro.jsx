@@ -93,7 +93,7 @@ export default function Cadastro() {
                 // id: Date.now(),
                 id: '',
                 userId: user.userId,
-                role: user.role,
+                role: checked,
                 name: user.name,
                 birthday: datee,
                 email: user.email,

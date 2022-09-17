@@ -24,10 +24,10 @@ export default function Profile() {
         rg: "",
         email: "",
         cep: "",
-        logradouro: "",
+        address: "",
         num: "",
-        uf: "",
-        localidade: "",
+        state: "",
+        city: "",
     });
 
     // const { data: rawData, isFetching } = useFetch(
