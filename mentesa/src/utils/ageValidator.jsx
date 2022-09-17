@@ -1,4 +1,3 @@
-import { differenceInYears, parseISO } from 'date-fns/esm/fp'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/pt-br'
