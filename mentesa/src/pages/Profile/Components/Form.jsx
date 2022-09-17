@@ -148,7 +148,7 @@ export default function Form(props) {
                                     id="address"
                                     label="Endereco"
                                     name="address"
-                                    value={props.logradouro}
+                                    value={props.address}
                                     onChange={props.onChangeInput}
                                 />
                             </Grid>
@@ -171,7 +171,7 @@ export default function Form(props) {
                                     id="state"
                                     label="Estado"
                                     name="state"
-                                    value={props.uf}
+                                    value={props.state}
                                     onChange={props.onChangeInput}
                                 />
                             </Grid>
@@ -182,7 +182,7 @@ export default function Form(props) {
                                     id="city"
                                     label="Cidade"
                                     name="city"
-                                    value={props.localidade}
+                                    value={props.city}
                                     onChange={props.onChangeInput}
                                 />
                             </Grid>

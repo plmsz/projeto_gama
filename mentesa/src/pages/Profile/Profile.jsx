@@ -54,10 +54,10 @@ export default function Profile() {
                         rg: res.data[0].rg,
                         email: res.data[0].email,
                         cep: res.data[0].cep,
-                        logradouro: res.data[0].address,
+                        address: res.data[0].address,
                         num: res.data[0].num,
-                        uf: res.data[0].state,
-                        localidade: res.data[0].city,
+                        state: res.data[0].state,
+                        city: res.data[0].city,
                         specialty: res.data[0].specialty,
                         crm: res.data[0].crm
                     })
@@ -126,10 +126,10 @@ export default function Profile() {
                     rg={inputForm.rg}
                     email={inputForm.email}
                     cep={inputForm.cep}
-                    logradouro={inputForm.logradouro}
+                    address={inputForm.address}
                     num={inputForm.num}
-                    uf={inputForm.uf}
-                    localidade={inputForm.localidade}
+                    state={inputForm.state}
+                    city={inputForm.city}
                     crm={inputForm.crm}
                     specialty={inputForm.specialty}
                 />
