@@ -47,6 +47,7 @@ export function FormAppointment({ handleClose }) {
       professionalId: data.professionalId,
     }
     postAppointments(body)
+    toast.messageSuccess('Consulta agendada!')
     handleClose()
   }
 
@@ -112,7 +113,7 @@ export function FormAppointment({ handleClose }) {
                 label='Data e horário da consulta'
                 inputFormat='DD/MM/YY [ás] HH:mm'
                 minDate={new Date()}
-                minutesStep='30'
+                minutesStep='60'
                 ampm={false}
                 value={value}
                 onChange={(value) => onChange(Date.parse(value))}

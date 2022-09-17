@@ -34,7 +34,7 @@ export function PatientsTable({ data, isFetching, width, showColumns }) {
         accessorKey: 'gender',
         header: 'Gênero',
         filterVariant: 'select',
-        filterSelectOptions: ['Feminino', 'Masculino', 'Não binário', 'Homem trans', 'Mulher trans', 'Fluído', 'Outro'],
+        filterSelectOptions: ['Feminino', 'Masculino', 'Não binário', 'Homem trans', 'Mulher trans', 'Fluído', 'Outro', 'Prefiro não dizer'],
       },
       {
         accessorKey: 'cpf',
@@ -105,7 +105,7 @@ export function PatientsTable({ data, isFetching, width, showColumns }) {
               title='Fazer anamnese'
               sx={{ padding: '0.2rem' }}
               onClick={() => {
-                navigate(`/anamnesis/${row.getValue('userId')}`)
+                navigate(`/panel/anamnesis/${row.getValue('userId')}`)
               }}
             >
               <Edit />

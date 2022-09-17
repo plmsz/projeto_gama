@@ -65,6 +65,9 @@ export default function Form(props) {
                     </MenuItem>
                     <MenuItem value='Feminino'>Feminino</MenuItem>
                     <MenuItem value='Masculino'>Masculino</MenuItem>
+                    <MenuItem value='Homem trans'>Homem trans</MenuItem>
+                    <MenuItem value='Mulher trans'>Mulher trans</MenuItem>
+                    <MenuItem value='Fluído'>Fluído</MenuItem>
                     <MenuItem value='Outro'>Outro</MenuItem>
                     <MenuItem value='Prefiro não dizer'>Prefiro não dizer</MenuItem>
                   </Select>

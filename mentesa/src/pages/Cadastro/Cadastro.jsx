@@ -27,7 +27,7 @@ const theme = createTheme()
 export default function Cadastro() {
   const [checked, setChecked] = useState(false)
   const [inputCep, setInputCep] = useState({})
-  const { user, setUser} = useAuth()
+  const { user, setUser } = useAuth()
   const [date, setDate] = useState(null)
   const navigate = useNavigate()
   const ptBR = dayjs.locale('pt-br')
@@ -178,6 +178,9 @@ export default function Cadastro() {
                     </MenuItem>
                     <MenuItem value='Feminino'>Feminino</MenuItem>
                     <MenuItem value='Masculino'>Masculino</MenuItem>
+                    <MenuItem value='Homem trans'>Homem trans</MenuItem>
+                    <MenuItem value='Mulher trans'>Mulher trans</MenuItem>
+                    <MenuItem value='Fluído'>Fluído</MenuItem>
                     <MenuItem value='Outro'>Outro</MenuItem>
                     <MenuItem value='Prefiro não dizer'>Prefiro não dizer</MenuItem>
                   </Select>

@@ -11,7 +11,9 @@ export default function ModalAppointment({ setOpen, open, setUpdate, update }) {
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
   const handleClose = () => {
     setUpdate(!update)
-    setOpen(false)
+    setTimeout(() => {
+      setOpen(false)
+    }, 500);
   }
 
   return (
