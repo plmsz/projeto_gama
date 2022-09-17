@@ -5,7 +5,7 @@
       "ticket": "10001",
       "professional": "João da Silva Júnior",
       "patient": "Paloma Souza de Oliveira",
-      "type": "Psicologia",
+      "specialty": "Psicologia",
       "date": "2022-09-06T11:00:00.463Z",
       "status": "Agendada",
       "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
@@ -16,7 +16,7 @@
       "ticket": "10002",
       "professional": "João da Silva Júnior",
       "patient": "Paloma Souza de Oliveira",
-      "type": "Psicologia",
+      "specialty": "Psicologia",
       "date": "2022-09-16T11:30:00.463Z",
       "status": "Agendada",
       "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
@@ -27,9 +27,9 @@
       "ticket": "10003",
       "professional": "Dra. Antônia Souza MenteSã",
       "patient": "Paloma Souza de Oliveira",
-      "type": "Psiquiatria",
+      "specialty": "Psiquiatria",
       "date": "2022-08-18T18:00:00.463Z",
-      "status": "Agendada",
+      "status": "Cancelada",
       "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
       "professionalId": "VaquKpVZthMem0PwOU8kR2aiBbB2"
     },
@@ -38,7 +38,7 @@
       "ticket": "10004",
       "professional": "Vanessa Pereira Albuquerque",
       "patient": "Paloma Souza de Oliveira",
-      "type": "Terapeuta",
+      "specialty": "Terapeuta",
       "date": "2022-10-02T18:00:00.463Z",
       "status": "Remarcada",
       "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
@@ -49,7 +49,7 @@
       "ticket": "10005",
       "professional": "Dra. Antônia Souza MenteSã",
       "patient": "Paloma Souza de Oliveira",
-      "type": "Psiquiatria",
+      "specialty": "Psiquiatria",
       "date": "2022-10-09T19:00:00.463Z",
       "status": "Agendada",
       "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
@@ -60,7 +60,7 @@
       "ticket": "10006",
       "professional": "Dra. Antônia Souza MenteSã",
       "patient": "Natalia Thome",
-      "type": "Psiquiatria",
+      "specialty": "Psiquiatria",
       "date": "2022-10-18T14:00:00.463Z",
       "status": "Agendada",
       "patientId": "1GmSdnGa1VRiGQt1iFBaPkwDPfx1",
@@ -71,7 +71,7 @@
       "ticket": "10007",
       "professional": "Vanessa Pereira Albuquerque",
       "patient": "Angelo Polatto",
-      "type": "Terapeuta",
+      "specialty": "Terapeuta",
       "date": "2022-10-22T14:00:00.463Z",
       "status": "Agendada",
       "patientId": "si4niNyNnNgXuBhLB3QeABMUMBQ2",
@@ -82,7 +82,7 @@
       "ticket": "10008",
       "professional": "Vanessa Pereira Albuquerque",
       "patient": "Paloma Souza de Oliveira",
-      "type": "Terapeuta",
+      "specialty": "Terapeuta",
       "date": "2022-10-24T15:30:00.463Z",
       "status": "Agendada",
       "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
@@ -105,7 +105,8 @@
       "name": "Vanessa Pereira Albuquerque",
       "role": "professional",
       "birthday": "2004-11-10",
-      "gender": "Feminino"
+      "gender": "Feminino",
+      "specialty": "Terapeuta"
     },
     {
       "id": 3,
@@ -113,7 +114,8 @@
       "name": "Dra. Antônia Souza MenteSã",
       "role": "professional",
       "birthday": "1992-08-10",
-      "gender": "Feminino"
+      "gender": "Feminino",
+      "specialty": "Psiquiatria"
     },
     {
       "id": 4,
@@ -121,16 +123,8 @@
       "name": "João da Silva Júnior",
       "role": "professional",
       "age": 35,
-      "gender": "Masculino"
-    },
-    {
-      "id": 5,
-      "userId": "1GmSdnGa1VRiGQt1iFBaPkwDPfx1",
-      "name": "Natalia Thome",
-      "role": "patient",
-      "birthday": "2004-08-10",
-      "gender": "Feminino",
-      "cpf": "12345678902"
+      "gender": "Masculino",
+      "specialty": "Psicologia"
     },
     {
       "id": 6,

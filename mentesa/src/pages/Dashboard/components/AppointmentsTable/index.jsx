@@ -71,7 +71,7 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
         ),
       },
       {
-        accessorKey: 'type',
+        accessorKey: 'specialty',
         header: 'Consulta',
         filterVariant: 'select',
         filterSelectOptions: appointmentTypeList,
@@ -92,7 +92,7 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
           showColumnFilters: true,
           columnVisibility: {
             ticket: showColumns,
-            type: showColumns,
+            specialty: showColumns,
           },
         }}
         enableDensityToggle={false}
