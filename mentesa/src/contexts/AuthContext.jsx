@@ -67,6 +67,7 @@ export function AuthContextProvider(props) {
     try {
       await signOut(auth)
       toast.messageSuccess('Até breve!')
+      setUser()
       setTimeout(() => navigate('/'), 500)
     } catch (error) {
       console.log(error)

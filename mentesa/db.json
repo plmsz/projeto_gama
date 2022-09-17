@@ -38,7 +38,7 @@
       "ticket": "10004",
       "professional": "Vanessa Pereira Albuquerque",
       "patient": "Paloma Souza de Oliveira",
-      "specialty": "Terapeuta",
+      "specialty": "Terapia",
       "date": "2022-10-02T18:00:00.463Z",
       "status": "Remarcada",
       "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
@@ -71,7 +71,7 @@
       "ticket": "10007",
       "professional": "Vanessa Pereira Albuquerque",
       "patient": "Angelo Polatto",
-      "specialty": "Terapeuta",
+      "specialty": "Terapia",
       "date": "2022-10-22T14:00:00.463Z",
       "status": "Agendada",
       "patientId": "si4niNyNnNgXuBhLB3QeABMUMBQ2",
@@ -82,7 +82,7 @@
       "ticket": "10008",
       "professional": "Vanessa Pereira Albuquerque",
       "patient": "Paloma Souza de Oliveira",
-      "specialty": "Terapeuta",
+      "specialty": "Terapia",
       "date": "2022-10-24T15:30:00.463Z",
       "status": "Agendada",
       "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
@@ -91,22 +91,13 @@
   ],
   "users": [
     {
-      "id": 1,
-      "userId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
-      "name": "Paloma Souza de Oliveira",
-      "role": "patient",
-      "birthday": "1993-08-10",
-      "gender": "Feminino",
-      "cpf": "12345678901"
-    },
-    {
       "id": 2,
       "userId": "oSrbC9nGeVNNBav7JWYc5U6SrPu1",
       "name": "Vanessa Pereira Albuquerque",
       "role": "professional",
       "birthday": "2004-11-10",
       "gender": "Feminino",
-      "specialty": "Terapeuta"
+      "specialty": "Terapia"
     },
     {
       "id": 3,
@@ -127,33 +118,44 @@
       "specialty": "Psicologia"
     },
     {
-      "id": 6,
-      "name": "Angelo Polatto",
-      "userId": "si4niNyNnNgXuBhLB3QeABMUMBQ2",
-      "role": "patient",
-      "birthday": "1996-08-10",
-      "gender": "Masculino",
-      "cpf": "12345678903"
-    },
-    {
       "id": 1663042384091,
       "userId": "si4niNyNnNgXuBhLB3QeABMUMBQ2",
       "role": "patient",
       "name": "Natalia Thome",
-      "birthday": "09/13/1989",
+      "birthday": "13/09/1989",
       "email": "nathythome05@gmail.com",
       "address": "Rua Bom Pastor",
       "state": "SP",
       "city": "São Caetano do Sul",
-      "nome": "Maria",
+      "firstName": "Maria",
       "lastName": "Joaquina",
-      "gender": "outro",
-      "cpf": "299.866.078-92",
+      "gender": "Outro",
+      "cpf": "288.271.600-19",
       "rg": "4532156498",
       "crm": "",
       "specialty": "",
       "cep": "09570500",
       "num": "898"
+    },
+    {
+      "userId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
+      "role": "patient",
+      "name": "Paloma Oliveira",
+      "birthday": "12/08/1993",
+      "email": "plmsouzaoliveira@gmail.com",
+      "address": "Estrada Nova Brasília",
+      "state": "BA",
+      "city": "Salvador",
+      "firstName": "Paloma ",
+      "lastName": "Souza de Oliveira",
+      "gender": "Feminino",
+      "cpf": "191.654.180-18",
+      "rg": "11.111.222-28",
+      "crm": "",
+      "specialty": "",
+      "cep": "41300400",
+      "num": "458",
+      "id": 1663042384092
     }
   ]
 }

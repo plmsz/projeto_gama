@@ -9,7 +9,7 @@ export const Container = styled.div`
   align-items: center;
 
   max-width: 312px;
-  height: 100vh;
+  min-height: 100%;
 
   background-color: #003554;
 
@@ -23,7 +23,7 @@ export const NavList = styled.nav`
     display: flex;
     flex-direction: column;
 
-`
+`;
 
 export const NavItem = styled.li`
     list-style: none;
@@ -51,11 +51,11 @@ export const NavItem = styled.li`
         background-color: #00A6FB;
       }
     }
-`
+`;
 
 export const Logo = styled.img`
   margin: 40px 0 40px 0;
-`
+`;
 
 export const Logout = styled.div`
   width: 100%;
@@ -104,4 +104,4 @@ export const Logout = styled.div`
     cursor: pointer;
     
   }
-`
+`;

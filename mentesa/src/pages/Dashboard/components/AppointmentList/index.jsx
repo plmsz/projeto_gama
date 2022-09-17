@@ -10,7 +10,7 @@ import { AppointmentsTable } from './../AppointmentsTable/index'
 import ModalAppointment from './../ModalAppointment/index'
 
 export const AppointmentList = () => {
-  const { user, setUser } = useAuth()
+  const { user } = useAuth()
   const [update, setUpdate] = useState(false)
   const { width } = useWindowDimensions()
   const [showColumnsScreen] = useState(width <= 1024 ? false : true)
@@ -45,9 +45,11 @@ export const AppointmentList = () => {
   }
   return (
     <Box>
-      <Button variant='outlined' onClick={() => setOpenDialog(true)}>
-        Agendar nova consulta
-      </Button>
+      {user?.role === 'patient' && (
+        <Button variant='outlined' onClick={() => setOpenDialog(true)}>
+          Agendar nova consulta
+        </Button>
+      )}
       <AppointmentsTable
         data={data}
         isFetching={isFetching}
@@ -66,12 +68,7 @@ export const AppointmentList = () => {
         />
       )}
       {openDialog && (
-        <ModalAppointment
-          setOpen={setOpenDialog}
-          open={openDialog}
-          setUpdate={setUpdate}
-          update={update}
-        />
+        <ModalAppointment setOpen={setOpenDialog} open={openDialog} setUpdate={setUpdate} update={update} />
       )}
     </Box>
   )

@@ -1,12 +1,8 @@
 import styled from 'styled-components'
 
-// SN -> SideNav
-// HD -> Header
-// PN -> Panel
-
 export const LayoutGrid = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 
   display: grid;
 

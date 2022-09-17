@@ -1,1 +1,1 @@
-export const appointmentTypeList = ['Psicanalista', 'Psicologia', 'Psiquiatria', 'Terapeuta']
+export const appointmentTypeList = ['Psicanalista', 'Psicologia', 'Psiquiatria', 'Terapia']
