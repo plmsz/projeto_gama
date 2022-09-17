@@ -1,4 +1,4 @@
-import styled from 'styled-components/'
+import styled from 'styled-components/';
 
 export const Container = styled.main`
   align-items: flex-start;
@@ -7,26 +7,26 @@ export const Container = styled.main`
   min-height: 100vh;
   text-align: center;
   position: relative;
-`
+`;
 
-const containerFlex = styled.section`
+export const ContainerFlex = styled.section`
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   min-height: 100vh;
-`
+`;
 
-export const ContainerLeft = styled(containerFlex)`
+export const ContainerLeft = styled(ContainerFlex)`
   background-color: #fff;
   width: 60%;
 
   @media screen and (max-width: 47.5rem) {
     display: none;
   }
-`
+`;
 
-export const ContainerRigth = styled(containerFlex)`
+export const ContainerRight = styled(ContainerFlex)`
   background: #00a6fb;
   width: 40%;
 
@@ -37,7 +37,7 @@ export const ContainerRigth = styled(containerFlex)`
       margin-top: 6rem;
     }
   }
-`
+`;
 
 export const Title = styled.h1`
   color: #006494;
@@ -47,13 +47,13 @@ export const Title = styled.h1`
   font-weight: 400;
   line-height: 5rem;
   text-transform: uppercase;
-`
+`;
 
 export const ImageDoctor = styled.img`
   margin-top: 10rem;
   max-height: 32.5rem;
   max-width: 34.375rem;
-`
+`;
 
 export const ImageLogo = styled.img`
   margin-top: 10rem;
@@ -63,7 +63,7 @@ export const ImageLogo = styled.img`
   @media screen and (max-width: 47.5rem) {
     margin: 5rem 0 3rem;
   }
-`
+`;
 
 export const TitleWhite = styled(Title)`
   color: #fff;
@@ -73,4 +73,4 @@ export const TitleWhite = styled(Title)`
   @media screen and (max-width: 47.5rem) {
     margin-bottom: 5rem;
   }
-`
+`;

@@ -55,7 +55,7 @@ export function AuthContextProvider(props) {
         userId: uid,
         name: displayName,
         avatar: photoURL,
-        role: undefined,
+        role: undefined || 'professional',
         email: email,
       })
       fetch(uid)

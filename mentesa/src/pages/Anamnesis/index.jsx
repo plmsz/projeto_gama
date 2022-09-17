@@ -3,7 +3,6 @@ import * as S from '../../styles/CommonUi'
 
 export function Anamnesis() {
   const { userId } = useParams()
-  console.log(userId)
   return (
     <S.Container>
       <>
