@@ -27,7 +27,7 @@ const theme = createTheme()
 export default function Cadastro() {
   const [checked, setChecked] = useState(false)
   const [inputCep, setInputCep] = useState({})
-  const { user } = useAuth()
+  const { user, setUser} = useAuth()
   const [date, setDate] = useState(null)
   const navigate = useNavigate()
   const ptBR = dayjs.locale('pt-br')
@@ -48,10 +48,15 @@ export default function Cadastro() {
       axios
         .get(`https://viacep.com.br/ws/${inputForm.cep}/json/`)
         .then((res) => {
-          setInputCep(res.data)
+          const { data } = res
+          if (data.erro) {
+            toast.messageError('Erro verifique o CEP!')
+            setInputCep(null)
+          }
+          setInputCep(data)
         })
         .catch((error) => {
-          toast.messageError('Erro verifique o CEP!')
+          toast.messageError('Desculpe houve um erro.')
           setInputCep({})
         })
     }
@@ -78,7 +83,7 @@ export default function Cadastro() {
   const toastMessage = () => {
     isValidCPF(inputForm.cpf) === true
       ? toast.messageSuccess('Usuário cadastrado com sucesso!')
-      : toast.messageError('Erro ao cadastrar, verifique as informações!')
+      : toast.messageError('Erro ao cadastrar, verifique o CPF.')
   }
 
   const handleChangeDate = (newDate) => {
@@ -88,7 +93,6 @@ export default function Cadastro() {
   const handleSubmit = (event) => {
     event.preventDefault()
     toastMessage()
-
     if (isValidCPF(inputForm.cpf) === true) {
       const body = {
         userId: user.userId,
@@ -97,7 +101,7 @@ export default function Cadastro() {
         birthday: dayjs(date).format('L'),
         email: user.email,
         address: inputCep.logradouro,
-        neighborhood: inputCep.neighborhood,
+        neighborhood: inputCep.bairro,
         state: inputCep.uf,
         city: inputCep.localidade,
         firstName: inputForm.firstName,
@@ -111,6 +115,7 @@ export default function Cadastro() {
         num: inputForm.num,
       }
       postUser('/users', body)
+      setUser((prev) => ({ ...prev, role: checked ? 'professional' : 'patient' }))
       setTimeout(() => {
         navigate('/panel/dashboard')
       }, 500)
@@ -161,6 +166,7 @@ export default function Cadastro() {
                     Gênero *
                   </InputLabel>
                   <Select
+                    required
                     labelId='gender'
                     sx={{ width: '100%' }}
                     name='gender'
@@ -199,6 +205,9 @@ export default function Cadastro() {
                   name='rg'
                   value={inputForm.rg}
                   onChange={onChangeInput}
+                  inputProps={{
+                    minLength: 7,
+                  }}
                   // inputProps={{
                   //     inputMode: "numeric",
                   //     pattern: "^(W\d{7}[A-Z\d]|RNE[A-Z\d]\d{6}[A-Z\d])$"
@@ -213,7 +222,9 @@ export default function Cadastro() {
                       inputFormat='DD/MM/YYYY'
                       value={date}
                       onChange={handleChangeDate}
-                      renderInput={(params) => <TextField {...params} />}
+                      renderInput={(params) => (
+                        <TextField {...params} error={dayjs(date).format('L') === 'Invalid Date'} required />
+                      )}
                       disableFuture
                     />
                   </Stack>

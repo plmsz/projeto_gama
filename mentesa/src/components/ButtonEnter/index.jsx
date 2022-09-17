@@ -15,11 +15,9 @@ export default function GoToGoogle() {
   useEffect(() => {
     const fetch = async () => {
       const [profile] = await getUser(user.userId)
-      console.log({ profile })
       if (!profile) {
         navigate('/cadastro')
       } else {
-        console.log('p', profile.role)
         navigate('/panel/dashboard')
       }
     }

@@ -40,7 +40,6 @@ export default function Profile() {
   const seila = async (user) => {
     try {
       const data = await api.get(`users?email=${user}`).then((res) => {
-        console.log('DATAA', res.data)
 
         setInputForm({
           firstName: res.data[0].firstName,
@@ -68,13 +67,12 @@ export default function Profile() {
       //   toast.messageSuccess('A consulta foi cancelada.')
     } catch (error) {
       toast.messageError('Desculpe, houve um erro. Tente novamente')
-      console.log(error)
     }
   }
 
   // const handleSubmit = (event) => {
   //     event.preventDefault();
-  //     console.log('clicou')
+
   //     // toastMessage()
 
   //     // if (isValidCPF(inputForm.cpf) === true) {

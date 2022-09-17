@@ -14,13 +14,13 @@ export const useFetch = (route, update) => {
             try {
                 const response = await api.get(route);
                 setData(response.data);
+                if (user?.role) {
+                    setIsFetching(false);
+                }
             } catch (err) {
                 if (axios?.isAxiosError(err)) {
                     setError(err.message);
                 }
-            }
-            if (user?.role) {
-                setIsFetching(false);
             }
         };
         fetchData();
