@@ -1,5 +1,5 @@
 import GlobalStyle from './styles/GlobalStyle'
-import Routes from './Routes'
+import Routes from './Routes/Routes'
 import { AuthContextProvider } from './contexts/AuthContext'
 import { theme } from './styles/Theme'
 import { ThemeProvider } from '@mui/material/styles'
