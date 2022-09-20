@@ -1,21 +1,13 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import * as S from '../../styles/CommonUi'
 import { useFetch } from './../../hooks/useFetch'
-import {
-  Box,
-  Button,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormHelperText,
-  TextField,
-  Typography,
-} from '@mui/material'
+import { Box, Button, InputLabel, Select, MenuItem, FormHelperText, TextField, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { educationList, feelingsList, postureList } from './constants'
 import { Grid } from '@mui/material/'
 import { postAnamnesis } from '../../services/anamnesisRequests'
-import toast from '../../components/Toast';
+import toast from '../../components/Toast'
+
 export function Anamnesis() {
   const { userId } = useParams()
   const { data } = useFetch(`users?userId=${userId}`)
@@ -27,13 +19,14 @@ export function Anamnesis() {
   } = useForm()
   const watchTypeHealthCare = watch('previousMentalHealthCare', '')
   const watchMedicine = watch('medicine', '')
+  const navigate = useNavigate()
 
   const onSubmit = (data) => {
     const body = data
     postAnamnesis(body)
     toast.messageSuccess('Dados salvos!')
   }
-  //TODO: dados do perfil, link do volta, múltiplo select sentimentos, editar, máscara telefone
+  //TODO: dados do perfil, editar, máscara telefone, múltiplo sele                                                                                                                  ct sentimentos com tooltip
   return (
     <Box component='form' onSubmit={handleSubmit(onSubmit)} mx={2} sx={{ flexGrow: 1 }}>
       <Typography component='h1' variant='h2'>
@@ -315,7 +308,13 @@ export function Anamnesis() {
         </Grid>
       </Grid>
       <Box sx={{ display: 'flex', justifyContent: 'right', gap: '2rem' }}>
-        <Button variant='contained' color='secondary' type='button' sx={{ width: '2.6rem' }}>
+        <Button
+          variant='contained'
+          color='secondary'
+          type='button'
+          sx={{ width: '2.6rem' }}
+          onClick={() => navigate(-1)}
+        >
           Voltar
         </Button>
         <Button variant='contained' type='submit' sx={{ width: '2.6rem' }}>
