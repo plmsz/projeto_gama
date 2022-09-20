@@ -7,7 +7,6 @@ import { api } from '../../services/api'
 import { putUser } from '../../services/usersRequests'
 import CardProfile from './Components/CardProfile'
 import Form from './Components/Form'
-import db from '../../../db.json'
 
 export default function Profile() {
   const { user } = useAuth()
@@ -40,6 +39,7 @@ export default function Profile() {
     try {
       await api.get(`users?email=${user}`).then((res) => {
         setInputForm({
+          id: res.data[0].id,
           firstName: res.data[0].firstName,
           lastName: res.data[0].lastName,
           birthday: res.data[0].birthday,
@@ -80,17 +80,11 @@ export default function Profile() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('clicou', event)
-
-    toastMessage()
 
     if (isValidCPF(inputForm.cpf) === true) {
-      db.users.filter((el) => {
-        if (user.userId === el.userId) {
-          putUser(`/users/${el.id}`, inputForm)
-        }
-      })
+      putUser(`/users/${inputForm.id}`, inputForm)
     }
+    toastMessage()
   };
 
   return (

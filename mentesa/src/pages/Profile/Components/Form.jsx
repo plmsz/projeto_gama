@@ -4,15 +4,12 @@ import {
   Button,
   Card,
   CardContent,
-  CardMedia,
-  FormControlLabel,
   FormControl,
   InputLabel,
   Grid,
   MenuItem,
   Select,
   TextField,
-  Stack,
 } from '@mui/material'
 import { DesktopDatePicker, LocalizationProvider, ptBR } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
