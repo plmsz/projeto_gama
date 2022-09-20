@@ -12,9 +12,6 @@ import {
   TextField,
   Input,
 } from '@mui/material'
-import { DesktopDatePicker, LocalizationProvider, ptBR } from '@mui/x-date-pickers'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import dayjs from 'dayjs'
 import 'dayjs/locale/pt-br'
 
 export default function Form(props) {
@@ -117,22 +114,6 @@ export default function Form(props) {
                   onChange={props.onChangeInput}
                 />
               </Grid>
-              {/* <Grid item xs={12} sm={2}> 
-                <LocalizationProvider dateAdapter={AdapterDayjs} localeText={ptBR}>
-                  <Stack spacing={3}>
-                    <DesktopDatePicker
-                      label='Data de nascimento*'
-                      inputFormat='DD/MM/YYYY'
-                      value={props.birthday}
-                      onChange={props.handleChangeDate}
-                      renderInput={(params) => (
-                        <TextField {...params}  />
-                      )}
-                      disableFuture
-                    />
-                  </Stack>
-                </LocalizationProvider> 
-              </Grid> */}
               <Grid item xs={12} sm={8}>
                 <TextField
                   disabled
