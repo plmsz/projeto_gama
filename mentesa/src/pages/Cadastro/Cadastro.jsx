@@ -8,19 +8,14 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { FormControl, MenuItem, Select, Stack, Switch, InputLabel } from '@mui/material'
+import { FormControl, MenuItem, Select, Switch, InputLabel } from '@mui/material'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 import toast from '../../components/Toast'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
-import dayjs from 'dayjs'
 import { postUser } from '../../services/usersRequests'
 import useForm from '../../hooks/useForm'
 import { useNavigate } from 'react-router-dom'
-import 'dayjs/locale/pt-br'
 
 const theme = createTheme()
 
@@ -28,9 +23,7 @@ export default function Cadastro() {
   const [checked, setChecked] = useState(false)
   const [inputCep, setInputCep] = useState({})
   const { user, setUser } = useAuth()
-  const [date, setDate] = useState(null)
   const navigate = useNavigate()
-  const ptBR = dayjs.locale('pt-br')
   const { inputForm, onChangeInput, clear } = useForm({
     firstName: '',
     lastName: '',
@@ -86,10 +79,6 @@ export default function Cadastro() {
       : toast.messageError('Erro ao cadastrar, verifique o CPF.')
   }
 
-  const handleChangeDate = (newDate) => {
-    setDate(newDate)
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault()
     toastMessage()
@@ -98,7 +87,7 @@ export default function Cadastro() {
         userId: user.userId,
         role: checked ? 'professional' : 'patient',
         name: user.name,
-        birthday: dayjs(date).format('L'),
+        birthday: inputForm.birthday,
         email: user.email,
         address: inputCep.logradouro,
         neighborhood: inputCep.bairro,
@@ -211,27 +200,24 @@ export default function Cadastro() {
                   inputProps={{
                     minLength: 7,
                   }}
-                  // inputProps={{
-                  //     inputMode: "numeric",
-                  //     pattern: "^(W\d{7}[A-Z\d]|RNE[A-Z\d]\d{6}[A-Z\d])$"
-                  // }}
+                // inputProps={{
+                //     inputMode: "numeric",
+                //     pattern: "^(W\d{7}[A-Z\d]|RNE[A-Z\d]\d{6}[A-Z\d])$"
+                // }}
                 />
               </Grid>
               <Grid item xs={12} sm={2}>
-                <LocalizationProvider dateAdapter={AdapterDayjs} localeText={ptBR}>
-                  <Stack spacing={3}>
-                    <DesktopDatePicker
-                      label='Data de nascimento*'
-                      inputFormat='DD/MM/YYYY'
-                      value={date}
-                      onChange={handleChangeDate}
-                      renderInput={(params) => (
-                        <TextField {...params} error={dayjs(date).format('L') === 'Invalid Date'} required />
-                      )}
-                      disableFuture
-                    />
-                  </Stack>
-                </LocalizationProvider>
+                <TextField
+                  placeholder='DD/MM/YYYY'
+                  required
+                  type='date'
+                  fullWidth
+                  id='birthday'
+                  label='Data de nascimento'
+                  name='birthday'
+                  value={inputForm.birthday}
+                  onChange={onChangeInput}
+                />
               </Grid>
               <Grid item xs={12} sm={8}>
                 <TextField
