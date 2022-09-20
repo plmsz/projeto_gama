@@ -102,7 +102,7 @@ export function PatientsTable({ data, isFetching, width, showColumns }) {
             }}
           >
             <IconButton
-              title='Fazer anamnese'
+              title='Editar Ficha do paciente'
               sx={{ padding: '0.2rem' }}
               onClick={() => {
                 navigate(`/panel/anamnesis/${row.getValue('userId')}`)

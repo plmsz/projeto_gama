@@ -99,5 +99,23 @@
     }
   ],
   "anamnesis": [
+    {
+      "profession": "gerente regional",
+      "education": "Superior Incompleto",
+      "livesWith": "filhos",
+      "description": "desanimada",
+      "medicalHistory": "depressão",
+      "personalHistory": "dívidas",
+      "familyHistory": "depressão por parte de mãe",
+      "previousMentalHealthCare": "Sim",
+      "reasonMentalHealthCare": "ideação",
+      "medicine": "Não",
+      "understanding": "Ruim",
+      "posture": "Raiva",
+      "feelings": "Tristeza",
+      "emergencyNumber": "87899999999999",
+      "userId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
+      "id": 1
+    }
   ]
 }
