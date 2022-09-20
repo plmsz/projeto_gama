@@ -96,6 +96,27 @@
       "cep": "65638140",
       "num": "8876",
       "id": 3
+    },
+    {
+      "userId": "PZZ8AODnfPXbguS2MZLUByMlJbt2",
+      "role": "professional",
+      "name": "Thyago Silva",
+      "birthday": "24/12/1995",
+      "email": "thyago29.05@gmail.com",
+      "address": "Praça do Campo",
+      "neighborhood": "Pau da Lima",
+      "state": "BA",
+      "city": "Salvador",
+      "firstName": "Tiago",
+      "lastName": "Santos",
+      "gender": "Masculino",
+      "cpf": "83901032061",
+      "rg": "0940421678",
+      "crm": "321015",
+      "specialty": "Psicanalista",
+      "cep": "41235420",
+      "num": "55",
+      "id": 4
     }
   ]
 }

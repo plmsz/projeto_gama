@@ -4,6 +4,8 @@ import { useAuth } from '../../hooks/useAuth'
 
 import { Dashboard as DashboardIcon, Person as PersonIcon, MeetingRoom, AccessibilityNew } from '@mui/icons-material'
 
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
+
 import { Container, NavList, NavItem, Logo, Logout } from './styles'
 
 import LogoPng from '../../assets/mentesa.png'
@@ -40,6 +42,12 @@ function SideNav() {
           <Link to='patients'>
             <AccessibilityNew fontSize='large' />
             <span>Pacientes</span>
+          </Link>
+        </NavItem>
+        <NavItem>
+          <Link to='agenda'>
+            <CalendarMonthIcon fontSize='large' />
+            <span>Disponibilizar Agenda</span>
           </Link>
         </NavItem>
       </NavList>

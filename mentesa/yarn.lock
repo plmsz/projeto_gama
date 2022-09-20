@@ -1823,7 +1823,7 @@ data-urls@^3.0.2:
     whatwg-mimetype "^3.0.0"
     whatwg-url "^11.0.0"
 
-date-fns@^2.29.2:
+date-fns@^2.29.3:
   version "2.29.3"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.3.tgz#27402d2fc67eb442b511b70bbdf98e6411cd68a8"
   integrity sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==
@@ -4018,6 +4018,11 @@ rc@1.2.8, rc@^1.2.8:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
+
+react-day-picker@^8.2.1:
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-8.2.1.tgz#43f57ebe65dd8a90ccbb9d192eee899d67f79087"
+  integrity sha512-zFCi2IP7UbwcOM26mqYVE1vcuVC2sw/WY+QfC0AKitwRLkxMjC/o/KSzl8ia0+N3XQb38aoNcXnuH7d17QOSOw==
 
 react-dom@^18.2.0:
   version "18.2.0"
