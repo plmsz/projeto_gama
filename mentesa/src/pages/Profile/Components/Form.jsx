@@ -10,6 +10,7 @@ import {
   MenuItem,
   Select,
   TextField,
+  Input,
 } from '@mui/material'
 import { DesktopDatePicker, LocalizationProvider, ptBR } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -106,6 +107,8 @@ export default function Form(props) {
               </Grid>
               <Grid item xs={12} sm={2}>
                 <TextField
+                  placeholder='DD/MM/YYYY'
+                  type='date'
                   fullWidth
                   id='birthday'
                   label='Data de nascimento'
