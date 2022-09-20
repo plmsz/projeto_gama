@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
      grid-area: PN;
 
-     width: 98%;
+     width: 95%;
      height: auto;
      padding: 8px 0px 8px 8px;
 
