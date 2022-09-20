@@ -110,7 +110,7 @@ export default function Cadastro() {
         cpf: inputForm.cpf,
         rg: inputForm.rg,
         crm: inputForm.crm,
-        specialty: inputForm.crm ? inputForm.specialty : '',
+        specialty: inputForm.specialty,
         cep: inputForm.cep,
         num: inputForm.num,
       }
@@ -265,12 +265,12 @@ export default function Cadastro() {
                     onChange={onChangeInput}
                   />
                   <FormControl fullWidth>
-                    <InputLabel id='gender' component='legend'>
+                    <InputLabel id='specialty' component='legend'>
                       Especialidade *
                     </InputLabel>
                     <Select
                       sx={{ width: '100%' }}
-                      labelId='label-especialidade'
+                      labelId='specialty'
                       name='specialty'
                       value={inputForm.specialty}
                       onChange={onChangeInput}
