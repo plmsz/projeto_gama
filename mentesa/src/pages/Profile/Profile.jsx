@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Card} from '@mui/material'
 import * as React from 'react'
 import toast from '../../components/Toast'
 import { useAuth } from '../../hooks/useAuth'
@@ -26,7 +26,7 @@ export default function Profile() {
     neighborhood: '',
     city: '',
     specialty: '',
-    crm: ''
+    crm: '',
   })
 
   React.useEffect(() => {
@@ -79,36 +79,39 @@ export default function Profile() {
   }
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
     if (isValidCPF(inputForm.cpf) === true) {
       putUser(`/users/${inputForm.id}`, inputForm)
     }
     toastMessage()
-  };
+  }
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <CardProfile image={user?.avatar} name={user?.name} id={user?.userId}></CardProfile>
-      <Form onSubmit={handleSubmit}
-        firstName={inputForm.firstName}
-        onChangeInput={onChangeInput}
-        lastName={inputForm.lastName}
-        birthday={inputForm.birthday}
-        gender={inputForm.gender}
-        cpf={inputForm.cpf}
-        rg={inputForm.rg}
-        email={inputForm.email}
-        cep={inputForm.cep}
-        address={inputForm.address}
-        num={inputForm.num}
-        state={inputForm.state}
-        city={inputForm.city}
-        neighborhood={inputForm.neighborhood}
-        crm={inputForm.crm}
-        specialty={inputForm.specialty}
-        titleButtom={'Atualizar'}
-      />
+      <Card sx={{ display: 'flex', width: 850, marginTop: 4, height: '75%', marginBottom: '50px' }}>
+        <Form
+          onSubmit={handleSubmit}
+          firstName={inputForm.firstName}
+          onChangeInput={onChangeInput}
+          lastName={inputForm.lastName}
+          birthday={inputForm.birthday}
+          gender={inputForm.gender}
+          cpf={inputForm.cpf}
+          rg={inputForm.rg}
+          email={inputForm.email}
+          cep={inputForm.cep}
+          address={inputForm.address}
+          num={inputForm.num}
+          state={inputForm.state}
+          city={inputForm.city}
+          neighborhood={inputForm.neighborhood}
+          crm={inputForm.crm}
+          specialty={inputForm.specialty}
+          titleButtom={'Atualizar'}
+        />
+      </Card>
     </Box>
   )
 }

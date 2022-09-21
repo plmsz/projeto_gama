@@ -3,7 +3,7 @@ import Form from '../../Profile/Components/Form'
 function PatientProfile({ data }) {
   return (
     <>
-      <Form {...data} />
+      <Form {...data} variant='filled'/>
     </>
   )
 }
