@@ -1,30 +1,30 @@
-import {Notifications} from '@mui/icons-material';
+import { Notifications } from '@mui/icons-material'
 
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const HeaderStyled = styled.header`
-     grid-area: HD;
+  grid-area: HD;
 
-     background-color: #F8F7FF;
+  background-color: #f8f7ff;
 
-     width: auto;
+  width: auto;
 
-     display: flex;
-     flex-direction: row;
-     align-items: center;
-     justify-content:flex-end;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
 
-     gap: 36px;
+  gap: 36px;
 
-     padding: 0 16px 0 0;
+  padding-right: 16px;
 
-     border: 1px solid rgba(0, 0, 0, 0.14);
-     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
 `
 
 export const Avatar = styled.img`
-     height: 45px;
-     width: 45px;
+  height: 45px;
+  width: 45px;
 
-     border-radius: 50%;
+  border-radius: 50%;
 `

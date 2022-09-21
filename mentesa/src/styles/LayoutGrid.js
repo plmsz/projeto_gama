@@ -10,10 +10,9 @@ export const LayoutGrid = styled.div`
   grid-template-rows: 62px auto;
 
   grid-template-areas:
-    "SN HD"
-    "SN PN"
-  ;
+    'SN HD'
+    'SN PN';
 
   position: relative;
-
+  overflow-x: hidden;
 `

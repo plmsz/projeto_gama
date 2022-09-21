@@ -96,6 +96,27 @@
       "cep": "65638140",
       "num": "8876",
       "id": 3
+    },
+    {
+      "userId": "PZZ8AODnfPXbguS2MZLUByMlJbt2",
+      "role": "patient",
+      "name": "Thyago Silva",
+      "birthday": "24/12/1995",
+      "email": "thyago29.05@gmail.com",
+      "address": "Rua Cinco",
+      "neighborhood": "São Francisco II",
+      "state": "MA",
+      "city": "Timon",
+      "firstName": "Tiago",
+      "lastName": "Silva",
+      "gender": "Masculino",
+      "cpf": "33227398052",
+      "rg": "45678912",
+      "crm": "",
+      "specialty": "",
+      "cep": "65638140",
+      "num": "52",
+      "id": 4
     }
   ]
 }
