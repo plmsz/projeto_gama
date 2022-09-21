@@ -119,7 +119,16 @@ export default function Cadastro() {
       <Container component='main' maxWidth='100%'>
         <CssBaseline />
         <Box sx={{ marginTop: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Typography component='h1' variant='h4'>
+          <Typography
+            component='h1'
+            variant='h4'
+            sx={{
+              fontFamily: 'Staatliches',
+              color: '#00a6fb',
+              letterSpacing: '2px',
+              borderBottom: '1px solid #4CFBC6',
+            }}
+          >
             Cadastre suas informações pessoais
           </Typography>
           <Box component='form' onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -200,10 +209,10 @@ export default function Cadastro() {
                   inputProps={{
                     minLength: 7,
                   }}
-                // inputProps={{
-                //     inputMode: "numeric",
-                //     pattern: "^(W\d{7}[A-Z\d]|RNE[A-Z\d]\d{6}[A-Z\d])$"
-                // }}
+                  // inputProps={{
+                  //     inputMode: "numeric",
+                  //     pattern: "^(W\d{7}[A-Z\d]|RNE[A-Z\d]\d{6}[A-Z\d])$"
+                  // }}
                 />
               </Grid>
               <Grid item xs={12} sm={2}>
@@ -211,7 +220,7 @@ export default function Cadastro() {
                   placeholder='DD/MM/YYYY'
                   required
                   type='date'
-                  max="2022-04-20"
+                  max='2022-04-20'
                   fullWidth
                   id='birthday'
                   label='Data de nascimento'
