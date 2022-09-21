@@ -106,6 +106,7 @@ export default function Form(props) {
                 <TextField
                   placeholder='DD/MM/YYYY'
                   type='date'
+                  max="2022-04-20"
                   fullWidth
                   id='birthday'
                   label='Data de nascimento'

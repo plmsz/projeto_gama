@@ -211,6 +211,7 @@ export default function Cadastro() {
                   placeholder='DD/MM/YYYY'
                   required
                   type='date'
+                  max="2022-04-20"
                   fullWidth
                   id='birthday'
                   label='Data de nascimento'
