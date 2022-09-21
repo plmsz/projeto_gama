@@ -9,23 +9,8 @@ import toast from '../../../components/Toast'
 import { useEffect, useState } from 'react'
 import { getValue } from '@mui/system'
 
-//TODO: ler dados, css do tabs, modifica Profile
-// const initialValues = {
-//     profession: data[0]?.profession || '',
-//     education: 'Superior Incompleto',
-//     livesWith: 'filhos',
-//     description: 'desanimada',
-//     medicalHistory: 'depressão',
-//     personalHistory: 'dívidas',
-//     familyHistory: 'depressão por parte de mãe',
-//     previousMentalHealthCare: 'Sim',
-//     reasonMentalHealthCare: 'ideação',
-//     medicine: 'Não',
-//     understanding: 'Ruim',
-//     posture: 'Raiva',
-//     feelings: 'Tristeza',
-//     emergencyNumber: '87899999999999',
-//   }
+//TODO: css do tabs, modifica Profile
+
 export function PatientChart({ userId }) {
   const { data: dataPatient } = useFetch(`anamnesis?userId=${userId}`)
   const isEditing = dataPatient.length > 0 ? true : false
@@ -61,7 +46,7 @@ export function PatientChart({ userId }) {
     const body = { ...data, userId }
     return isEditing ? updateChart(body, dataPatient[0].id) : createChart(body)
   }
-  console.log({watchTypeHealthCare})
+  console.log({ watchTypeHealthCare })
   return (
     <Box component='form' onSubmit={handleSubmit(onSubmit)} mx={2} sx={{ flexGrow: 1 }}>
       <Grid container spacing={1} mt={2} mb={2}>
@@ -82,27 +67,6 @@ export function PatientChart({ userId }) {
           <FormHelperText error={true}>{errors.profession?.message}</FormHelperText>
         </Grid>
         <Grid item xs={24} sm={6} md={4}>
-          {/* <InputLabel id='education' component='legend' error={Boolean(errors.education)}>
-            Grau de Instrução *
-          </InputLabel>
-          <Select
-            fullWidth
-            variant='filled'
-            color='secondary'
-            error={Boolean(errors.education)}
-            id='education'
-            labelId='education'
-            name='education'
-            helperText={errors.education?.message}
-            {...register('education', { required: 'É necessário escolher o grau de instrução.' })}
-          >
-            {educationList.map((education, index) => (
-              <MenuItem key={index} value={education}>
-                {education}
-              </MenuItem>
-            ))}
-          </Select>
-          <FormHelperText error={true}>{errors.education?.message}</FormHelperText> */}
           <InputLabel id='education' component='legend' error={Boolean(errors.education)}>
             Grau de Instrução *
           </InputLabel>
@@ -233,7 +197,7 @@ export function PatientChart({ userId }) {
                 variant='filled'
                 color='secondary'
                 error={Boolean(errors.previousMentalHealthCare)}
-                labelId='education'
+                labelId='previousMentalHealthCare'
               >
                 <MenuItem value={'Sim'}>Sim</MenuItem>
                 <MenuItem value={'Não'}>Não</MenuItem>
@@ -243,23 +207,6 @@ export function PatientChart({ userId }) {
           <FormHelperText error={Boolean(errors.previousMentalHealthCare)}>
             {errors.previousMentalHealthCare && 'É necessário selecionar se o paciente teve atendimento.'}
           </FormHelperText>
-          {/* <Select
-            fullWidth
-            variant='filled'
-            color='secondary'
-            error={Boolean(errors.previousMentalHealthCare)}
-            id='previousMentalHealthCare'
-            labelId='previousMentalHealthCare'
-            name='previousMentalHealthCare'
-            helperText={errors.previousMentalHealthCare?.message}
-            {...register('previousMentalHealthCare', {
-              required: 'É necessário selecionar se o paciente teve atendimento.',
-            })}
-          >
-            <MenuItem value={'Sim'}>Sim</MenuItem>
-            <MenuItem value={'Não'}>Não</MenuItem>
-          </Select>
-          <FormHelperText error={true}>{errors.education?.message}</FormHelperText> */}
         </Grid>
         <Grid item xs={24} sm={4} md={3}>
           <InputLabel id='' component='legend' error={errors.reasonMentalHealthCare && watchTypeHealthCare === 'Sim'}>
@@ -278,31 +225,34 @@ export function PatientChart({ userId }) {
               required: watchTypeHealthCare === 'Sim' && 'É necessário preencher o motivo do atendimento.',
             })}
           />
-          <FormHelperText error={true}>
-            {errors.reasonMentalHealthCare?.message}
-          </FormHelperText>
+          <FormHelperText error={true}>{errors.reasonMentalHealthCare?.message}</FormHelperText>
         </Grid>
         <Grid item xs={24} sm={4} md={3}>
-          <InputLabel id='' component='legend' error={Boolean(errors.previousMentalHealthCare)}>
+          <InputLabel id='' component='legend' error={Boolean(errors.medicine)}>
             Uso de psicotrópicos
           </InputLabel>
-          <Select
-            fullWidth
-            variant='filled'
-            color='secondary'
-            error={Boolean(errors.medicine)}
-            id='medicine'
-            labelId='medicine'
+          <Controller
+            rules={{ required: true }}
             name='medicine'
-            helperText={errors.medicine?.message}
-            {...register('medicine', {
-              required: 'É necessário selecionar se o paciente usa medicamento.',
-            })}
-          >
-            <MenuItem value={'Sim'}>Sim</MenuItem>
-            <MenuItem value={'Não'}>Não</MenuItem>
-          </Select>
-          <FormHelperText error={true}>{errors.medicine?.message}</FormHelperText>
+            control={control}
+            defaultValue=''
+            render={({ field }) => (
+              <Select
+                {...field}
+                fullWidth
+                variant='filled'
+                color='secondary'
+                error={Boolean(errors.medicine)}
+                labelId='medicine'
+              >
+                <MenuItem value={'Sim'}>Sim</MenuItem>
+                <MenuItem value={'Não'}>Não</MenuItem>
+              </Select>
+            )}
+          />
+          <FormHelperText error={Boolean(errors.medicine)}>
+            {errors.medicine && 'É necessário selecionar se o paciente usa medicamento.'}
+          </FormHelperText>
         </Grid>
         <Grid item xs={24} sm={4} md={3}>
           <InputLabel id='' component='legend' error={Boolean(errors.reasonMedicine) && watchMedicine === 'Sim'}>
@@ -327,71 +277,90 @@ export function PatientChart({ userId }) {
           <InputLabel id='understanding' component='legend' error={Boolean(errors.understanding)}>
             Entendimento do diagnóstico*
           </InputLabel>
-          <Select
-            fullWidth
-            variant='filled'
-            color='secondary'
-            error={Boolean(errors.understanding)}
-            id='understanding'
-            labelId='understanding'
+          <Controller
+            rules={{ required: true }}
             name='understanding'
-            helperText={errors.understanding?.message}
-            {...register('understanding', {
-              required: 'É necessário selecionar o entendimento do paciente em relação ao diagnóstico.',
-            })}
-          >
-            <MenuItem value={'Bom'}>Bom</MenuItem>
-            <MenuItem value={'Regular'}>Regular</MenuItem>
-            <MenuItem value={'Ruim'}>Ruim</MenuItem>
-            <MenuItem value={'Não compreende'}>Não compreende</MenuItem>
-          </Select>
-          <FormHelperText error={true}>{errors.understanding?.message}</FormHelperText>
+            control={control}
+            defaultValue=''
+            render={({ field }) => (
+              <Select
+                {...field}
+                fullWidth
+                variant='filled'
+                color='secondary'
+                error={Boolean(errors.understanding)}
+                labelId='understanding'
+              >
+                <MenuItem value={'Bom'}>Bom</MenuItem>
+                <MenuItem value={'Regular'}>Regular</MenuItem>
+                <MenuItem value={'Ruim'}>Ruim</MenuItem>
+                <MenuItem value={'Não compreende'}>Não compreende</MenuItem>
+              </Select>
+            )}
+          />
+          <FormHelperText error={Boolean(errors.understanding)}>
+            {errors.understanding && 'É necessário selecionar o entendimento do paciente em relação ao diagnóstico.'}
+          </FormHelperText>
         </Grid>
         <Grid item xs={24} sm={4} md={3}>
           <InputLabel id='posture' component='legend' error={Boolean(errors.posture)}>
             Postura em relação ao tratamento *
           </InputLabel>
-          <Select
-            fullWidth
-            variant='filled'
-            color='secondary'
-            error={Boolean(errors.posture)}
-            id='posture'
-            labelId='posture'
+          <Controller
+            rules={{ required: true }}
             name='posture'
-            helperText={errors.posture?.message}
-            {...register('posture', { required: 'É necessário escolher a postura do paciente.' })}
-          >
-            {postureList.map((posture, index) => (
-              <MenuItem key={index} value={posture}>
-                {posture}
-              </MenuItem>
-            ))}
-          </Select>
-          <FormHelperText error={true}>{errors.posture?.message}</FormHelperText>
+            control={control}
+            defaultValue=''
+            render={({ field }) => (
+              <Select
+                {...field}
+                fullWidth
+                variant='filled'
+                color='secondary'
+                error={Boolean(errors.posture)}
+                labelId='posture'
+              >
+                {postureList.map((posture, index) => (
+                  <MenuItem key={index} value={posture}>
+                    {posture}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+          />
+          <FormHelperText error={Boolean(errors.posture)}>
+            {errors.posture && 'É necessário escolher a postura do paciente.'}
+          </FormHelperText>
         </Grid>
         <Grid item xs={24} sm={4} md={3}>
           <InputLabel id='feelings' component='legend' error={Boolean(errors.feelings)}>
             Sentimentos manifestos*
           </InputLabel>
-          <Select
-            fullWidth
-            variant='filled'
-            color='secondary'
-            error={Boolean(errors.feelings)}
-            id='feelings'
-            labelId='feelings'
+          <Controller
+            rules={{ required: true }}
             name='feelings'
-            helperText={errors.feelings?.message}
-            {...register('feelings', { required: 'É necessário escolher os sentimentos manifestos.' })}
-          >
-            {feelingsList.map((feelings, index) => (
-              <MenuItem key={index} value={feelings}>
-                {feelings}
-              </MenuItem>
-            ))}
-          </Select>
-          <FormHelperText error={true}>{errors.feelings?.message}</FormHelperText>
+            control={control}
+            defaultValue=''
+            render={({ field }) => (
+              <Select
+                {...field}
+                fullWidth
+                variant='filled'
+                color='secondary'
+                error={Boolean(errors.feelings)}
+                labelId='feelings'
+              >
+                {feelingsList.map((feelings, index) => (
+                  <MenuItem key={index} value={feelings}>
+                    {feelings}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+          />
+          <FormHelperText error={Boolean(errors.feelings)}>
+            {errors.feelings && 'É necessário escolher os sentimentos manifestos.'}
+          </FormHelperText>
         </Grid>
         <Grid item xs={24} sm={4} md={3}>
           <InputLabel id='emergencyNumber' component='legend' error={Boolean(errors.emergencyNumber)}>

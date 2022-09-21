@@ -101,7 +101,7 @@
   ],
   "anamnesis": [
     {
-      "profession": "gerente regional",
+      "profession": "coordenadora regional",
       "education": "Analfabeto",
       "livesWith": "filhos",
       "description": "desanimada",
@@ -110,13 +110,14 @@
       "familyHistory": "depressão por parte de mãe",
       "previousMentalHealthCare": "Sim",
       "reasonMentalHealthCare": "ideação",
-      "medicine": "Não",
+      "medicine": "Sim",
       "understanding": "Ruim",
-      "posture": "Raiva",
+      "posture": "Depressão",
       "feelings": "Tristeza",
       "emergencyNumber": "87899999999999",
       "userId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
-      "id": 1
+      "id": 1,
+      "reasonMedicine": "depressão"
     }
   ]
 }
