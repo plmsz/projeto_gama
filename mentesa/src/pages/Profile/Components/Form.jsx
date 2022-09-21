@@ -4,17 +4,18 @@ import {
   Button,
   Card,
   CardContent,
-  CardMedia,
-  FormControlLabel,
   FormControl,
   InputLabel,
   Grid,
   MenuItem,
   Select,
   TextField,
+  Input,
 } from '@mui/material'
+import 'dayjs/locale/pt-br'
 
 export default function Form(props) {
+
   return (
     <Card sx={{ display: 'flex', width: 850, marginTop: 4, height: '75%', marginBottom: '50px' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -95,14 +96,17 @@ export default function Form(props) {
                   name='rg'
                   value={props.rg}
                   onChange={props.onChangeInput}
-                  inputProps={{
-                    inputMode: 'numeric',
-                    pattern: '^(Wd{7}[A-Zd]|RNE[A-Zd]d{6}[A-Zd])$',
-                  }}
+                  // inputProps={{
+                  //   inputMode: 'numeric',
+                  //   pattern: '^(Wd{7}[A-Zd]|RNE[A-Zd]d{6}[A-Zd])$',
+                  // }}
                 />
               </Grid>
               <Grid item xs={12} sm={2}>
                 <TextField
+                  placeholder='DD/MM/YYYY'
+                  type='date'
+                  max="2022-04-20"
                   fullWidth
                   id='birthday'
                   label='Data de nascimento'
@@ -136,22 +140,27 @@ export default function Form(props) {
                     value={props.crm}
                     onChange={props.onChangeInput}
                   />
-                  <Select
-                    sx={{ width: '100%' }}
-                    labelId='label-especialidade'
-                    name='specialty'
-                    id='specialty'
-                    value={props.specialty}
-                    onChange={props.onChangeInput}
-                  >
-                    <MenuItem value='' disabled>
-                      Escolha sua especialidade
-                    </MenuItem>
-                    <MenuItem value='psicanalista'>Psicanalista</MenuItem>
-                    <MenuItem value='psiquiatra'>Psiquiatra</MenuItem>
-                    <MenuItem value='psicologo'>Psicólogo</MenuItem>
-                    <MenuItem value='Terapia'>Terapia</MenuItem>
-                  </Select>
+                  <FormControl fullWidth>
+                    <InputLabel id='specialty' component='legend'>
+                      Especialidade *
+                    </InputLabel>
+                    <Select
+                      sx={{ width: '100%' }}
+                      labelId='specialty'
+                      name='specialty'
+                      id='specialty'
+                      value={props.specialty}
+                      onChange={props.onChangeInput}
+                    >
+                      <MenuItem value='' disabled>
+                        Escolha sua especialidade
+                      </MenuItem>
+                      <MenuItem value='Psicanalista'>Psicanalista</MenuItem>
+                      <MenuItem value='Psiquiatra'>Psiquiatra</MenuItem>
+                      <MenuItem value='Psicologo'>Psicólogo</MenuItem>
+                      <MenuItem value='Terapia'>Terapia</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
               </Grid>
             )}
@@ -202,7 +211,18 @@ export default function Form(props) {
                   onChange={props.onChangeInput}
                 />
               </Grid>
-              <Grid item xs={12} sm={7}>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  required
+                  fullWidth
+                  id='neighborhood'
+                  label='Bairro'
+                  name='neighborhood'
+                  value={props.neighborhood}
+                  onChange={props.onChangeInput}
+                />
+              </Grid>
+              <Grid item xs={12} sm={3}>
                 <TextField
                   required
                   fullWidth
@@ -215,7 +235,7 @@ export default function Form(props) {
               </Grid>
             </Grid>
             <Button type='submit' variant='contained' sx={{ mt: 3, mb: 1 }}>
-              Registrar
+              {props.titleButtom}
             </Button>
           </Box>
         </CardContent>
