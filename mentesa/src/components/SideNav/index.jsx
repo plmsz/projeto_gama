@@ -44,10 +44,10 @@ function SideNav() {
             <span>Pacientes</span>
           </Link>
         </NavItem>
-        <NavItem>
+        <NavItem showComponent={isDoctor}>
           <Link to='agenda'>
             <CalendarMonthIcon fontSize='large' />
-            <span>Disponibilizar Agenda</span>
+            <span>Agenda</span>
           </Link>
         </NavItem>
       </NavList>
