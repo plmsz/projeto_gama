@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 import { useFetch } from '../../../hooks/useFetch'
-import { Box, Button, InputLabel, Select, MenuItem, FormHelperText, TextField } from '@mui/material'
-import { useForm } from 'react-hook-form'
+import { Box, Button, InputLabel, Select, MenuItem, FormHelperText, TextField, FormControl } from '@mui/material'
+import { Controller, useForm } from 'react-hook-form'
 import { educationList, feelingsList, postureList } from '../constants'
 import { Grid } from '@mui/material/'
 import { patchAnamnesis, postAnamnesis } from '../../../services/anamnesisRequests'
 import toast from '../../../components/Toast'
+import { useEffect, useState } from 'react'
+import { getValue } from '@mui/system'
 
 //TODO: ler dados, css do tabs, modifica Profile
 // const initialValues = {
@@ -25,17 +27,21 @@ import toast from '../../../components/Toast'
 //     emergencyNumber: '87899999999999',
 //   }
 export function PatientChart({ userId }) {
-  const { data : dataPatient} = useFetch(`anamnesis?userId=${userId}`)
-
+  const { data: dataPatient } = useFetch(`anamnesis?userId=${userId}`)
   const isEditing = dataPatient.length > 0 ? true : false
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm({
-    // defaultValues: { ...initialValue },
-  })
+    reset,
+    control,
+  } = useForm()
+
+  console.log(dataPatient[0])
+  useEffect(() => {
+    reset({ ...dataPatient[0] })
+  }, [dataPatient])
 
   const watchTypeHealthCare = watch('previousMentalHealthCare', '')
   const watchMedicine = watch('medicine', '')
@@ -55,6 +61,7 @@ export function PatientChart({ userId }) {
     const body = { ...data, userId }
     return isEditing ? updateChart(body, dataPatient[0].id) : createChart(body)
   }
+  console.log({watchTypeHealthCare})
   return (
     <Box component='form' onSubmit={handleSubmit(onSubmit)} mx={2} sx={{ flexGrow: 1 }}>
       <Grid container spacing={1} mt={2} mb={2}>
@@ -75,7 +82,7 @@ export function PatientChart({ userId }) {
           <FormHelperText error={true}>{errors.profession?.message}</FormHelperText>
         </Grid>
         <Grid item xs={24} sm={6} md={4}>
-          <InputLabel id='education' component='legend' error={Boolean(errors.education)}>
+          {/* <InputLabel id='education' component='legend' error={Boolean(errors.education)}>
             Grau de Instrução *
           </InputLabel>
           <Select
@@ -95,7 +102,35 @@ export function PatientChart({ userId }) {
               </MenuItem>
             ))}
           </Select>
-          <FormHelperText error={true}>{errors.education?.message}</FormHelperText>
+          <FormHelperText error={true}>{errors.education?.message}</FormHelperText> */}
+          <InputLabel id='education' component='legend' error={Boolean(errors.education)}>
+            Grau de Instrução *
+          </InputLabel>
+          <Controller
+            rules={{ required: true }}
+            name='education'
+            control={control}
+            defaultValue=''
+            render={({ field }) => (
+              <Select
+                {...field}
+                fullWidth
+                variant='filled'
+                color='secondary'
+                error={Boolean(errors.education)}
+                labelId='education'
+              >
+                {educationList.map((education, index) => (
+                  <MenuItem key={index} value={education}>
+                    {education}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+          />
+          <FormHelperText error={Boolean(errors.education)}>
+            {errors.education && 'É necessário escolher o grau de instrução'}
+          </FormHelperText>
         </Grid>
         <Grid item xs={24} sm={6} md={4}>
           <InputLabel id='livesWith' component='legend' error={Boolean(errors.livesWith)}>
@@ -186,7 +221,29 @@ export function PatientChart({ userId }) {
           <InputLabel id='' component='legend' error={Boolean(errors.previousMentalHealthCare)}>
             Atendimento psicológico ou psiquiátrico anterior
           </InputLabel>
-          <Select
+          <Controller
+            rules={{ required: true }}
+            name='previousMentalHealthCare'
+            control={control}
+            defaultValue=''
+            render={({ field }) => (
+              <Select
+                {...field}
+                fullWidth
+                variant='filled'
+                color='secondary'
+                error={Boolean(errors.previousMentalHealthCare)}
+                labelId='education'
+              >
+                <MenuItem value={'Sim'}>Sim</MenuItem>
+                <MenuItem value={'Não'}>Não</MenuItem>
+              </Select>
+            )}
+          />
+          <FormHelperText error={Boolean(errors.previousMentalHealthCare)}>
+            {errors.previousMentalHealthCare && 'É necessário selecionar se o paciente teve atendimento.'}
+          </FormHelperText>
+          {/* <Select
             fullWidth
             variant='filled'
             color='secondary'
@@ -202,7 +259,7 @@ export function PatientChart({ userId }) {
             <MenuItem value={'Sim'}>Sim</MenuItem>
             <MenuItem value={'Não'}>Não</MenuItem>
           </Select>
-          <FormHelperText error={true}>{errors.education?.message}</FormHelperText>
+          <FormHelperText error={true}>{errors.education?.message}</FormHelperText> */}
         </Grid>
         <Grid item xs={24} sm={4} md={3}>
           <InputLabel id='' component='legend' error={errors.reasonMentalHealthCare && watchTypeHealthCare === 'Sim'}>
@@ -222,7 +279,7 @@ export function PatientChart({ userId }) {
             })}
           />
           <FormHelperText error={true}>
-            {errors.reasonMentalHealthCare?.message && watchTypeHealthCare === 'Sim'}
+            {errors.reasonMentalHealthCare?.message}
           </FormHelperText>
         </Grid>
         <Grid item xs={24} sm={4} md={3}>
@@ -264,7 +321,7 @@ export function PatientChart({ userId }) {
               required: watchMedicine === 'Sim' && 'É necessário preencher o motivo do uso de medicamentos.',
             })}
           />
-          <FormHelperText error={true}>{errors.reasonMedicine?.message && watchMedicine === 'Sim'}</FormHelperText>
+          <FormHelperText error={true}>{errors.reasonMedicine?.message}</FormHelperText>
         </Grid>
         <Grid item xs={24} sm={4} md={3}>
           <InputLabel id='understanding' component='legend' error={Boolean(errors.understanding)}>

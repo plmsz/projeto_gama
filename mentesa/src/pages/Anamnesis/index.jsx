@@ -1,14 +1,15 @@
 import { useParams } from 'react-router-dom'
 import { useFetch } from './../../hooks/useFetch'
 import * as Tabs from '@radix-ui/react-tabs'
+import * as S from './style'
 import PatientProfile from './PatientProfile/index'
 import { PatientChart } from './PatientChart'
+import { Card } from '@mui/material'
 
 export function Anamnesis() {
   const { userId } = useParams()
   const { data: dataProfile } = useFetch(`users?userId=${userId}`)
   return (
-    <>
       <Tabs.Root defaultValue='tab1'>
         <Tabs.List aria-label='Ficha do paciente'>
           <Tabs.Trigger value='tab1'>Ficha de anamnese</Tabs.Trigger>
@@ -21,6 +22,5 @@ export function Anamnesis() {
           <PatientProfile data={dataProfile[0]} />
         </Tabs.Content>
       </Tabs.Root>
-    </>
   )
 }
