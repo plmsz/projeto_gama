@@ -9,8 +9,6 @@ import toast from '../../../components/Toast'
 import { useEffect, useState } from 'react'
 import { getValue } from '@mui/system'
 
-//TODO: css do tabs, modifica Profile
-
 export function PatientChart({ userId }) {
   const { data: dataPatient } = useFetch(`anamnesis?userId=${userId}`)
   const isEditing = dataPatient.length > 0 ? true : false
