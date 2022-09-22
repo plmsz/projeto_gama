@@ -1,4 +1,4 @@
-import { Box, Card} from '@mui/material'
+import { Box, Card } from '@mui/material'
 import * as React from 'react'
 import toast from '../../components/Toast'
 import { useAuth } from '../../hooks/useAuth'
@@ -88,9 +88,9 @@ export default function Profile() {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column'}}>
       <CardProfile image={user?.avatar} name={user?.name} id={user?.userId}></CardProfile>
-      <Card sx={{ display: 'flex', width: 850, marginTop: 4, height: '75%', marginBottom: '50px' }}>
+      <Card sx={{ display: 'flex', width: 850, marginTop: 1, height: '75%' }}>
         <Form
           onSubmit={handleSubmit}
           firstName={inputForm.firstName}
