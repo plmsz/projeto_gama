@@ -10,9 +10,9 @@
 
 <h1 id="sobre">Mente Sã</h1>
 
-<p>Site de agendamento medico especializado na saude mental. Nele é possível selecionar a especialidade (Psiquianalista, Psicologo, Psiquiatra ou Terapeuta), o profissional e verificar a disponibilidade para realizar o agendamento de consultas. 
+<p>Site de agendamento medico especializado na saude mental. Nele é possível selecionar a especialidade (Psiquianalista, Psicologo, Psiquiatra ou Terapeuta), o profissional e verificar a os horarios disponiveis para realizar o agendamento de consultas. 
 
-Além disso, a plataforma faz a integração dos agendamentos e dos perfis dos profissionais com um poderoso Sistema de Gestão que conta com prontuário eletrônico, prescrição eletrônica. </p>
+ </p>
 <br>
 
 #
@@ -54,13 +54,13 @@ Medico
 
 <h2 id="tecnologias">🛠 Tecnologias</h2>
 
+- React
 - JavaScript
 - MaterialUI
 - Json Serve
 - Vite
 - 
-- 
--
+
 
 <br>
 
