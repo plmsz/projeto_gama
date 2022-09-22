@@ -32,6 +32,17 @@
       "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
       "professionalId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
       "id": 3
+    },
+    {
+      "ticket": "smJihdqr72c7f3iK37f4jf",
+      "professional": "João da Silva Júnior",
+      "patient": "Paloma Oliveira",
+      "specialty": "Psicanalista",
+      "date": "2022-09-28T17:00:00.000Z",
+      "status": "Agendada",
+      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
+      "professionalId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
+      "id": 4
     }
   ],
   "users": [

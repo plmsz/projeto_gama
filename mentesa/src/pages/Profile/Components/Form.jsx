@@ -162,7 +162,7 @@ export default function Form(props) {
                       Escolha sua especialidade
                     </MenuItem>
                     <MenuItem value='Psicanalista'>Psicanalista</MenuItem>
-                    <MenuItem value='Psiquiatra'>Psiquiatra</MenuItem>
+                    <MenuItem value='Psiquiatria'>Psiquiatria</MenuItem>
                     <MenuItem value='Psicologo'>Psicólogo</MenuItem>
                     <MenuItem value='Terapia'>Terapia</MenuItem>
                   </Select>
