@@ -44,9 +44,9 @@ export const AppointmentList = () => {
     data = rawData.map((row) => ({ ...row, name: row.patient }))
   }
   return (
-    <Box>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       {user?.role === 'patient' && (
-        <Button variant='outlined' onClick={() => setOpenDialog(true)}>
+        <Button variant='outlined' onClick={() => setOpenDialog(true)} sx={{ alignSelf: 'end' }}>
           Agendar nova consulta
         </Button>
       )}
