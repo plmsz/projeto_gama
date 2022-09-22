@@ -6,7 +6,7 @@ export const LayoutGrid = styled.div`
 
   display: grid;
 
-  grid-template-columns: 312px auto;
+  grid-template-columns: 300px auto;
   grid-template-rows: 62px auto;
 
   grid-template-areas:
