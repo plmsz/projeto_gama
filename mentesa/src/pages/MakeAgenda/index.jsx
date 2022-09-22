@@ -1,6 +1,7 @@
 import React from 'react'
 import { DayPicker } from 'react-day-picker'
 import 'react-day-picker/dist/style.css'
+import { TimeAgenda } from '../../components/TimeAgenda/index'
 
 export function MakeAgenda() {
   const date = []
@@ -17,27 +18,30 @@ export function MakeAgenda() {
   const disabledDays = [{ from: new Date(2022, 8, 0), to: new Date(2022, 8, 6) }]
 
   return (
-    <DayPicker
-      onDayClick={() => console.log(days)}
-      styles={{
-        caption: { color: '#fff' },
-        month: {
-          backgroundColor: '#00A6FB',
-          borderRadius: '8px',
-          color: '#d3cece',
-          fontSize: '14px',
-          fontWeight: '600',
-        },
-      }}
-      disabled={disabledDays}
-      defaultMonth={defaultMonth}
-      fromMonth={defaultMonth}
-      toDate={new Date(2022, 11, 20)}
-      mode='multiple'
-      min={1}
-      selected={days}
-      onSelect={setDays}
-      footer={footer}
-    />
+    <>
+      <TimeAgenda />
+      <DayPicker
+        onDayClick={() => console.log(days)}
+        styles={{
+          caption: { color: '#fff' },
+          month: {
+            backgroundColor: '#00A6FB',
+            borderRadius: '8px',
+            color: '#d3cece',
+            fontSize: '14px',
+            fontWeight: '600',
+          },
+        }}
+        disabled={disabledDays}
+        defaultMonth={defaultMonth}
+        fromMonth={defaultMonth}
+        toDate={new Date(2022, 11, 20)}
+        mode='multiple'
+        min={1}
+        selected={days}
+        onSelect={setDays}
+        footer={footer}
+      />
+    </>
   )
 }
