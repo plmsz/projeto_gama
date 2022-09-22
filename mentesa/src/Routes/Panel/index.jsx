@@ -17,14 +17,14 @@ function Panel() {
   return (
     <LayoutGrid>
       <SideNav />
-      {pathname !== '/panel/profile' && <Header image={user?.avatar} />}
+      <Header image={user?.avatar} />
       <Container>
-        <Routes>
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/patients' element={<Patients />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/anamnesis/:userId' element={<Anamnesis />} />
-        </Routes>
+      <Routes>
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/patients' element={<Patients />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/anamnesis/:userId' element={<Anamnesis />} />
+      </Routes>
       </Container>
     </LayoutGrid>
   )
