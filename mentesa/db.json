@@ -139,6 +139,27 @@
       "cep": "09950000",
       "num": "1205",
       "id": 5
+    },
+    {
+      "userId": "PZZ8AODnfPXbguS2MZLUByMlJbt2",
+      "role": "professional",
+      "name": "Thyago Silva",
+      "birthday": "1995-12-24",
+      "email": "thyago29.05@gmail.com",
+      "address": "Rua Sítio Floresta",
+      "neighborhood": "Piedade",
+      "state": "PE",
+      "city": "Jaboatão dos Guararapes",
+      "firstName": "Thyago",
+      "lastName": "Santos",
+      "gender": "Masculino",
+      "cpf": "839.010.320-61",
+      "rg": "1234567",
+      "crm": "123456-PE",
+      "specialty": "Psiquiatra",
+      "cep": "54410400",
+      "num": "776",
+      "id": 6
     }
   ],
   "anamnesis": [
@@ -160,6 +181,12 @@
       "userId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
       "id": 1,
       "reasonMedicine": "depressão"
+    }
+  ],
+  "professionalAgenda": [
+    {
+      "0": "2022-09-18T03:00:00.000Z",
+      "id": "PZZ8AODnfPXbguS2MZLUByMlJbt2"
     }
   ]
 }
