@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { createTheme, experimental_sx as sx } from '@mui/material/styles'
+import * as React from 'react';
+import { createTheme, experimental_sx as sx } from '@mui/material/styles';
 
 export const theme = createTheme({
   palette: {
@@ -10,6 +10,7 @@ export const theme = createTheme({
     },
     secondary: {
       main: '#4cfbc6',
+      contrastText: '#fefefe',
     },
     error: {
       main: '#EC3636',
@@ -19,7 +20,7 @@ export const theme = createTheme({
       contrastText: 'rgba(0, 0, 0, 0.54);',
     },
   },
-})
+});
 
 export const themeButtonGoogle = createTheme({
   components: {
@@ -43,4 +44,4 @@ export const themeButtonGoogle = createTheme({
       },
     },
   },
-})
+});

@@ -8,7 +8,7 @@ export const Container = styled.div`
   justify-items:center;
   align-items: center;
 
-  max-width: 312px;
+  max-width: 300px;
   min-height: 100%;
 
   background-color: #003554;
