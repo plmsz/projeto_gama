@@ -275,7 +275,7 @@ export default function Cadastro() {
                         Escolha sua especialidade
                       </MenuItem>
                       <MenuItem value='Psicanalista'>Psicanalista</MenuItem>
-                      <MenuItem value='Psiquiatra'>Psiquiatra</MenuItem>
+                      <MenuItem value='Psiquiatria'>Psiquiatria</MenuItem>
                       <MenuItem value='Psicologia'>Psicologia</MenuItem>
                       <MenuItem value='Terapia'>Terapia</MenuItem>
                     </Select>
