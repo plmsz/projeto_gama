@@ -136,7 +136,7 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
               gap: '0.3rem',
             }}
           >
-            <IconButton
+            {/* <IconButton
               title='Reagendar'
               disabled={row.getValue('status') === 'Cancelada'}
               sx={{ padding: '0.3rem' }}
@@ -145,7 +145,7 @@ export function AppointmentsTable({ data, isFetching, width, showColumns, setDia
               }}
             >
               <Edit />
-            </IconButton>
+            </IconButton> */}
             <IconButton
               disabled={row.getValue('status') === 'Cancelada'}
               title='Cancelar'

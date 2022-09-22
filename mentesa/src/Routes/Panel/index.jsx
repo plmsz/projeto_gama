@@ -12,19 +12,18 @@ import { useAuth } from './../../hooks/useAuth'
 
 function Panel() {
   const { user } = useAuth()
-  const { pathname } = useLocation()
 
   return (
     <LayoutGrid>
       <SideNav />
       <Header image={user?.avatar} />
       <Container>
-      <Routes>
-        <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/patients' element={<Patients />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/anamnesis/:userId' element={<Anamnesis />} />
-      </Routes>
+        <Routes>
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/patients' element={<Patients />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/anamnesis/:userId' element={<Anamnesis />} />
+        </Routes>
       </Container>
     </LayoutGrid>
   )
