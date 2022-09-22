@@ -151,12 +151,12 @@
       "state": "PE",
       "city": "Jaboatão dos Guararapes",
       "firstName": "Thyago",
-      "lastName": "Santos",
+      "lastName": "Silva",
       "gender": "Masculino",
       "cpf": "839.010.320-61",
       "rg": "1234567",
       "crm": "123456-PE",
-      "specialty": "Psiquiatra",
+      "specialty": "Psicanalista",
       "cep": "54410400",
       "num": "776",
       "id": 6
@@ -185,8 +185,32 @@
   ],
   "professionalAgenda": [
     {
-      "0": "2022-09-18T03:00:00.000Z",
-      "id": "PZZ8AODnfPXbguS2MZLUByMlJbt2"
+      "email": "thyago29.05@gmail.com",
+      "name": "Thyago Silva",
+      "userId": "PZZ8AODnfPXbguS2MZLUByMlJbt2",
+      "agenda": {
+        "0": "2022-09-12T03:00:00.000Z"
+      },
+      "id": 1
+    },
+    {
+      "email": "thyago29.05@gmail.com",
+      "name": "Thyago Silva",
+      "userId": "PZZ8AODnfPXbguS2MZLUByMlJbt2",
+      "agenda": {
+        "0": "2022-09-12T03:00:00.000Z",
+        "1": "2022-10-12T03:00:00.000Z"
+      },
+      "id": 2
+    },
+    {
+      "email": "thyago29.05@gmail.com",
+      "name": "Thyago Silva",
+      "userId": "PZZ8AODnfPXbguS2MZLUByMlJbt2",
+      "agenda": {
+        "0": "2022-12-06T03:00:00.000Z"
+      },
+      "id": 3
     }
   ]
 }

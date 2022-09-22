@@ -5,7 +5,6 @@ import Button from '@mui/material/Button'
 import SendIcon from '@mui/icons-material/Send'
 import { postProfessional } from '../../services/professionalRequests'
 import { useAuth } from '../../hooks/useAuth'
-import toast from '../../components/Toast'
 import { Container } from './styles'
 
 export function MakeAgenda() {
@@ -24,10 +23,13 @@ export function MakeAgenda() {
   const disabledDays = [{ from: new Date(2022, 8, 0), to: new Date(2022, 8, 6) }]
 
   const handleClick = () => {
-    const id = user.userId
-    const body = { ...days, id }
+    const body = {
+      email: user.email,
+      name: user.name,
+      userId: user.userId,
+      agenda: { ...days },
+    }
     postProfessional(body)
-    toast.messageError('Cadastrado com sucesso!')
   }
 
   return (
