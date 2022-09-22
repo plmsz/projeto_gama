@@ -8,19 +8,14 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { FormControl, MenuItem, Select, Stack, Switch, InputLabel } from '@mui/material'
+import { FormControl, MenuItem, Select, Switch, InputLabel } from '@mui/material'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 import toast from '../../components/Toast'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
-import dayjs from 'dayjs'
 import { postUser } from '../../services/usersRequests'
 import useForm from '../../hooks/useForm'
 import { useNavigate } from 'react-router-dom'
-import 'dayjs/locale/pt-br'
 
 const theme = createTheme()
 
@@ -28,9 +23,7 @@ export default function Cadastro() {
   const [checked, setChecked] = useState(false)
   const [inputCep, setInputCep] = useState({})
   const { user, setUser } = useAuth()
-  const [date, setDate] = useState(null)
   const navigate = useNavigate()
-  const ptBR = dayjs.locale('pt-br')
   const { inputForm, onChangeInput, clear } = useForm({
     firstName: '',
     lastName: '',
@@ -86,10 +79,6 @@ export default function Cadastro() {
       : toast.messageError('Erro ao cadastrar, verifique o CPF.')
   }
 
-  const handleChangeDate = (newDate) => {
-    setDate(newDate)
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault()
     toastMessage()
@@ -98,7 +87,7 @@ export default function Cadastro() {
         userId: user.userId,
         role: checked ? 'professional' : 'patient',
         name: user.name,
-        birthday: dayjs(date).format('L'),
+        birthday: inputForm.birthday,
         email: user.email,
         address: inputCep.logradouro,
         neighborhood: inputCep.bairro,
@@ -110,7 +99,7 @@ export default function Cadastro() {
         cpf: inputForm.cpf,
         rg: inputForm.rg,
         crm: inputForm.crm,
-        specialty: inputForm.crm ? inputForm.specialty : '',
+        specialty: inputForm.specialty,
         cep: inputForm.cep,
         num: inputForm.num,
       }
@@ -130,7 +119,16 @@ export default function Cadastro() {
       <Container component='main' maxWidth='100%'>
         <CssBaseline />
         <Box sx={{ marginTop: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Typography component='h1' variant='h4'>
+          <Typography
+            component='h1'
+            variant='h4'
+            sx={{
+              fontFamily: 'Staatliches',
+              color: '#00a6fb',
+              letterSpacing: '2px',
+              borderBottom: '1px solid #4CFBC6',
+            }}
+          >
             Cadastre suas informações pessoais
           </Typography>
           <Box component='form' onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -218,20 +216,18 @@ export default function Cadastro() {
                 />
               </Grid>
               <Grid item xs={12} sm={2}>
-                <LocalizationProvider dateAdapter={AdapterDayjs} localeText={ptBR}>
-                  <Stack spacing={3}>
-                    <DesktopDatePicker
-                      label='Data de nascimento*'
-                      inputFormat='DD/MM/YYYY'
-                      value={date}
-                      onChange={handleChangeDate}
-                      renderInput={(params) => (
-                        <TextField {...params} error={dayjs(date).format('L') === 'Invalid Date'} required />
-                      )}
-                      disableFuture
-                    />
-                  </Stack>
-                </LocalizationProvider>
+                <TextField
+                  placeholder='DD/MM/YYYY'
+                  required
+                  type='date'
+                  max='2022-04-20'
+                  fullWidth
+                  id='birthday'
+                  label='Data de nascimento'
+                  name='birthday'
+                  value={inputForm.birthday}
+                  onChange={onChangeInput}
+                />
               </Grid>
               <Grid item xs={12} sm={8}>
                 <TextField
@@ -265,12 +261,12 @@ export default function Cadastro() {
                     onChange={onChangeInput}
                   />
                   <FormControl fullWidth>
-                    <InputLabel id='gender' component='legend'>
+                    <InputLabel id='specialty' component='legend'>
                       Especialidade *
                     </InputLabel>
                     <Select
                       sx={{ width: '100%' }}
-                      labelId='label-especialidade'
+                      labelId='specialty'
                       name='specialty'
                       value={inputForm.specialty}
                       onChange={onChangeInput}

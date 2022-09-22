@@ -12,12 +12,11 @@ import { useAuth } from './../../hooks/useAuth'
 
 function Panel() {
   const { user } = useAuth()
-  const { pathname } = useLocation()
 
   return (
     <LayoutGrid>
       <SideNav />
-      {pathname !== '/panel/profile' && <Header image={user?.avatar} />}
+      <Header image={user?.avatar} />
       <Container>
         <Routes>
           <Route path='/dashboard' element={<Dashboard />} />

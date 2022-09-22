@@ -28,3 +28,13 @@ export async function postUser(route, body) {
     throw error
   }
 }
+
+export async function putUser(route, body) {
+  try {
+    const response = await api.patch(route, body)
+    return await response.data
+  } catch (error) {
+    toast.messageError('Desculpe, houve um erro. Tente novamente')
+    throw error
+  }
+}
