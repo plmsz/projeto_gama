@@ -7,8 +7,13 @@ export const Container = styled.div`
 
   /* width: 92%; */
   width: 100%;
-  height: auto;
+
   padding: 8px 0px 8px 8px;
+
+  height: 100%;
+
+  top: 10px;
+  left: 24px;
 
   /* position: absolute; */
   top: 10px;

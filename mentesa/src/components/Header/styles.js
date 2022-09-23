@@ -25,6 +25,7 @@ export const HeaderStyled = styled.header`
 export const Avatar = styled.img`
   height: 45px;
   width: 45px;
-
+  margin-right: 30px;
+  margin-top: 2px;
   border-radius: 50%;
 `

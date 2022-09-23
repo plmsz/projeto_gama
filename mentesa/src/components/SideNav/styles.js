@@ -73,6 +73,7 @@ export const Logout = styled.div`
   width: 100%;
   max-height: 78px;
   /* padding: 38px 0 38px 0; */
+  background-color: #003554;
 
   display: flex;
   flex-direction: row;
