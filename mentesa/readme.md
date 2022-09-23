@@ -10,7 +10,7 @@
 </p>
 
 <div align="center">
-    <img src="./mentesa/src/assets/logo.svg">
+    <img src="../mentesa/src/assets/logo.svg">
     <h1 id="sobre">Mente Sã</h1>
 </div>
 
