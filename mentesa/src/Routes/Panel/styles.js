@@ -5,11 +5,12 @@ export const Container = styled.div`
 
   height: auto;
 
-  width: 92%;
+  /* width: 92%; */
+  width: 100%;
   height: auto;
   padding: 8px 0px 8px 8px;
 
-  position: absolute;
+  /* position: absolute; */
   top: 10px;
   left: 24px;
 

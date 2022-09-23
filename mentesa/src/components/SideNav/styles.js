@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   grid-area: SN;
 
   display: flex;
   flex-direction: column;
-  justify-items:center;
+  justify-items: center;
   align-items: center;
 
   max-width: 300px;
@@ -14,48 +14,60 @@ export const Container = styled.div`
   background-color: #003554;
 
   position: relative;
-`;
+  /* @media screen and (max-width: 768px) {
+    max-width: 160px;
+  } */
+`
 
 export const NavList = styled.nav`
-    width: 100%;
-    margin-top: 24px;
+  width: 100%;
+  margin-top: 24px;
 
-    display: flex;
-    flex-direction: column;
-
-`;
+  display: flex;
+  flex-direction: column;
+`
 
 export const NavItem = styled.li`
-    list-style: none;
+  list-style: none;
 
-    a{
-      max-width: 100%;
-      padding: 18px 0 18px 35px;
+  a {
+    max-width: 100%;
+    padding: 18px 0 18px 35px;
 
-      display: ${props => props.showComponent !== false ? 'flex' : 'none'};
-      align-items: center;
-      justify-content: flex-start;
-      gap: 16px;
-      
-      cursor: pointer;
-      transition: 0.4s;
-      
-      text-decoration:none;
-      font-weight: bold;
-      color: #F8F7FF;
+    display: ${(props) => (props.showComponent !== false ? 'flex' : 'none')};
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+
+    cursor: pointer;
+    transition: 0.4s;
+
+    text-decoration: none;
+    font-weight: bold;
+    color: #f8f7ff;
+    span {
+      font-size: 2rem;
+      align-content: center;
+    }
+    &:hover {
+      background-color: #00a6fb;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 18px 5px;
       span {
-        font-size: 2rem;
-        align-content: center;
-      }
-      &:hover{
-        background-color: #00A6FB;
+        display: none;
       }
     }
-`;
+  }
+`
 
 export const Logo = styled.img`
   margin: 40px 0 40px 0;
-`;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`
 
 export const Logout = styled.div`
   width: 100%;
@@ -67,14 +79,14 @@ export const Logout = styled.div`
   align-items: center;
   justify-content: center;
 
-  position:absolute;
+  position: absolute;
   bottom: 0;
 
   border-top: 1px solid rgba(108, 108, 108, 0.4);
 
   transition: 0.4s;
 
-  &:hover{
+  &:hover {
     background-color: #006494;
   }
 
@@ -83,7 +95,7 @@ export const Logout = styled.div`
     height: 100%;
 
     background-color: transparent;
-    &:hover{
+    &:hover {
       background-color: #006494;
     }
 
@@ -93,7 +105,7 @@ export const Logout = styled.div`
     align-items: center;
     gap: 16px;
 
-    border:none;
+    border: none;
 
     border-radius: 4px;
     font-size: 2rem;
@@ -102,6 +114,9 @@ export const Logout = styled.div`
     position: relative;
 
     cursor: pointer;
-    
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      font-size: 1rem;
+    }
   }
-`;
+`

@@ -88,9 +88,9 @@ export default function Profile() {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <CardProfile image={user?.avatar} name={user?.name} id={user?.userId}></CardProfile>
-      <Card sx={{ display: 'flex', width: 850, marginTop: 1, height: '75%' }}>
+      <Card sx={{ display: 'flex', width: '100%', marginTop: 1, height: '75%' }}>
         <Form
           onSubmit={handleSubmit}
           firstName={inputForm.firstName}
