@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-     grid-area: PN;
 
-     width: 92%;
-     height: auto;
-     padding: 8px 0px 8px 8px;
-
-     position: absolute;
+     width: 100%;
+     height: 100%;
+    
      top: 10px;
      left: 24px;
 
