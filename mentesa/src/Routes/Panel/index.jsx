@@ -1,31 +1,24 @@
 import React from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
-import { Container } from './styles'
-import { LayoutGrid } from '../../styles/LayoutGrid'
+import { Routes, Route } from 'react-router-dom'
 import { Anamnesis } from '../../pages/Anamnesis/index'
 import { Patients } from '../../pages/Patients/index'
 import { Dashboard } from '../../pages/Dashboard/index'
 import Profile from '../../pages/Profile/Profile'
-import Header from '../../components/Header'
-import SideNav from '../../components/SideNav'
-import { useAuth } from './../../hooks/useAuth'
+import Sidenav from '../../components/SideNav/Sidenav'
 
 function Panel() {
-  const { user } = useAuth()
 
   return (
-    <LayoutGrid>
-      <SideNav />
-      <Header image={user?.avatar} />
-      <Container>
+    <Sidenav
+      routes={
         <Routes>
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/patients' element={<Patients />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/anamnesis/:userId' element={<Anamnesis />} />
         </Routes>
-      </Container>
-    </LayoutGrid>
+      }
+    />
   )
 }
 

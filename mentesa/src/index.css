@@ -7,3 +7,17 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+
+.css-10hburv-MuiTypography-root{
+  font-size: 2rem !important;
+  font-weight: bold !important;
+  color: rgb(248, 247, 255);
+  text-transform: capitalize;
+}
+
+.MuiDrawer-paper {
+  overflow: hidden !important;
+  background-color: #003554 !important;
+}
+
