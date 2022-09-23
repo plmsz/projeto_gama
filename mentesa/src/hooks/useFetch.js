@@ -3,11 +3,12 @@ import { api } from '../services/api';
 import { axios } from 'axios';
 import { useAuth } from './useAuth';
 
-export const useFetch = (route, update) => {
+export const useFetch = (route) => {
     const [data, setData] = useState([]);
     const [isFetching, setIsFetching] = useState(true);
     const [error, setError] = useState('');
     const { user } = useAuth();
+    const { update } = useAuth()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,7 +25,7 @@ export const useFetch = (route, update) => {
             }
         };
         fetchData();
-    }, [update, user]);
+    }, [update, user?.role, user?.id]);
 
     return {
         data,
