@@ -6,7 +6,7 @@ export const Container = styled.main`
   align-items: center;
   min-height: 85vh;
   text-align: center;
-  width: 100%;
+  /* width: 100%; */
 `
 
 export const ContainerFlex = styled.section`
