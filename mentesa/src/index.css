@@ -16,12 +16,8 @@
   text-transform: capitalize;
 }
 
-.css-d9ml5t-MuiDrawer-docked .MuiDrawer-paper {
-  overflow: hidden;
-  background-color: #003554;
+.MuiDrawer-paper {
+  overflow: hidden !important;
+  background-color: #003554 !important;
 }
 
-.css-1r7kz78-MuiModal-root-MuiDrawer-root .MuiDrawer-paper{
-  overflow: hidden;
-  background-color: #003554;
-}  
