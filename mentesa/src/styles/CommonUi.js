@@ -1,12 +1,11 @@
 import styled from 'styled-components/';
 
 export const Container = styled.main`
-  align-items: flex-start;
   display: flex;
   justify-content: space-between;
-  min-height: 100vh;
+  align-items: center;
+  min-height: 85vh;
   text-align: center;
-  position: relative;
 `;
 
 export const ContainerFlex = styled.section`

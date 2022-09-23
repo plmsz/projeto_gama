@@ -32,6 +32,17 @@
       "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
       "professionalId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
       "id": 3
+    },
+    {
+      "ticket": "smJihdqr72c7f3iK37f4jf",
+      "professional": "João da Silva Júnior",
+      "patient": "Paloma Oliveira",
+      "specialty": "Psicanalista",
+      "date": "2022-09-28T17:00:00.000Z",
+      "status": "Agendada",
+      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
+      "professionalId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
+      "id": 4
     }
   ],
   "users": [
@@ -39,7 +50,7 @@
       "userId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
       "role": "patient",
       "name": "Paloma Oliveira",
-      "birthday": "10/05/2000",
+      "birthday": "1990-08-10",
       "email": "plmsouzaoliveira@gmail.com",
       "address": "Estrada Nova Brasília",
       "state": "BA",
@@ -53,7 +64,8 @@
       "specialty": "",
       "cep": "41300400",
       "num": "58",
-      "id": 1
+      "id": 1,
+      "neighborhood": "Valéria"
     },
     {
       "userId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
@@ -138,6 +150,27 @@
       "cep": "09950000",
       "num": "1205",
       "id": 5
+    }
+  ],
+  "anamnesis": [
+    {
+      "profession": "coordenadora regional",
+      "education": "Analfabeto",
+      "livesWith": "filhos",
+      "description": "desanimada",
+      "medicalHistory": "depressão",
+      "personalHistory": "dívidas",
+      "familyHistory": "depressão por parte de mãe",
+      "previousMentalHealthCare": "Sim",
+      "reasonMentalHealthCare": "ideação",
+      "medicine": "Sim",
+      "understanding": "Ruim",
+      "posture": "Depressão",
+      "feelings": "Tristeza",
+      "emergencyNumber": "87899999999999",
+      "userId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
+      "id": 1,
+      "reasonMedicine": "depressão"
     }
   ]
 }

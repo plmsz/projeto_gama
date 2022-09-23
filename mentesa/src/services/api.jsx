@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export const baseURL = 'http://localhost:8080'
+export const baseURL = 'https://steadfast-exciting-walrus.glitch.me'
 export const api = axios.create({
   baseURL,
-  timeout: 10000,
+  timeout: 1000000,
 })

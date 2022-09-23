@@ -1,13 +1,11 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const LayoutGrid = styled.div`
-  width: 100vw;
   min-height: 100vh;
-
   display: grid;
 
-  grid-template-columns: 312px auto;
-  grid-template-rows: 62px auto;
+  grid-template-columns: 280px auto;
+  grid-template-rows: 50px auto;
 
   grid-template-areas:
     "SN HD"
@@ -16,4 +14,4 @@ export const LayoutGrid = styled.div`
 
   position: relative;
 
-`
+`;
