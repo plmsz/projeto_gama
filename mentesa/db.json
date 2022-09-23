@@ -1,48 +1,26 @@
 {
   "appointment": [
     {
-      "ticket": "bbFDhATEpcPr5zkrZdATh5",
+      "ticket": "6n5gqwuF9dYMAqtrhna2d3",
       "professional": "João da Silva Júnior",
       "patient": "Paloma Oliveira",
       "specialty": "Psicanalista",
-      "date": "2022-09-29T00:30:00.000Z",
+      "date": "2022-09-28T16:00:00.000Z",
       "status": "Cancelada",
       "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
       "professionalId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
       "id": 1
     },
     {
-      "ticket": "tH8WrKBkyKsJQ167vsg6r1",
+      "ticket": "1iQmhgaVgK2nA2maCQE427",
       "professional": "João da Silva Júnior",
-      "patient": "Paloma Souza",
+      "patient": "Paloma Oliveira",
       "specialty": "Psicanalista",
-      "date": "2022-09-23T17:00:00.000Z",
-      "status": "Agendada",
-      "patientId": "agJB8ozVnndK5up3OvVSk1gUUN13",
+      "date": "2022-09-29T17:00:00.000Z",
+      "status": "Cancelada",
+      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
       "professionalId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
       "id": 2
-    },
-    {
-      "ticket": "bYtpRbxkRhaKR5ogZ155fr",
-      "professional": "João da Silva Júnior",
-      "patient": "Paloma Oliveira",
-      "specialty": "Psicanalista",
-      "date": "2022-10-04T18:00:00.000Z",
-      "status": "Agendada",
-      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
-      "professionalId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
-      "id": 3
-    },
-    {
-      "ticket": "smJihdqr72c7f3iK37f4jf",
-      "professional": "João da Silva Júnior",
-      "patient": "Paloma Oliveira",
-      "specialty": "Psicanalista",
-      "date": "2022-09-28T17:00:00.000Z",
-      "status": "Agendada",
-      "patientId": "roiOJ1ChFfdHCYHspiFZStlwANg1",
-      "professionalId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
-      "id": 4
     }
   ],
   "users": [
@@ -71,7 +49,7 @@
       "userId": "Jz2JIhekpucIaeVxeJqQJnxl6ss1",
       "role": "professional",
       "name": "João da Silva Júnior",
-      "birthday": "12/08/1990",
+      "birthday": "2022-09-15",
       "email": "joaosilvapsimentesa@gmail.com",
       "address": "Rua Sítio Floresta",
       "neighborhood": "Piedade",
@@ -154,7 +132,7 @@
   ],
   "anamnesis": [
     {
-      "profession": "coordenadora regional",
+      "profession": "coordenadora",
       "education": "Analfabeto",
       "livesWith": "filhos",
       "description": "desanimada",

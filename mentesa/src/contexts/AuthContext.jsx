@@ -8,6 +8,7 @@ export const AuthContext = createContext({})
 
 export function AuthContextProvider(props) {
   const [user, setUser] = useState()
+  const [update, setUpdate] = useState(false);
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -76,7 +77,7 @@ export function AuthContextProvider(props) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, setUser, signInWithGoogle, closeSessionFromGoogle }}>
+    <AuthContext.Provider value={{ user, setUser, signInWithGoogle, closeSessionFromGoogle, update, setUpdate }}>
       {props.children}
     </AuthContext.Provider>
   )
