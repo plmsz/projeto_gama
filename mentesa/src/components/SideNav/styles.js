@@ -14,9 +14,6 @@ export const Container = styled.div`
   background-color: #003554;
 
   position: relative;
-  /* @media screen and (max-width: 768px) {
-    max-width: 160px;
-  } */
 `
 
 export const NavList = styled.nav`
@@ -53,20 +50,20 @@ export const NavItem = styled.li`
       background-color: #00a6fb;
     }
 
-    @media screen and (max-width: 768px) {
+    /* @media screen and (max-width: 768px) {
       padding: 18px 5px;
       span {
         display: none;
       }
-    }
+    } */
   }
 `
 
 export const Logo = styled.img`
   margin: 40px 0 40px 0;
-  @media screen and (max-width: 768px) {
+  /* @media screen and (max-width: 768px) {
     display: none;
-  }
+  } */
 `
 
 export const Logout = styled.div`
@@ -115,9 +112,9 @@ export const Logout = styled.div`
     position: relative;
 
     cursor: pointer;
-    @media screen and (max-width: 768px) {
+    /* @media screen and (max-width: 768px) {
       flex-direction: column;
       font-size: 1rem;
-    }
+    } */
   }
 `
