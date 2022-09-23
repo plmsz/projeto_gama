@@ -7,9 +7,6 @@ import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
@@ -20,18 +17,20 @@ import PersonIcon from '@mui/icons-material/Person';
 import { AccessibilityNew, MeetingRoom } from '@mui/icons-material'
 import { Avatar } from '../../components/Header/styles'
 import { Container } from '../../Routes/Panel/styles';
+import { Link } from 'react-router-dom';
+import { NavItem } from './styles'
 
 const drawerWidth = 240;
 
 function Sidenav(props) {
     const { user } = useAuth()
     const { window } = props;
-    const [ mobileOpen, setMobileOpen ] = React.useState(false);
-    const [ isDoctor, setIsDoctor ] = React.useState(false)
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [isDoctor, setIsDoctor] = React.useState(false)
     const { closeSessionFromGoogle } = useAuth()
 
     React.useEffect(() => {
-        if ( user?.role === 'professional') {
+        if (user?.role === 'professional') {
             setIsDoctor(true)
         }
     }, [user])
@@ -46,34 +45,24 @@ function Sidenav(props) {
             <Divider />
 
             <List sx={{ backgroundColor: '#003554', height: '90%' }}>
-                <ListItem  >
-                    <ListItemButton to='dashboard'>
-                        <ListItemIcon>
-                            <DashboardIcon fontSize='large' sx={{ color: '#F8F7FF' }} />
-                        </ListItemIcon>
+                <NavItem  >
+                    <Link to='dashboard'>
+                        <DashboardIcon fontSize='large' sx={{ color: '#F8F7FF' }} />
                         <ListItemText>Dashboard</ListItemText>
-                    </ListItemButton>
-                </ListItem>
-                <ListItem  >
-                    <ListItemButton to='profile'>
-                        <ListItemIcon>
-                            <PersonIcon fontSize='large' sx={{ color: '#F8F7FF' }} />
-                        </ListItemIcon>
+                    </Link>
+                </NavItem>
+                <NavItem  >
+                    <Link to='profile'>
+                        <PersonIcon fontSize='large' sx={{ color: '#F8F7FF' }} />
                         <ListItemText>Perfil</ListItemText>
-                    </ListItemButton>
-                </ListItem>
-                {isDoctor ?
-                    <ListItem >
-                        <ListItemButton to='patients'>
-                            <ListItemIcon>
-                                <AccessibilityNew fontSize='large' sx={{ color: '#F8F7FF' }} />
-                            </ListItemIcon>
-                            <ListItemText>Pacientes</ListItemText>
-                        </ListItemButton>
-                    </ListItem>
-                    :
-                    null
-                }
+                    </Link>
+                </NavItem>
+                <NavItem showComponent={isDoctor}>
+                    <Link to='patients'>
+                        <AccessibilityNew fontSize='large' sx={{ color: '#F8F7FF' }} />
+                        <ListItemText>Pacientes</ListItemText>
+                    </Link>
+                </NavItem>
             </List>
             <Divider />
             <Logout>

@@ -21,7 +21,6 @@ export function PatientChart({ userId }) {
     control,
   } = useForm()
 
-  console.log(dataPatient[0])
   useEffect(() => {
     reset({ ...dataPatient[0] })
   }, [dataPatient])
@@ -44,7 +43,6 @@ export function PatientChart({ userId }) {
     const body = { ...data, userId }
     return isEditing ? updateChart(body, dataPatient[0].id) : createChart(body)
   }
-  console.log({ watchTypeHealthCare })
   return (
     <Box component='form' onSubmit={handleSubmit(onSubmit)} mx={2} sx={{ flexGrow: 1 }}>
       <Grid container spacing={1} mt={2} mb={2}>
