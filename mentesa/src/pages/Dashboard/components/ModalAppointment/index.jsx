@@ -5,13 +5,16 @@ import DialogTitle from '@mui/material/DialogTitle'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
 import { FormAppointment } from './FormAppointment'
+import { useAuth } from '../../../../hooks/useAuth';
 
-export default function ModalAppointment({ setOpen, open, setUpdate, update }) {
+export default function ModalAppointment({ setOpen, open }) {
+  const { update, setUpdate } = useAuth()
+
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
   const handleClose = () => {
     setUpdate(!update)
-      setOpen(false)
+    setOpen(false)
   }
 
   return (

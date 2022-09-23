@@ -11,16 +11,13 @@ import ModalAppointment from './../ModalAppointment/index'
 
 export const AppointmentList = () => {
   const { user } = useAuth()
-  const [update, setUpdate] = useState(false)
+  const { update, setUpdate } = useAuth()
   const { width } = useWindowDimensions()
   const [showColumnsScreen] = useState(width <= 1024 ? false : true)
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false)
   const [dialogOptions, setDialogOptions] = useState({ title: '', text: '', info: '' })
   const [openDialog, setOpenDialog] = useState(false)
-  const { data: rawData, isFetching } = useFetch(
-    `appointment?${user?.role}Id=${user?.userId}&_sort=date&_order=desc`,
-    update,
-  )
+  const { data: rawData, isFetching } = useFetch(`appointment?${user?.role}Id=${user?.userId}&_sort=date&_order=desc`)
   const handleCancelAppointment = async (ticket) => {
     try {
       const { data } = await api.get(`appointment?ticket=${ticket}`)
@@ -67,9 +64,7 @@ export const AppointmentList = () => {
           functionConfirm={handleCancelAppointment}
         />
       )}
-      {openDialog && (
-        <ModalAppointment setOpen={setOpenDialog} open={openDialog} setUpdate={setUpdate} update={update} />
-      )}
+      {openDialog && <ModalAppointment setOpen={setOpenDialog} open={openDialog} />}
     </Box>
   )
 }
